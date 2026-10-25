@@ -55,7 +55,7 @@ export const siteSettings = defineType({
       group: "navigation",
       of: [{ type: "navLink" }],
       description:
-        "Leave empty to use Homes and Contact. A link such as /#about only works while that home-page section is shown.",
+        "The FIRST link is shown large at the top right; the others are small beneath it. Leave empty to use “Select an apartment”, “Book a call” and “Contact”. A link such as /#about only works while that home-page section is shown.",
     }),
     defineField({
       name: "footerNote",

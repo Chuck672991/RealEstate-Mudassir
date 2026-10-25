@@ -37,7 +37,7 @@ const PROPERTY_FIELDS = /* groq */ `
 
 export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `*[_type == "siteSettings" && _id == "siteSettings"][0]{
   siteName, siteTagline, showRatingSummary, showOfficeAddress, inquiryTopics,
-  nav[]{ _key, label, href },
+  nav[]{ _key, label, href, opensContactForm },
   footerNote,
   legalLinks[]{ _key, label, href },
   complianceNotice, listingDisclaimer, dataNotice,

@@ -83,7 +83,7 @@ export function MobileMenu({ links, phone, name }: { links: LinkDTO[]; phone?: P
             <ul role="list" className="menu-dialog__list">
               {links.map((l) => (
                 <li key={l.href + l.label}>
-                  <SmartLink href={l.href} className="t-display t-h3" onClick={close}>
+                  <SmartLink href={l.href} className="t-display t-h3" onClick={close} data-open-contact={l.opensContactForm ? "" : undefined}>
                     {l.label}
                   </SmartLink>
                 </li>

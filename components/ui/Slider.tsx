@@ -10,9 +10,15 @@ import { preloadLazyImages, useHydrated, usePrefersReducedMotion } from "@/lib/u
  *
  *  • Slides are server-rendered children; this island only decides which is active.
  *  • Without JS every slide is simply listed; once hydrated (`data-ready`) one shows at a time.
- *  • Auto-advance (WCAG 2.2.2): off for reduced motion; pauses on hover, focus, when the
- *    slider is < 20% visible, and when the tab is hidden; has an explicit Pause/Play button.
- *  • The live region is "polite" only while paused, so screen readers are not interrupted
+ *  • Auto-advance starts by itself as soon as the slider is on screen (≥ 20 % visible) and
+ *    keeps going — a resting mouse pointer does NOT stop it, and there is no Pause/Play button
+ *    (the site owner's decision). It does not run for reduced motion, when the slider is out of
+ *    view, when the tab is hidden, or while KEYBOARD focus is inside it (so tabbing through is
+ *    not swept along). Previous / next, the arrow keys and a click on the arrows still work and
+ *    restart the timer.
+ *    ⚠ Without a pause control this does not meet WCAG 2.2.2 (Pause, Stop, Hide, level A) for
+ *    visitors who see motion; see docs/ACCESSIBILITY.md.
+ *  • The live region is "polite" only while not playing, so screen readers are not interrupted
  *    by the timer.
  *  • Reveal states reuse the CSS vocabulary: the active slide's `[data-reveal]` nodes get
  *    `data-revealed`; the previous slide's are cleared so they animate out.
@@ -36,8 +42,9 @@ export function Slider({
   const [index, setIndex] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
   const ready = useHydrated();
-  const [userPaused, setUserPaused] = useState(false);
-  const [hoverPaused, setHoverPaused] = useState(false);
+  // keyboard focus inside the slider (never a mouse click) and a hidden tab pause the timer
+  const [focusPaused, setFocusPaused] = useState(false);
+  const [tabHidden, setTabHidden] = useState(false);
   const [visible, setVisible] = useState(false);
   // Entrance animations wait until the slider has actually been on screen once.
   const [seen, setSeen] = useState(false);
@@ -48,7 +55,7 @@ export function Slider({
   const busy = useRef(false);
 
   const canAutoplay = !!autoplayMs && autoplayMs > 0 && count > 1 && !reduced;
-  const playing = canAutoplay && !userPaused && !hoverPaused && visible;
+  const playing = canAutoplay && !focusPaused && !tabHidden && visible;
 
   const go = useCallback(
     (next: number) => {
@@ -81,7 +88,7 @@ export function Slider({
       );
       io.observe(el);
     }
-    const onVisibility = () => setHoverPaused(document.visibilityState === "hidden");
+    const onVisibility = () => setTabHidden(document.visibilityState === "hidden");
     document.addEventListener("visibilitychange", onVisibility);
     return () => {
       io?.disconnect();
@@ -124,10 +131,13 @@ export function Slider({
       role="group"
       aria-roledescription="carousel"
       aria-label={label}
-      onMouseEnter={() => setHoverPaused(true)}
-      onMouseLeave={() => setHoverPaused(false)}
-      onFocusCapture={() => setHoverPaused(true)}
-      onBlurCapture={() => setHoverPaused(false)}
+      onFocusCapture={(e) => {
+        // only keyboard focus pauses: a mouse click on an arrow leaves focus here too, and must not stop it
+        if (e.target instanceof Element && e.target.matches(":focus-visible")) setFocusPaused(true);
+      }}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocusPaused(false);
+      }}
       onKeyDown={(e) => {
         if (e.key === "ArrowRight") go(index + 1);
         if (e.key === "ArrowLeft") go(index - 1);
@@ -174,17 +184,6 @@ export function Slider({
             <span className="sr-only">Next slide</span>
             <span aria-hidden="true">›</span>
           </button>
-          {canAutoplay ? (
-            <button
-              type="button"
-              className="slider__btn slider__pause"
-              aria-pressed={userPaused}
-              onClick={() => setUserPaused((v) => !v)}
-            >
-              <span className="sr-only">{userPaused ? "Resume automatic slide changes" : "Pause automatic slide changes"}</span>
-              <span aria-hidden="true">{userPaused ? "Play" : "Pause"}</span>
-            </button>
-          ) : null}
         </div>
       ) : null}
     </div>

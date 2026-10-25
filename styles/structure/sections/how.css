@@ -1,7 +1,21 @@
 /*
- * HOW HE WORKS — the reference's “the space to live in” (§S10): a cream arch panel
- * that rises over the sold stage, a stacked headline with one italic accent word
- * overlapping it, and an asymmetric two-column composition.
+ * HOW HE WORKS — the reference's “the space to live in” (§S10).
+ *
+ * Proportions are measured from the reference at 2000 px wide and written as SHARES OF THE WIDTH
+ * (vw, or % of the stage, which is the page width), so the whole composition scales together:
+ *
+ *   title           12 vw capitals, line-height .875, tracking −.024em; the accent the same size,
+ *                   tilted; 17 vw of cream above the first line
+ *   left block      0 → 40 vw (flush left), 3:4, burgundy; the framed photo inside is 23 vw wide
+ *                   (8.5 vw each side, 11.35 vw top and bottom); flower on the block's top-right corner
+ *   right photo     60 → 100 vw (flush right), 4:3 — its top sits 15.35 vw ABOVE the block's
+ *   statement       2.5 vw uppercase display, line-height 1; the first line indented 9.5 vw so it starts
+ *                   under the photo's left edge (60 vw); the rest from 50.5 vw
+ *   paragraph       ≈ .85 vw, starting at 66 vw
+ *   round button    13 vw across
+ *   languages       small bold caps under the left block, from 22 vw
+ *
+ * Below 992 px the two columns stack and the proportions are replaced by fluid ones.
  */
 @layer components {
   .how {
@@ -19,12 +33,10 @@
   }
   .how__panel {
     min-height: var(--overlap);
-    padding: clamp(5rem, 14vw, 15rem) var(--gutter) clamp(4rem, 9vw, 9rem) var(--gutter-l);
+    padding: clamp(5rem, 17vw, 20rem) 0 clamp(5rem, 10vw, 12rem);
     background-color: var(--surface-raised);
     color: var(--ink);
-    display: grid;
-    align-content: start;
-    gap: clamp(3rem, 8vw, 8rem);
+    display: block;
   }
   .how__title {
     display: grid;
@@ -36,11 +48,12 @@
     display: grid;
     justify-items: center;
   }
-  /* the title: display capitals, one word per line, the italic accent the same size, tucked under */
+  /* the title: display capitals, one word per line, the accent the same size, tucked under and tilted */
   .how__line {
     display: block;
     font-size: var(--text-h1);
     line-height: 0.875;
+    letter-spacing: -0.024em;
   }
   .how__accent {
     display: block;
@@ -50,107 +63,175 @@
     line-height: 1;
     margin-top: -0.36em;
     margin-left: -0.07em;
+    rotate: -4deg; /* a rising baseline, as in the reference */
+    transform-origin: 50% 60%;
   }
 
-  /* two tall photographs that drift in opposite directions (engine/home.ts → drift) */
-  .how__imgs {
+  /* ── the stage ─────────────────────────────────────────────────────────── */
+  .how__stage {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1vw;
+    grid-template-columns: 40% 60%;
     align-items: start;
-    width: 100%;
-    max-width: 100rem;
-    margin-inline: auto;
+    margin-top: 1vw;
+  }
+  .how__col {
+    min-width: 0;
   }
   .how__img {
     position: relative;
     min-width: 0;
   }
-  .how__img--r {
-    margin-top: 15vw;
+
+  /* left: the burgundy block — the framed photo inside it, the flower on its corner */
+  .how__img--l {
+    margin-top: 38.4%; /* 15.35 vw of a 40 vw column: the block starts below the right photo's top */
+    padding: 28.4% 21.25%; /* 11.35 vw / 8.5 vw of the 40 vw block */
+    background: var(--surface-inverse);
   }
   .how__frame {
-    background: var(--surface-inverse);
-    padding: clamp(0.75rem, 3vw, 3rem);
+    position: relative;
   }
-  .how__photo {
+  .how__photo--l {
     width: 100%;
-    aspect-ratio: 773 / 1252;
+    aspect-ratio: 3 / 4;
   }
-  .how__note {
-    display: grid;
-    gap: 1.5rem;
-    justify-items: start;
-    max-width: 24rem;
-    padding-top: 1.75rem;
+  .how__langs {
+    margin: 1.6vw 0 0 55%; /* from 22 vw */
+    font-family: var(--ff-label);
+    font-size: clamp(0.72rem, 0.78vw, 0.92rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    text-transform: uppercase;
   }
-
-  .how__cols {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: clamp(2rem, 6vw, 8rem);
-    max-width: 100rem;
-    width: 100%;
-    margin-inline: auto;
-  }
-  .how__services {
-    display: grid;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    align-content: start;
-  }
-  .how__services > p {
-    max-width: 30ch;
-  }
-  .service-list {
+  .how__langs ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
   }
-  .service-list li {
-    display: grid;
-    grid-template-columns: 3rem minmax(0, 1fr);
-    column-gap: 1rem;
-    row-gap: 0.35rem;
-    padding-block: clamp(1rem, 2.2vw, 1.6rem);
-    border-top: 1px solid var(--line-strong);
-  }
-  .service-list li:last-child {
-    border-bottom: 1px solid var(--line-strong);
-  }
-  .service-list li > span {
-    grid-row: 1;
-    padding-top: 0.35rem;
-  }
-  .service-list li > h3,
-  .service-list li > p {
-    grid-column: 2;
-  }
-  .how__aside {
-    display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-content: start;
-    justify-items: start;
-  }
-  .how__languages {
-    display: grid;
-    gap: 0.4rem;
-  }
-  .how__languages ul {
-    display: grid;
-    gap: 0.1rem;
+  .how__langs li::before {
+    content: "• ";
   }
 
+  /* right: the photograph flush with the page edge, then the copy */
+  .how__img--r {
+    width: 66.667%; /* 40 vw of a 60 vw column */
+    margin-left: auto;
+  }
+  .how__photo--r {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+  .how__copy {
+    /* the statement's block starts at 50.5 vw: 10.5 vw into a 60 vw column. The gap under the photo is 3.2 vw
+       (the reference's is 1.2 vw): the photo drifts ±3 vw toward it, and must never touch the words */
+    margin: 3.2vw 0 0 17.5%;
+    width: 60.8%; /* 36.5 vw */
+  }
+  .how__statement {
+    max-width: 86%; /* ends by ≈ 82 vw: clear of the menu link, which is wider in this typeface than in the reference's */
+    margin: 0;
+    /* the reference sets this at 2.5 vw in a condensed face; this typeface is ≈ 1.4× wider, so 2.05 vw gives the same four lines */
+    font-size: clamp(1.3rem, 2.05vw, 2.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    text-indent: 26%; /* 9.5 vw of a 36.5 vw block: the first line starts under the photo's left edge */
+  }
+  .how__services {
+    list-style: none;
+    margin: 2.4vw 0 0 30%; /* the paragraph from ≈ 66 vw */
+    padding: 0;
+    width: 62%;
+    display: grid;
+    gap: 0.5em;
+    font-size: clamp(0.8125rem, 0.86vw, 1.05rem);
+    line-height: 1.38;
+  }
+  .how__services strong {
+    font-weight: 600;
+  }
+  .how__cta {
+    margin: 4.2vw 0 0 32.9%; /* the round button, left edge at ≈ 62.5 vw (12 vw into a 36.5 vw block) */
+  }
+  .how__cta .circle-btn {
+    --size: clamp(8.5rem, 13vw, 18rem);
+  }
+
+  /* only one photograph (or none): the copy keeps the right-hand place it would have had */
+  .how__stage[data-photos="0"] .how__copy,
+  .how__stage[data-photos="1"] .how__col--r:not(:has(.how__img--r)) .how__copy {
+    margin-top: 15.35vw;
+  }
+  .how__stage[data-photos="0"] {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 62rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .how__stage[data-photos="0"] .how__col--l {
+    order: 2;
+  }
+  .how__stage[data-photos="0"] .how__copy,
+  .how__stage[data-photos="0"] .how__services {
+    width: auto;
+    margin-left: 0;
+  }
+  .how__stage[data-photos="0"] .how__langs {
+    margin-left: 0;
+  }
+
+  /* ── tablets and phones: one column, fluid sizes ─────────────────────────── */
   @media (max-width: 991px) {
-    .how__cols,
-    .how__imgs {
-      grid-template-columns: minmax(0, 1fr);
+    .how__panel {
+      padding-top: clamp(5rem, 22vw, 9rem);
+    }
+    .how__stage {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch; /* the desktop grid's `start` would shrink every item to its content */
+      margin-top: clamp(1.5rem, 6vw, 3rem);
+      gap: clamp(2rem, 8vw, 4rem);
+    }
+    .how__col {
+      display: contents; /* let the pieces order themselves: block, photo, copy, languages */
+    }
+    .how__img--l {
+      order: 1;
+      margin-top: 0;
+      padding: 14% 17%;
     }
     .how__img--r {
-      margin-top: 0;
+      order: 2;
+      width: 100%;
     }
-    .how__accent {
-      margin-top: -0.3em;
+    .how__copy {
+      order: 3;
+      width: auto;
+      margin: 0;
+      padding-inline: var(--gutter);
+    }
+    .how__langs {
+      order: 4;
+      margin: 0;
+      padding-inline: var(--gutter);
+      font-size: 0.8125rem;
+    }
+    .how__statement {
+      font-size: clamp(1.4rem, 6vw, 2.2rem);
+      text-indent: 0;
+    }
+    .how__services {
+      margin: clamp(1.5rem, 5vw, 2.5rem) 0 0;
+      width: auto;
+      font-size: 0.9375rem;
+    }
+    .how__cta {
+      margin: clamp(2rem, 7vw, 3.5rem) 0 0;
+    }
+    .how__stage[data-photos="0"] .how__copy,
+    .how__stage[data-photos="1"] .how__col--r:not(:has(.how__img--r)) .how__copy {
+      margin-top: 0;
     }
   }
 }

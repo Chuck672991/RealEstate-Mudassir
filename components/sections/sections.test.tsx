@@ -244,9 +244,10 @@ describe("the horizon (clouds over an aerial photograph)", () => {
 describe("how he works: the two photographs", () => {
   const services = { services: [{ title: "Listing" }] };
 
-  it("draws no photograph columns without photographs, and never invents one", () => {
+  it("draws no photograph, block or flower without photographs, and never invents one", () => {
     const markup = html(<HowIWork home={home(services)} agent={agent()} />);
-    assert.doesNotMatch(markup, /how__imgs|how__img|flower/);
+    assert.doesNotMatch(markup, /how__img|how__frame|flower|<img/);
+    assert.match(markup, /how__copy/, "the copy is still there");
   });
 
   it("one photograph: the left (framed) column only, with its own alt text and a spray over it", () => {
@@ -257,18 +258,39 @@ describe("how he works: the two photographs", () => {
     assert.match(markup, /flower--living/);
   });
 
-  it("two photographs: both columns drift against each other, the note goes under the right one", () => {
+  it("two photographs: the columns drift against each other; the statement, services and button sit under the right one", () => {
     const markup = html(
       <HowIWork
         home={home({ ...services, howIntro: "A short introduction." })}
-        agent={agent()}
+        agent={agent({ languages: ["English", "Urdu"] })}
         photos={[photo({ alt: "Left" }), photo({ alt: "Right" })]}
       />,
     );
     assert.match(markup, /data-drift="fwd"/);
     assert.match(markup, /data-drift="rev"/);
-    assert.match(markup, /how__note/);
+    assert.match(markup, /how__statement/);
+    assert.match(markup, /how__services/);
+    assert.match(markup, /circle-btn/);
     assert.equal((markup.match(/A short introduction\./g) ?? []).length, 1, "the introduction is printed once");
     assert.doesNotMatch(markup, BROKEN);
+  });
+
+  it("the left column drifts as one piece, so the block and the languages under it never overlap", () => {
+    const markup = html(<HowIWork home={home(services)} agent={agent({ languages: ["English"] })} photos={[photo(), photo()]} />);
+    // the drifting element is the column that CONTAINS both the block and the language list
+    assert.match(markup, /<div class="how__col how__col--l" data-drift="fwd">[\s\S]*how__img--l[\s\S]*how__langs/);
+  });
+
+  it("the burgundy block and the right photograph are marked as dark surfaces, so the fixed header recolours over them", () => {
+    const markup = html(<HowIWork home={home(services)} agent={agent()} photos={[photo(), photo()]} />);
+    assert.match(markup, /how__img how__img--l" data-bg="dark"/);
+    assert.match(markup, /how__img how__img--r" data-drift="rev" data-bg="dark" data-scrim=""/);
+  });
+
+  it("lists the languages spoken only when there are some, as a list", () => {
+    assert.doesNotMatch(html(<HowIWork home={home(services)} agent={agent()} />), /how__langs/);
+    const markup = html(<HowIWork home={home(services)} agent={agent({ languages: ["English", "Urdu"] })} />);
+    assert.match(markup, /Languages spoken:/);
+    assert.equal((markup.match(/<li>(English|Urdu)<\/li>/g) ?? []).length, 2);
   });
 });

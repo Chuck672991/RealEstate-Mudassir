@@ -59,7 +59,7 @@ describe("agent (publication policy)", async () => {
     assert.equal(agent.brokerage?.name, "HomeSmart Connect LLC");
     assert.equal(agent.brokerage?.address?.oneLine, "3030 Salt Creek Lane #145, Arlington Heights, IL 60005");
     assert.equal(agent.brokerage?.logo, null, "logo rights are pending → not shown");
-    assert.equal(agent.headshot?.src, "/photos/portrait.jpg", "the owner-supplied portrait is shown");
+    assert.equal(agent.headshot?.src, "/photos/portrait.png", "the owner-supplied portrait is shown");
     assert.match(agent.headshot?.alt ?? "", /Mudassir Siddiqui/);
   });
 });
@@ -131,7 +131,7 @@ describe("properties", async () => {
     const withPhoto = dtos.filter((p) => p.image);
     assert.equal(withPhoto.length, dtos.length, "all 17 published homes have a supplied photo");
     for (const p of withPhoto) {
-      assert.match(p.image!.src, /^\/photos\/homes\/(sold|list)-\d{3}\.jpg$/);
+      assert.match(p.image!.src, /^\/photos\/homes\/(sold|list)-\d{3}\.png$/);
       assert.ok(p.image!.alt.length > 10, "descriptive alt text");
     }
     // a record with no supplied file still renders (null → material placeholder), e.g. a hidden one
@@ -196,7 +196,8 @@ describe("site + home copy", async () => {
     assert.ok(s.inquiryTopics.length > 0);
     // no menu in the CMS → only routes that always exist (never a dead #anchor)
     assert.deepEqual(s.nav, [
-      { label: "Homes", href: "/properties" },
+      { label: "Select an apartment", href: "/properties" },
+      { label: "Book a call", href: "/contact", opensContactForm: true },
       { label: "Contact", href: "/contact" },
     ]);
     // no data → no claim about where data came from
@@ -210,7 +211,14 @@ describe("site + home copy", async () => {
 
   it("reads the seeded copy and SEO defaults", async () => {
     const s = shapeSiteSettings(await q(SITE_SETTINGS_QUERY));
-    assert.equal(s.nav.length, 4, "an editor-provided menu replaces the default");
+    assert.equal(s.nav.length, 3, "an editor-provided menu replaces the default");
+    assert.deepEqual(
+      s.nav.map((l) => l.label),
+      ["Select an apartment", "Book a call", "Contact"],
+      "the first link is the large one; the others are small",
+    );
+    assert.equal(s.nav.find((l) => l.label === "Book a call")?.opensContactForm, true, "…and Book a call opens the contact form");
+    assert.equal(s.nav.find((l) => l.label === "Contact")?.opensContactForm, undefined, "…while Contact goes to its page");
     assert.match(
       s.dataNotice ?? "",
       /^Listing details and sales figures were collected from .+ public Homes\.com profile on October 24, 2026 and may have changed/,

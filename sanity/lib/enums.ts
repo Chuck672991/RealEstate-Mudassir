@@ -124,10 +124,11 @@ export const INQUIRY_TOPICS_DEFAULT = [
  * The menu used until the Site settings document provides one: only routes that always
  * exist (no #anchors, which depend on which home sections are shown).
  */
-export const NAV_DEFAULT = [
-  { label: "Homes", href: "/properties" },
+export const NAV_DEFAULT: ReadonlyArray<{ label: string; href: string; opensContactForm?: boolean }> = [
+  { label: "Select an apartment", href: "/properties" },
+  { label: "Book a call", href: "/contact", opensContactForm: true },
   { label: "Contact", href: "/contact" },
-] as const;
+];
 
 /** Document types that exist exactly once. */
 export const SINGLETON_TYPES = [

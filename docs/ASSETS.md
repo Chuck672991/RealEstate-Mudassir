@@ -27,6 +27,21 @@ It is generated from the same mapping that seeds the CMS (`npm run assets:manife
 
 `content/local-images.json` lists `{ doc, field, file, width, height, alt, rights, source, hotspot? }` for each picture. In **local-content mode** `lib/sanity/groq-local.ts` attaches them as image assets (a `sanity.imageAsset` document plus a reference, exactly like an upload), so the real queries, the real `toImage` rights check and every component run unchanged. `lib/sanity/local-images.test.ts` checks every file exists with the recorded size, every target document exists, alt text is real and rights stay `owner_directed`. The seed script does **not** push them to Sanity; with a Sanity project, upload via `npm run images:import` (which requires `owned`/`licensed`/`permission`).
 
+### High-resolution versions (`npm run photos:hires`)
+
+The photographs arrived as 640–1600 px JPEGs from a listing site, but several are painted far larger than that — the closing scene and the aerial under the clouds stretch a 1350 px picture across ≈ 5400 device pixels (each source pixel became ≈ 10 screen pixels, which is the blocky, smeared look). `scripts/assets/photos-hires.mjs` converts them:
+
+1. the untouched JPEGs are kept in `assets/owner-supplied/photo-originals/` (same sub-paths; **not deployed**; the source of truth);
+2. each goes through **Apple's on-device super-resolution model** (VideoToolbox `VTSuperResolutionScaler`, 4× the pixels; `scripts/assets/upscale.swift`; the model is the OS's, downloaded on first use — nothing third-party);
+3. the result is capped at **3840 px on its long edge** (the most `next/image` will ever serve) and written as a **lossless PNG** into `public/photos/`;
+4. `content/local-images.json` is rewritten to point at the PNGs with their real sizes (`--force` redoes everything, `--max-edge 2880` caps smaller).
+
+Results on this machine: 28 photographs in ≈ 2 minutes; 4.4–15 MB each, **239 MB in total** (the originals were 7 MB). Measured on the live page at 2× pixel density, the worst stretch fell from ≈ 10.5× to ≈ 1.4× (closing scene), and most images are now at or below 1.8×. Tones are preserved (mean colour and the 5th/50th/95th luminance percentiles match the originals to within 1–4 levels of 255).
+
+**What this is not.** A super-resolution model does not recover detail the camera never recorded: it *invents plausible detail* — cleaner brick courses, window bars, shingles, hair and fabric texture. It is conservative and the difference is plainly visible (see docs/VERIFICATION.md), but these are **reconstructions of listing photographs**. For a real-estate site that matters: the real fix is the agent's own full-resolution originals (upload them in the Studio, or put them in `assets/owner-supplied/photo-originals/` and run the script again). Rights are unchanged: the PNGs derive from the same `owner_directed` photographs, and permission has still not been confirmed.
+
+**Cost.** The PNGs are served only to the image optimizer; visitors download AVIF (≈ 0.4–0.5 MB for the largest). But 239 MB is heavy for a repository or a static host, and the first request for each size takes ≈ 1.7 s while the optimizer reads the PNG (cached after that). If that is a problem: `--max-edge 2880`, or upload the originals to Sanity (served from its CDN).
+
 **Matching caveats** (please check): files saved from the page lost their listing ids, so photos were matched by address. Three records share 5011 Valley Ln and two share 640 Settlement Dr (same building/house, so any pairing shows the same place). The four area photos named `image.jpg` were matched to Hanover Park, Schaumburg, Bartlett and Streamwood by the page's order — the two named files (South Tri Village, South Schaumburg) fit that order, but verify. Most listing pictures are 650 px wide; full-bleed uses (the Recently-sold stage) are upscaled and will look soft — larger originals fix that.
 
 ## Adding real photographs

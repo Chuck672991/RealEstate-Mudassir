@@ -25,7 +25,7 @@ export function About({ statement, agent }: { statement?: string; agent: AgentDT
         {agent.headshot ? (
           <figure className="about__portrait" data-reveal="slide">
             <div className="rv-slide-inner">
-              <ImageSlot image={agent.headshot} sizes="(min-width: 992px) 28vw, 80vw" className="about__portrait-media" />
+              <ImageSlot image={agent.headshot} sizes="(min-width: 992px) 45vw, 90vw" className="about__portrait-media" />
             </div>
           </figure>
         ) : null}

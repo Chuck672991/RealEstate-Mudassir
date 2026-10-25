@@ -13,7 +13,7 @@
 | **Structure** | `lang="en"`; one `<h1>` per page; ordered headings; landmarks (`header`, `main`, `footer`, labelled `nav`s and a labelled legal `aside`); breadcrumbs on inner pages. |
 | **Keyboard** | The first Tab stop is a *Skip to content* link. Everything interactive is a real `<a>` or `<button>`. Visible `:focus-visible` rings (an inverse ring on dark surfaces). Focusing a link inside a pinned or sideways-scrolling section scrolls the page to it (implemented; not yet walked through by a person). |
 | **Dialogs** | The contact form and the mobile menu are native `<dialog>` elements: modal, focus moves in, **Esc** closes, the background is inert, focus returns to the opener. |
-| **Carousels** | ARIA carousel pattern; arrow keys; inactive slides are `inert` and hidden from assistive technology; a **Pause** control with `aria-pressed` (WCAG 2.2.2) — auto-advance also stops on hover and focus, and when reduced motion is requested. |
+| **Carousels** | ARIA carousel pattern; arrow keys; inactive slides are `inert` and hidden from assistive technology; **auto-advance starts by itself when the carousel is on screen and has NO pause/play button** (the site owner's decision, replacing the earlier Pause control) — it stops for keyboard focus inside the carousel, when the carousel is off screen, when the tab is hidden, and when reduced motion is requested; a resting mouse pointer or a click on an arrow does not stop it. **⚠ This does not meet WCAG 2.2.2 (Pause, Stop, Hide, level A) for visitors who see the motion:** the slides move without a way to stop them other than the keyboard-focus pause, and previous / next only skip. Restoring a control is a small change in `components/ui/Slider.tsx`. |
 | **Tabs** (Recently sold) | ARIA tabs with a roving `tabindex` and arrow-key selection. |
 | **Filters** | Toggle buttons with `aria-pressed`; the state is in the URL so a filtered view can be shared and survives a reload. |
 | **Forms** | Visible labels; an error summary; `aria-invalid` and `aria-describedby` on every flagged field; an honest result message (sent, or "not connected — please call"). A honeypot field is hidden from people *and* assistive technology. |
@@ -53,7 +53,7 @@ axe could not decide two things and flags them on most pages. Both were examined
 
 WCAG 2.5.8 asks for 24 × 24 CSS px *unless* a 24 px circle centred on the target touches no other target. The check (an ad-hoc Playwright script, not committed) samples `elementFromPoint` to find each control's **real** clickable area, then applies that rule. It found, and these changes fixed:
 
-* the desktop **nav links** — only 20 px tall with ~12 px between them (extended with a pseudo-element, nothing moves);
+* the desktop **nav links** — only 20 px tall with ~12 px between them. The menu has since been redesigned (one medium two-line link + two small labels; measured at 1470 px wide: 53 px and 23 px tall, no two targets overlapping; axe reports no violation);
 * small **text links** — the header and call-to-action phone numbers, *Back to top* (12 px tall), *View details*, *Read the reviews*, the breadcrumbs, the phone link on a home's page (a reusable `.hit-slop` utility, nothing moves);
 * the **consent checkbox** (18 → 24 px).
 

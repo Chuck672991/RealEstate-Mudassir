@@ -16,6 +16,12 @@ interface OpenDetail {
  * to /contact (data-open-contact); with JS the click is intercepted and this
  * native <dialog> opens instead (focus trap, Esc and inert background come from
  * showModal()). Programmatic opens use the `ms:open-contact` event.
+ *
+ * The click listener is on `window` in the CAPTURE phase on purpose. next/link calls
+ * preventDefault() on a click it handles, and does so before a bubbling listener on `document`
+ * runs — such a listener saw `defaultPrevented` and gave up, so every trigger just navigated to
+ * /contact. Capturing first, we take the click (preventDefault + stopPropagation), so the router
+ * never sees it. A trigger inside the open mobile menu closes that menu first.
  */
 export function ContactDialog({
   topics,
@@ -47,7 +53,11 @@ export function ContactDialog({
       const el = (e.target as Element | null)?.closest<HTMLElement>("[data-open-contact]");
       if (!el) return;
       e.preventDefault();
-      lastTrigger.current = el;
+      e.stopPropagation(); // the router must not also navigate
+      // from inside the mobile menu: close it first (its own click handler no longer runs)
+      const menu = el.closest("dialog[open]");
+      if (menu instanceof HTMLDialogElement && menu !== dialog) menu.close();
+      lastTrigger.current = menu ? null : el;
       open({ topic: el.dataset.topic, subject: el.dataset.subject });
     };
     const onEvent = (e: Event) => open((e as CustomEvent<OpenDetail>).detail ?? {});
@@ -55,11 +65,11 @@ export function ContactDialog({
       window.dispatchEvent(new CustomEvent("ms:scroll-unlock"));
       lastTrigger.current?.focus?.();
     };
-    document.addEventListener("click", onClick);
+    window.addEventListener("click", onClick, true);
     window.addEventListener("ms:open-contact", onEvent);
     dialog?.addEventListener("close", onClose);
     return () => {
-      document.removeEventListener("click", onClick);
+      window.removeEventListener("click", onClick, true);
       window.removeEventListener("ms:open-contact", onEvent);
       dialog?.removeEventListener("close", onClose);
       if (dialog?.open) dialog.close();

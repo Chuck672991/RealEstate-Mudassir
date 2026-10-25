@@ -25,12 +25,13 @@ export function toSeo(raw: RawSeo | null | undefined, fallbackAlt = ""): SeoDTO 
 export interface RawLink {
   label?: string | null;
   href?: string | null;
+  opensContactForm?: boolean | null;
 }
 
 export const toLinks = (items?: RawLink[] | null): LinkDTO[] =>
   (items ?? [])
-    .filter((l): l is { label: string; href: string } => !!l.label && !!l.href)
-    .map((l) => ({ label: l.label, href: l.href }));
+    .filter((l): l is RawLink & { label: string; href: string } => !!l.label && !!l.href)
+    .map((l) => ({ label: l.label, href: l.href, ...(l.opensContactForm ? { opensContactForm: true } : {}) }));
 
 export interface RawSiteSettings {
   siteName?: string | null;

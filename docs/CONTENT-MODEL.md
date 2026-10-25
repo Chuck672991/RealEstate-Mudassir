@@ -47,8 +47,8 @@ A section with nothing to show renders **nothing** — no heading over a void, n
 
 | Missing | Behaviour |
 | --- | --- |
-| A whole document (e.g. a Sanity project that was never seeded) | Safe defaults: the agent's name, a hero from it, the menu *Homes · Contact*; every other section is absent; the inquiry form still works. |
-| The menu | Falls back to *Homes · Contact* — routes that always exist, never `#anchors`. A link such as `/#about` only works while that home-page section is shown. |
+| A whole document (e.g. a Sanity project that was never seeded) | Safe defaults: the agent's name, a hero from it, the menu *Select an apartment · Book a call · Contact*; every other section is absent; the inquiry form still works. |
+| The menu | Falls back to *Select an apartment · Book a call · Contact* — routes that always exist, never `#anchors`. The **first** link is the large two-line one at the top right; the rest are small labels beneath it; a link with *Open the contact form* ticked (Book a call) opens the inquiry dialog instead of leaving the page. A link such as `/#about` only works while that home-page section is shown. |
 | A page's SEO title | The page inherits the layout's default `<title>` (it is never blank). |
 | Brokerage / address / licence | The footer's *Office* column and the contact page's details panel simply do not render; the form takes the full layout. |
 | *Data source notice* | The footer's "collected from …" sentence is an editable field (*Site settings → Data source notice*), seeded once with the dataset's provenance. Empty = nothing shown. |

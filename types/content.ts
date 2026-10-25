@@ -35,6 +35,8 @@ export interface SeoDTO {
 export interface LinkDTO {
   label: string;
   href: string;
+  /** Menu links only: open the contact form in a dialog instead of navigating (JS-enhanced). */
+  opensContactForm?: boolean;
 }
 
 export interface SiteSettingsDTO {

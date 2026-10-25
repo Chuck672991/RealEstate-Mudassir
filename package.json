@@ -16,6 +16,7 @@
     "assets:manifest": "tsx scripts/build-asset-manifest.ts",
     "assets:check": "tsx scripts/build-asset-manifest.ts --check",
     "images:import": "tsx scripts/import-images.ts",
+    "photos:hires": "node scripts/assets/photos-hires.mjs",
     "flowers:build": "node scripts/assets/flower-clips.mjs",
     "verify:contrast": "tsx scripts/verify/contrast.ts",
     "verify:interactions": "node scripts/verify/interactions.mjs",

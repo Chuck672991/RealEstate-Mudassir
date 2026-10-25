@@ -36,7 +36,7 @@ if (stress && !["white", "black"].includes(stress)) {
  * replaces in that scene.
  */
 const HERO = [".hero__eyebrow", ".hero__line", ".hero__accent", ".hero__sub", ".hero__meta"];
-const HEADER = [".site-nav a", ".site-phone"];
+const HEADER = [".site-nav a"];
 const SOLD = [".sold-show__heading h2", ".sold-show__heading p", ".sold-stage__price", ".sold-stage__where", ".sold-stage__caption p", ".sold-show__tab"];
 const scenes = [
   { name: "hero", viewport: [1440, 900], scrollY: 0, layer: ".hero__stage", selectors: HERO, photo: ".hero__doorway-media" },
@@ -47,6 +47,9 @@ const scenes = [
   { name: "recently sold", viewport: [1440, 900], pin: ["[data-pin-area='sold']", 0.02], layer: ".sold-show__ui, .sold-stage__caption, .site-header", selectors: [...SOLD, ...HEADER], photo: ".sold-stage__media" },
   { name: "recently sold (mid)", viewport: [1440, 900], pin: ["[data-pin-area='sold']", 0.3], layer: ".sold-show__ui, .sold-stage__caption, .site-header", selectors: [...SOLD, ...HEADER], photo: ".sold-stage__media" },
   { name: "recently sold (phone)", viewport: [390, 844], touch: true, section: "#sold", layer: ".sold-show__ui, .sold-stage__caption, .site-header", selectors: [...SOLD, ".menu-btn"], photo: ".sold-stage__media" },
+  // the menu over the “how I work” photograph (flush right, so the menu passes over it), and the copy under it
+  { name: "how (menu over the right photograph)", viewport: [1470, 923], pin: [".how__img--r", 0.05], layer: ".site-header", selectors: HEADER, photo: ".how__photo--r" },
+  { name: "how (copy)", viewport: [1470, 923], pin: [".how__copy", 0.3], layer: ".how__copy, .how__langs", selectors: [".how__statement", ".how__services li", ".how__langs p", ".how__langs li"] },
   { name: "closing scene", viewport: [1440, 900], pin: ["[data-pin-area='cta']", 0.72], layer: ".cta__content", selectors: [".cta__eyebrow", ".cta__giant", ".cta__row p", ".cta__phone"] },
   { name: "closing scene (phone)", viewport: [390, 844], touch: true, section: "#contact", layer: ".cta__content", selectors: [".cta__eyebrow", ".cta__giant", ".cta__row p", ".cta__phone", ".cta__actions .circle-btn__label"] },
 ];

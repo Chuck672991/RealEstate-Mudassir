@@ -72,7 +72,7 @@ node scripts/verify/states.mjs http://localhost:3320 --empty
 
 | Dataset | Build | Audit | What the visitor gets |
 | --- | --- | --- | --- |
-| **Empty** (no documents at all — a Sanity project that was never seeded) | succeeds | `states.mjs --empty` **93 / 93** | The hero (name from the code-level default) and the closing "Get in touch"; menu *Homes · Contact*; `/properties` says there are no homes and offers the form; `/contact` shows the form on its own; sitemap = 3 real URLs; the prerendered sentinel `/properties/__no-homes__` is a real 404; no empty landmark, no footer heading without content, no invented "data collected from…" claim, the home keeps the layout's default `<title>`. |
+| **Empty** (no documents at all — a Sanity project that was never seeded) | succeeds | `states.mjs --empty` **93 / 93** | The hero (name from the code-level default) and the closing "Get in touch"; menu *Select an apartment · Book a call · Contact*; `/properties` says there are no homes and offers the form; `/contact` shows the form on its own; sitemap = 3 real URLs; the prerendered sentinel `/properties/__no-homes__` is a real 404; no empty landmark, no footer heading without content, no invented "data collected from…" claim, the home keeps the layout's default `<title>`. |
 | **No properties** (everything else present) | succeeds | `states.mjs` **78 / 78** | Home without *Current listings* and *Recently sold*; `/properties` empty state; sitemap = 3 URLs. |
 
 Also run: a build with `CONTENT_SOURCE=sanity` and **no project id** fails immediately with *"CONTENT_SOURCE=sanity but NEXT_PUBLIC_SANITY_PROJECT_ID is not set…"*, and a build pointed at a **non-existent Sanity project** contacted the real API and failed in 15 s with Sanity's own *"Dataset "production" not found for project ID …"* — a misconfigured deploy fails loudly instead of shipping an empty site.
@@ -130,7 +130,7 @@ Implemented from `ERA_RESIDENCE_ANIMATION_IMPLEMENTATION_BRIEF.md` (mapping and 
 Real problems, not hypotheticals — each was reproduced first, then fixed with a test or a measurable check:
 
 1. **A page without its own SEO title lost its `<title>` entirely.** Next merges metadata key by key and treats a present-but-`undefined` key as "empty", which erased the layout default. `buildMetadata` now omits empty keys (tested).
-2. **No menu at all when the CMS had none** — now defaults to *Homes · Contact* (routes that always exist; never `#anchors`).
+2. **No menu at all when the CMS had none** — now defaults to *Select an apartment · Book a call · Contact* (routes that always exist; never `#anchors`).
 3. **Empty footer columns** (an "Office" heading over an empty `<address>`, an "Explore" `<nav>` with an empty list) and an **empty "Contact details" `<aside>`** on `/contact` — each renders only with content; the form takes the full layout otherwise.
 4. **Heading-only sections** — *Market* with no figures, *Areas* with only the office — now render nothing (component tests; mutation-checked).
 5. **A data-provenance sentence hard-coded in a component**, shown on every page even with no data — moved to an editable CMS field (*Site settings → Data source notice*), seeded once.

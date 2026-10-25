@@ -99,6 +99,46 @@ async function open(opts = {}) {
   await context.close();
 }
 
+/* ── 1b. Real clicks on the buttons that open the contact form ──────────────
+ * (The checks above open the dialog with an event. A click goes through next/link first, which
+ * cancels it — once every such button just navigated to /contact and nothing noticed.) */
+{
+  const { context, page, problems } = await open();
+  await page.goto(`${base}/`, { waitUntil: "load" });
+  await page.waitForTimeout(1500);
+  await page.locator(".site-nav a[data-open-contact]").click();
+  await page.waitForSelector("dialog.contact-dialog[open]", { timeout: 4000 }).catch(() => {});
+  check("a CLICK on the header's \u201cBook a call\u201d opens the contact form", await page.evaluate(() => !!document.querySelector("dialog.contact-dialog")?.open));
+  check("…and stays on the home page", new URL(page.url()).pathname === "/", page.url());
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(300);
+  // a button inside a page (the "ask about this home" button on a property page), not only the header
+  await page.goto(`${base}/properties/condo-in-lyons-sold-001`, { waitUntil: "load" });
+  await page.waitForTimeout(1200);
+  const pageButton = page.locator("main a[data-open-contact]").first();
+  check("a property page has a button that opens the contact form", (await pageButton.count()) > 0);
+  await pageButton.click();
+  await page.waitForSelector("dialog.contact-dialog[open]", { timeout: 4000 }).catch(() => {});
+  check("a CLICK on a page button with data-open-contact opens the form too", await page.evaluate(() => !!document.querySelector("dialog.contact-dialog")?.open));
+  check("…and the page did not navigate", new URL(page.url()).pathname === "/properties/condo-in-lyons-sold-001", page.url());
+  check("no console errors on the desktop click path", problems.length === 0, problems.join(" | ").slice(0, 300));
+  await context.close();
+}
+{
+  const { context, page, problems } = await open({ viewport: { width: 390, height: 844 }, touch: true });
+  await page.goto(`${base}/`, { waitUntil: "load" });
+  await page.waitForTimeout(1200);
+  await page.click(".menu-btn[data-ui]");
+  await page.waitForTimeout(500);
+  await page.locator("dialog.menu-dialog a[data-open-contact]").tap();
+  await page.waitForSelector("dialog.contact-dialog[open]", { timeout: 4000 }).catch(() => {});
+  check("phone: \u201cBook a call\u201d in the menu opens the contact form", await page.evaluate(() => !!document.querySelector("dialog.contact-dialog")?.open));
+  check("…and the menu has closed behind it", !(await page.evaluate(() => document.querySelector("dialog.menu-dialog")?.open)));
+  check("…without leaving the home page", new URL(page.url()).pathname === "/", page.url());
+  check("no console errors on the phone click path", problems.length === 0, problems.join(" | ").slice(0, 300));
+  await context.close();
+}
+
 /* ── 2. Mobile menu ───────────────────────────────────────────────────────── */
 {
   const { context, page, problems } = await open({ viewport: { width: 390, height: 844 }, touch: true });
@@ -141,13 +181,23 @@ async function open(opts = {}) {
   await page.waitForTimeout(1500);
   const after = await page.evaluate(() => document.querySelector(".expertise .slide[data-state=active] h3")?.textContent?.trim());
   check("carousel 'next' changes the slide", !!before && !!after && before !== after, `${before} → ${after}`);
-  const hasPause = await page.evaluate(() => !!document.querySelector(".expertise .slider__pause"));
-  check("carousel has a pause control (WCAG 2.2.2)", hasPause);
-  await page.click(".expertise .slider__pause");
-  check(
-    "pause control reports its state (aria-pressed)",
-    (await page.evaluate(() => document.querySelector(".expertise .slider__pause")?.getAttribute("aria-pressed"))) === "true",
-  );
+  // Autoplay (the owner's decision: it starts by itself and there is NO pause/play button — a WCAG 2.2.2
+  // trade-off recorded in docs/ACCESSIBILITY.md). A mouse click on an arrow, or a resting pointer, must not stop it.
+  const running = () => page.evaluate(() => !!document.querySelector(".expertise .slider__bar[data-running]"));
+  check("carousel has no pause/play button", await page.evaluate(() => !document.querySelector(".expertise .slider__pause, .expertise [aria-pressed]")));
+  check("carousel is auto-playing after a mouse click on an arrow (the pointer is still over it)", await running());
+  const titleNow = () => page.evaluate(() => document.querySelector(".expertise .slide[data-state=active] h3")?.textContent?.trim());
+  const t0 = await titleNow();
+  await page.waitForTimeout(8800); // the section's interval is 7 s
+  const t1 = await titleNow();
+  check("carousel advances by itself", !!t0 && !!t1 && t0 !== t1, `${t0} → ${t1}`);
+  await page.keyboard.press("Shift"); // a key press first, so the next focus counts as keyboard focus
+  await page.focus(".expertise .slider__btn >> nth=0");
+  await page.waitForTimeout(400);
+  check("keyboard focus inside the carousel pauses auto-advance", !(await running()));
+  await page.evaluate(() => (document.activeElement instanceof HTMLElement ? document.activeElement.blur() : null));
+  await page.waitForTimeout(400);
+  check("…and it resumes when focus leaves", await running());
   check(
     "inactive slides are inert and hidden from assistive tech",
     await page.evaluate(() => {

@@ -69,7 +69,7 @@ export function Areas({
                   {a.image ? (
                     <div className="area-panel__photo" data-reveal="slide">
                       <div className="rv-slide-inner">
-                        <ImageSlot image={a.image} sizes="(min-width: 992px) 24vw, 80vw" className="area-panel__media" />
+                        <ImageSlot image={a.image} sizes="(min-width: 992px) 36vw, 90vw" className="area-panel__media" />
                       </div>
                     </div>
                   ) : null}

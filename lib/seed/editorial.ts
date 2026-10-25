@@ -132,10 +132,10 @@ export const CONTACT_PAGE_COPY = {
 export const SITE_COPY = {
   siteName: "Mudassir Siddiqui",
   siteTagline: "Real estate across Chicagoland",
+  // The header shows the FIRST link large (two lines) and the rest small; "Book a call" opens the contact form.
   nav: [
-    { label: "Homes", href: "/properties" },
-    { label: "About", href: "/#about" },
-    { label: "Areas", href: "/#areas" },
+    { label: "Select an apartment", href: "/properties" },
+    { label: "Book a call", href: "/contact", opensContactForm: true },
     { label: "Contact", href: "/contact" },
   ],
   /**

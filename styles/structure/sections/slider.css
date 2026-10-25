@@ -58,12 +58,6 @@
   .slider__btn:hover {
     background-color: color-mix(in oklab, currentColor 10%, transparent);
   }
-  .slider__pause {
-    font-size: inherit;
-    padding-inline: 1rem;
-    margin-left: 0.5rem;
-    border: var(--border-hair) solid var(--line-strong);
-  }
   .slider__progress {
     position: relative;
     width: clamp(4rem, 14vw, 14rem);

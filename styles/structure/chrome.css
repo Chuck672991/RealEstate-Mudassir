@@ -27,7 +27,6 @@ body {
     isolation: isolate;
   }
   .site-nav li[data-ui][data-scrim],
-  .site-phone[data-scrim],
   .menu-btn[data-ui][data-scrim] {
     position: relative;
   }
@@ -57,13 +56,6 @@ body {
     position: absolute;
     inset: -0.5rem -0.35rem;
   }
-  /* the nav links are stacked closely; their real clickable height was 20px */
-  .site-nav .roll-host::before {
-    content: "";
-    position: absolute;
-    inset: -0.4rem -0.3rem;
-  }
-
   .sr-only {
     position: absolute;
     width: 1px;
@@ -125,46 +117,63 @@ body {
     height: 56%;
   }
 
+  /*
+   * The menu, top right (the reference's): ONE medium link in two lines, each underlined on its own
+   * (the first link of the CMS menu), and small tracked labels beneath it. Every <li> carries data-ui,
+   * so each recolours on its own as the surface behind it changes.
+   */
   .site-nav {
     display: none;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.7rem;
     text-align: right;
   }
   .site-nav ul {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.1rem;
   }
-  .site-nav .roll-host {
-    position: relative;
+  .nav-primary {
+    display: block;
+    font-size: clamp(1.35rem, 1.85vw, 1.9rem); /* medium: the reference's ≈ 27 px at this width */
+    font-weight: 500;
+    line-height: 0.98;
     text-decoration: none;
-    padding-bottom: 0.12em;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
   }
-  .site-nav .roll-host::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: currentColor;
-    transform-origin: right;
-    transition: transform var(--dur-m) var(--ease-out);
-  }
-  .site-nav .roll-host:hover::after,
-  .site-nav .roll-host:focus-visible::after {
-    transform: scaleX(0);
-  }
-  .site-phone {
-    text-decoration: none;
-    opacity: 0.85;
-  }
-  .site-phone:hover {
-    opacity: 1;
+  .nav-primary__line {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.13em;
+    transition: text-underline-offset var(--dur-m) var(--ease-out);
+  }
+  .nav-primary:hover .nav-primary__line,
+  .nav-primary:focus-visible .nav-primary__line {
+    text-underline-offset: 0.3em;
+  }
+  .site-nav__small {
+    margin-top: 0.5rem; /* with the link's own padding, each target is ≥ 24 px tall and none overlap */
+  }
+  .site-nav__small + .site-nav__small {
+    margin-top: 0;
+  }
+  .nav-small {
+    display: inline-block;
+    padding: 0.3rem 0;
+    font-size: clamp(0.72rem, 0.82vw, 0.8rem); /* small */
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-small:hover,
+  .nav-small:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.35em;
+    text-decoration-thickness: 1px;
   }
 
   .menu-btn {

@@ -61,8 +61,8 @@ describe("content/local-images.json", () => {
 
   it("is attached as a reference to an asset document, like a Sanity upload", () => {
     const portrait = docs.get("agentProfile")!.headshot as { asset: { _ref: string }; rightsStatus: string };
-    assert.equal(portrait.asset._ref, "local:/photos/portrait.jpg");
+    assert.equal(portrait.asset._ref, "local:/photos/portrait.png");
     assert.equal(portrait.rightsStatus, "owner_directed");
-    assert.equal((docs.get("local:/photos/portrait.jpg") as { _type: string })._type, "sanity.imageAsset");
+    assert.equal((docs.get("local:/photos/portrait.png") as { _type: string })._type, "sanity.imageAsset");
   });
 });

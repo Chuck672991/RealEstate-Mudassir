@@ -44,7 +44,7 @@ export function ImageSlot({ image, material = "plaster", glyph, sizes, priority,
           fetchPriority={priority ? "high" : undefined}
           placeholder={image.blurDataURL ? "blur" : "empty"}
           blurDataURL={image.blurDataURL}
-          quality={75}
+          quality={85} /* photographs: the highest quality next.config allows (60/75/85) */
           style={{ objectPosition: image.objectPosition }}
         />
       </div>

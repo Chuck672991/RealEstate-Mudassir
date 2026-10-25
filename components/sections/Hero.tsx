@@ -27,7 +27,7 @@ export function Hero({ home, agent }: { home: HomeDTO; agent: AgentDTO }) {
               <ImageSlot
                 image={agent.headshot}
                 material="plaster"
-                sizes="(min-width: 992px) 30vw, 70vw"
+                sizes="(min-width: 992px) 60vw, 100vw" /* the doorway is 30vw and zooms ×2 */
                 priority
                 className="hero__doorway-media"
               />

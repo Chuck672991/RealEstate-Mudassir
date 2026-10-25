@@ -95,6 +95,13 @@ export const navLink = defineType({
           typeof value === "string" && /^(\/|https?:\/\/)/.test(value) ? true : "Start with / for a page on this site, or https:// for an external link.",
         ),
     }),
+    defineField({
+      name: "opensContactForm",
+      title: "Open the contact form",
+      type: "boolean",
+      initialValue: false,
+      description: "Open the site's contact form in a window instead of leaving the page (the link still goes to its page when JavaScript is off).",
+    }),
   ],
   preview: { select: { title: "label", subtitle: "href" } },
 });
