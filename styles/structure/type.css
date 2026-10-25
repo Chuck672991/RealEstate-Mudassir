@@ -1,0 +1,63 @@
+/*
+ * TYPE VOICES — structure only (sizes/case/spacing come from theme tokens).
+ *   .t-display   high-contrast capitals     (headlines, big numbers)
+ *   .t-accent    italic, mixed case         (1–2 words, may overlap a display line)
+ *   .t-label     tiny, widely tracked caps  (micro-labels, metadata, controls)
+ *   .t-body      readable copy
+ */
+@layer components {
+  .t-display {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-optical-sizing: auto;
+    text-transform: var(--display-transform);
+    letter-spacing: var(--display-tracking);
+    line-height: var(--display-leading);
+    text-wrap: balance;
+  }
+  .t-h1 { font-size: var(--text-h1); }
+  .t-h2 { font-size: var(--text-h2); }
+  .t-h3 { font-size: var(--text-h3); }
+  .t-h4 { font-size: var(--text-h4); line-height: 0.98; letter-spacing: calc(var(--display-tracking) * 0.7); }
+  .t-h5 { font-size: var(--text-h5); line-height: 1.04; letter-spacing: calc(var(--display-tracking) * 0.3); }
+  .t-h6 { font-size: var(--text-h6); line-height: 1.1; letter-spacing: 0; }
+
+  .t-accent {
+    font-family: var(--ff-accent);
+    font-style: italic;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  .t-accent-lg { font-size: var(--text-accent-lg); }
+  .t-accent-md { font-size: var(--text-accent-md); }
+
+  .t-label {
+    font-family: var(--ff-label);
+    font-size: var(--text-label);
+    font-weight: 500;
+    font-stretch: 112%;
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    line-height: 1.45;
+  }
+
+  .t-body {
+    font-size: var(--text-body);
+    line-height: 1.65;
+    max-width: var(--measure);
+    text-wrap: pretty;
+  }
+  .t-small {
+    font-size: var(--text-small);
+    line-height: 1.55;
+  }
+  .t-muted { color: var(--ink-muted); }
+  [data-bg="dark"] .t-muted { color: var(--ink-inverse-muted); }
+
+  .tabular {
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+}

@@ -1,0 +1,141 @@
+/* BASE — resets and element defaults. Semantic tokens only. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    background: var(--surface);
+    color: var(--ink);
+    /* Lenis (when active) owns smoothing; keep native behaviour otherwise. */
+    scroll-behavior: auto;
+    /* no layout shift when the scrollbar is hidden by dialogs / the intro */
+    scrollbar-gutter: stable;
+  }
+
+  /* Lenis (smooth scroll) — the essentials from lenis.css */
+  html.lenis-on,
+  html.lenis-on body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--ff-body);
+    font-size: var(--text-body);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* `clip` (not `hidden`) so position: sticky keeps working. */
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+    font-weight: 400;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  ul[role="list"],
+  ol[role="list"] {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  /* Dark surfaces switch the focus ring to the inverse ink so it stays visible. */
+  [data-bg="dark"] :focus-visible,
+  [data-bg="dark"]:focus-visible,
+  [data-tone="dark"] :focus-visible {
+    outline-color: var(--focus-inverse);
+  }
+
+  ::selection {
+    background: var(--selection-bg);
+    color: var(--selection-fg);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: var(--gutter);
+    top: 0.75rem;
+    z-index: calc(var(--z-intro) + 10);
+    padding: 0.75rem 1.1rem;
+    background: var(--surface-inverse);
+    color: var(--ink-inverse);
+    font-family: var(--ff-label);
+    font-size: var(--text-label);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    transform: translateY(-200%);
+  }
+  .skip-link:focus-visible {
+    transform: none;
+    outline-color: var(--focus-inverse);
+  }
+}

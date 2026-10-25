@@ -1,0 +1,175 @@
+/*
+ * LAYOUT PRIMITIVES — page rhythm, surfaces, the arch, hairlines, chamfers.
+ * Structure only: every colour, radius and size is a semantic token.
+ */
+
+@layer components {
+  /* ── Surface roles ──────────────────────────────────────────────────────────
+   * Sections declare WHAT they sit on (data-bg); the theme decides the colours.
+   *   light  → paper     color → raised plaster     dark → inverse (burgundy)
+   * The same attribute drives the fixed header's ink (see MotionProvider). */
+  [data-bg="light"] {
+    background-color: var(--surface);
+    color: var(--ink);
+  }
+  [data-bg="color"] {
+    background-color: var(--surface-raised);
+    color: var(--ink);
+  }
+  [data-bg="dark"] {
+    background-color: var(--surface-inverse);
+    color: var(--ink-inverse);
+  }
+
+  main {
+    display: block;
+  }
+
+  /* ── The arch ───────────────────────────────────────────────────────────── */
+  .arch-panel {
+    position: relative;
+    border-top-left-radius: var(--radius-arch);
+    border-top-right-radius: var(--radius-arch);
+  }
+
+  /* ── Hairlines ──────────────────────────────────────────────────────────── */
+  .hairline {
+    display: block;
+    background: var(--line-strong);
+  }
+  [data-bg="dark"] .hairline {
+    background: var(--line-inverse);
+  }
+  .hairline--v {
+    width: 1px;
+    height: clamp(4rem, 22svh, 13rem);
+    margin-inline: auto;
+  }
+  .hairline--h {
+    height: 1px;
+    width: 100%;
+  }
+
+  /* ── Chamfered corners (diagonal cuts) ──────────────────────────────────────
+   * A border cannot follow a clipped shape, so the outline is faked: the element
+   * is filled with the line colour and its direct child, clipped by the same
+   * (inset) polygon, sits on top as the face. */
+  .chamfer {
+    --c: var(--chamfer);
+    background: var(--line-strong);
+    padding: var(--border-hair);
+    clip-path: polygon(
+      var(--c) 0,
+      calc(100% - var(--c)) 0,
+      100% var(--c),
+      100% calc(100% - var(--c)),
+      calc(100% - var(--c)) 100%,
+      var(--c) 100%,
+      0 calc(100% - var(--c)),
+      0 var(--c)
+    );
+  }
+  .chamfer > * {
+    --c2: calc(var(--chamfer) - var(--border-hair) * 0.42);
+    clip-path: polygon(
+      var(--c2) 0,
+      calc(100% - var(--c2)) 0,
+      100% var(--c2),
+      100% calc(100% - var(--c2)),
+      calc(100% - var(--c2)) 100%,
+      var(--c2) 100%,
+      0 calc(100% - var(--c2)),
+      0 var(--c2)
+    );
+  }
+
+  /* ── Page frame for inner pages (properties, contact, …) ─────────────────── */
+  .page {
+    padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 5rem));
+    padding-bottom: clamp(4rem, 9vw, 9rem);
+    padding-inline: var(--gutter-l) var(--gutter);
+    min-height: 70svh;
+  }
+  .page__inner {
+    max-width: 100rem;
+    margin-inline: auto;
+  }
+  .page__head {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.5rem, 5vw, 5rem);
+  }
+  .page__title {
+    font-size: var(--text-h2);
+  }
+  .page__lede {
+    max-width: 44rem;
+  }
+
+  .breadcrumbs {
+    margin-bottom: clamp(1rem, 2.2vw, 2rem);
+  }
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .breadcrumbs li + li::before {
+    content: "/";
+    margin-right: 0.75rem;
+    color: var(--ink-subtle);
+  }
+  .breadcrumbs a {
+    text-decoration: none;
+  }
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  /* editor-only pill shown in Draft Mode */
+  .draft-pill {
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    z-index: calc(var(--z-intro) + 5);
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.55rem 1.1rem;
+    background: var(--surface-inverse);
+    color: var(--ink-inverse);
+    border-radius: var(--radius-pill);
+  }
+  .draft-pill a {
+    text-decoration: underline;
+  }
+}
+
+@layer components {
+  .notfound {
+    display: grid;
+    align-items: center;
+  }
+  .notfound__inner {
+    width: 100%; /* a grid item with auto margins would otherwise shrink and centre */
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+    min-height: 50svh;
+    align-content: center;
+  }
+  .notfound__title {
+    font-size: var(--text-h2);
+    max-width: 14ch;
+  }
+  .notfound__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+}

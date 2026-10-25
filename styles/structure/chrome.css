@@ -1,0 +1,682 @@
+/*
+ * CHROME — fixed header, badge, nav, menu, buttons, status chips, intro, footer.
+ * Structure only: colours, radii and type come from semantic tokens.
+ */
+
+/* Before JS recolours the fixed UI, pick the ink from the page's first section. */
+body:has([data-top-bg="dark"]) {
+  --ui-ink: var(--ink-inverse);
+}
+body {
+  --ui-ink: var(--ink);
+}
+
+@layer components {
+  [data-ui] {
+    color: var(--ui-ink);
+    transition: color var(--dur-m) var(--ease-out);
+  }
+
+  /*
+   * Fixed UI over a photograph stage (a surface carrying data-scrim; see tone.ts): each piece
+   * gets its own dark plate, so it stays legible whatever the picture is and however many
+   * links the menu holds. The scroll rail and cue are aria-hidden duplicates of the native
+   * scrollbar and are left alone.
+   */
+  [data-ui][data-scrim]:not(.scroll-rail):not(.scroll-cue) {
+    isolation: isolate;
+  }
+  .site-nav li[data-ui][data-scrim],
+  .site-phone[data-scrim],
+  .menu-btn[data-ui][data-scrim] {
+    position: relative;
+  }
+  [data-ui][data-scrim]:not(.scroll-rail):not(.scroll-cue)::before {
+    content: "";
+    position: absolute;
+    inset: -0.35rem -0.75rem;
+    z-index: -1;
+    background: var(--scrim);
+    box-shadow: 0 0 0.9rem 0.3rem var(--scrim);
+    pointer-events: none;
+  }
+  .badge[data-scrim]::before {
+    inset: -0.15rem;
+    border-radius: 50%;
+  }
+
+  /*
+   * HIT SLOP — a pointer/touch area of at least 24 CSS px for a small text link, without moving
+   * anything on screen (WCAG 2.2 · 2.5.8 Target Size). Put the class on the link.
+   */
+  .hit-slop {
+    position: relative;
+  }
+  .hit-slop::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem -0.35rem;
+  }
+  /* the nav links are stacked closely; their real clickable height was 20px */
+  .site-nav .roll-host::before {
+    content: "";
+    position: absolute;
+    inset: -0.4rem -0.3rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Header ────────────────────────────────────────────────────────────── */
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: var(--z-fixed);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--gutter) var(--gutter) 0;
+    pointer-events: none;
+  }
+  .site-header a,
+  .site-header button {
+    pointer-events: auto;
+  }
+  .site-header__right {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .badge {
+    position: relative;
+    display: block;
+    width: clamp(60px, calc(92 * var(--px)), 112px); /* px, not rem: a graphic must not grow with text size */
+    aspect-ratio: 1;
+    text-decoration: none;
+  }
+  .badge-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 50%;
+    animation: badge-spin 12s linear infinite; /* 30°/s, as in the reference */
+  }
+  .badge-ring__text {
+    font-family: var(--ff-label);
+    font-size: 6.2px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    fill: currentColor;
+  }
+  .badge-mark {
+    position: absolute;
+    inset: 22%;
+    width: 56%;
+    height: 56%;
+  }
+
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.7rem;
+    text-align: right;
+  }
+  .site-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.1rem;
+  }
+  .site-nav .roll-host {
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 0.12em;
+  }
+  .site-nav .roll-host::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right;
+    transition: transform var(--dur-m) var(--ease-out);
+  }
+  .site-nav .roll-host:hover::after,
+  .site-nav .roll-host:focus-visible::after {
+    transform: scaleX(0);
+  }
+  .site-phone {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+  .site-phone:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.4rem 0;
+    letter-spacing: var(--label-tracking);
+  }
+  .menu-btn__dots {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .menu-btn__dots i {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .menu-btn__x {
+    position: relative;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .menu-btn__x::before,
+  .menu-btn__x::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: currentColor;
+  }
+  .menu-btn__x::before {
+    transform: rotate(45deg);
+  }
+  .menu-btn__x::after {
+    transform: rotate(-45deg);
+  }
+
+  @media (min-width: 992px) {
+    .site-nav {
+      display: flex;
+    }
+    .menu-btn[data-ui] {
+      display: none;
+    }
+  }
+
+  /* ── Mobile menu dialog ────────────────────────────────────────────────── */
+  .menu-dialog {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--surface-inverse);
+    color: var(--ink-inverse);
+  }
+  .menu-dialog::backdrop {
+    background: transparent;
+  }
+  .menu-dialog__inner {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--gutter);
+  }
+  .menu-dialog__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .menu-dialog__mark {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  .menu-dialog__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-block: auto;
+    padding-block: 3rem;
+  }
+  .menu-dialog__list a {
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 1px solid var(--line-inverse);
+    padding-block: 0.2em;
+    width: 100%;
+  }
+  .menu-dialog__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .menu-dialog__phone {
+    text-decoration: none;
+  }
+
+  /* ── Buttons ───────────────────────────────────────────────────────────── */
+  .circle-btn {
+    --size: clamp(7.5rem, calc(207 * var(--px)), 14rem);
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .circle-btn[data-tone="light"] {
+    color: var(--ink);
+  }
+  .circle-btn[data-tone="dark"] {
+    color: var(--ink-inverse);
+  }
+  .circle-btn__ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    pointer-events: none;
+  }
+  .circle-btn__base {
+    stroke-width: 1;
+    opacity: 0.3;
+  }
+  .circle-btn__arc {
+    stroke-width: 1.6;
+    stroke-dasharray: 4.17 100; /* ≈ 15° of the ring */
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray var(--dur-m) var(--ease-in-out);
+  }
+  .circle-btn__arc--b {
+    transform: rotate(180deg);
+  }
+  .circle-btn:hover .circle-btn__arc,
+  .circle-btn:focus-visible .circle-btn__arc {
+    stroke-dasharray: 50 100; /* half the ring each → a full circle */
+  }
+  .circle-btn:focus-visible {
+    outline-offset: 6px;
+    border-radius: 50%;
+  }
+  .circle-btn__label {
+    position: relative;
+    text-align: center;
+    max-width: 9em;
+    padding-inline: 0.5em;
+  }
+
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.95em 1.7em;
+    border: var(--border-hair) solid currentColor;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition: background-color var(--dur-m) var(--ease-out);
+  }
+  .pill-btn:hover,
+  .pill-btn:focus-visible {
+    background-color: color-mix(in oklab, currentColor 10%, transparent);
+  }
+
+  /* ── Status chips ──────────────────────────────────────────────────────── */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4em 0.95em;
+    border: var(--border-hair) solid transparent;
+    border-radius: var(--radius-pill);
+    background: var(--status-sale-bg);
+    color: var(--status-sale-fg);
+    max-width: 100%; /* at very large text sizes the chip wraps instead of widening the card */
+    text-align: center;
+  }
+  .status--pending {
+    background: var(--status-pending-bg);
+    color: var(--status-pending-fg);
+  }
+  .status--sold {
+    background: var(--status-sold-bg);
+    color: var(--status-sold-fg);
+    border-color: var(--status-sold-border);
+  }
+
+  /* ── Intro overlay: a burgundy sheet with an arch-shaped hole ───────────────
+   *
+   * The sheet is masked by four layers (white = the sheet stays): a block on each side of
+   * the arch, a block above it, and the arch frame itself (a white frame with an arched
+   * hole). Two registered custom properties drive everything — --arch-w (the hole's width)
+   * and --arch-y (where its top edge is) — and the engine animates them (engine/intro.ts).
+   * The blocks overlap the frame by 2px so no hairline of the sheet can show between them.
+   * The frame is inlined as a data URI so the mask never waits for a request: if it were
+   * missing for a moment, the hero would flash through the hole.
+   */
+  .intro {
+    --arch-w: 36vw;
+    --arch-y: 100vh;
+    --arch-h: calc(var(--arch-w) / (560 / 2592));
+    position: fixed;
+    inset: 0 0 -100vh 0; /* extends a viewport below the fold: the arch is a tall shape */
+    z-index: var(--z-intro);
+    display: none;
+    pointer-events: none;
+  }
+  .intro-on .intro {
+    display: block;
+  }
+  .intro__veil {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--surface-inverse);
+    --arch-frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='2592' viewBox='0 0 560 2592'%3E%3Cpath d='M560 2592H544V280C544 134.2 425.8 16 280 16C134.2 16 16 134.2 16 280V2592H0V0H560V2592Z' fill='white'/%3E%3C/svg%3E");
+    -webkit-mask-image: linear-gradient(currentcolor, currentcolor), linear-gradient(currentcolor, currentcolor), linear-gradient(currentcolor, currentcolor), var(--arch-frame);
+    mask-image: linear-gradient(currentcolor, currentcolor), linear-gradient(currentcolor, currentcolor), linear-gradient(currentcolor, currentcolor), var(--arch-frame);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 0 0, 50% 0, 100% 0, 50% var(--arch-y);
+    mask-position: 0 0, 50% 0, 100% 0, 50% var(--arch-y);
+    -webkit-mask-size:
+      calc(50% - var(--arch-w) / 2 + 2px) 100%,
+      calc(var(--arch-w) + 4px) max(var(--arch-y), 0px),
+      calc(50% - var(--arch-w) / 2 + 2px) 100%,
+      var(--arch-w) var(--arch-h);
+    mask-size:
+      calc(50% - var(--arch-w) / 2 + 2px) 100%,
+      calc(var(--arch-w) + 4px) max(var(--arch-y), 0px),
+      calc(50% - var(--arch-w) / 2 + 2px) 100%,
+      var(--arch-w) var(--arch-h);
+  }
+  /* a very faint oversized monogram that fades in during the first second */
+  .intro__watermark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(120vw, 190vh);
+    height: min(120vw, 190vh);
+    translate: -50% -50%;
+    color: var(--ink-inverse);
+    opacity: 0;
+    animation: intro-watermark 1.3s var(--ease-out) forwards;
+  }
+  @keyframes intro-watermark {
+    to {
+      opacity: 0.05;
+    }
+  }
+  .intro__arch {
+    position: absolute;
+    left: 50%;
+    top: var(--arch-y);
+    translate: -50% 0;
+    height: var(--arch-h);
+    border: 1px solid var(--line-inverse);
+    border-bottom: 0;
+    border-radius: 50vw 50vw 0 0;
+    pointer-events: none;
+  }
+  .intro__arch--inner {
+    width: calc(var(--arch-w) * 1.02);
+    margin-top: calc(var(--arch-w) * -0.01);
+  }
+  .intro__arch--outer {
+    width: calc(var(--arch-w) * 1.1);
+    margin-top: calc(var(--arch-w) * -0.05);
+    opacity: 0.6;
+  }
+  /* the lockup sits in the first screen while the arch is still parked below it */
+  .intro__lockup {
+    position: absolute;
+    left: 50%;
+    top: 50svh;
+    translate: -50% -50%;
+    display: grid;
+    gap: 1.1rem;
+    justify-items: center;
+    text-align: center;
+    color: var(--ink-inverse);
+  }
+  .intro__mark {
+    width: clamp(4rem, 8vw, 7rem);
+    height: clamp(4rem, 8vw, 7rem);
+  }
+  .intro__name {
+    max-width: 14ch;
+  }
+  .intro__line {
+    color: var(--ink-inverse-muted);
+  }
+  .intro__progress {
+    position: absolute;
+    left: 50%;
+    top: calc(100svh - 9svh - 12svh);
+    width: 1px;
+    height: 12svh;
+    background: var(--line-inverse);
+    overflow: hidden;
+  }
+  .intro__progress::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--ink-inverse);
+    transform: translateY(-100%);
+    animation: intro-progress 1s var(--ease-soft) 0.2s forwards;
+  }
+  @keyframes intro-progress {
+    to {
+      transform: translateY(0);
+    }
+  }
+  /* once the sequence is running, the text lockup clears away before the arch rises */
+  .intro-run .intro__lockup,
+  .intro-run .intro__progress {
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-in) 0.55s;
+  }
+
+  /* ── Footer ────────────────────────────────────────────────────────────── */
+  .site-footer {
+    position: relative;
+    background: var(--surface-inverse);
+    color: var(--ink-inverse);
+  }
+  .site-footer__inner {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4rem);
+    padding: clamp(5rem, 10vw, 10rem) var(--gutter) clamp(2.5rem, 5vw, 4rem) var(--gutter-l);
+    justify-items: center;
+    text-align: center;
+  }
+  .site-footer__mark {
+    width: clamp(3.5rem, 6vw, 5.5rem);
+    height: clamp(3.5rem, 6vw, 5.5rem);
+    color: var(--ink-inverse-muted);
+  }
+  .footer-phone {
+    font-size: clamp(2.75rem, 8.2vw, 11rem);
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    text-decoration: none;
+    color: var(--ink-inverse);
+  }
+  .footer-phone:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+  }
+  .footer-cols {
+    text-align: left;
+    display: grid;
+    gap: 2.5rem 3rem;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+    border-top: 1px solid var(--line-inverse);
+  }
+  .footer-cols h2 {
+    margin-bottom: 1rem;
+  }
+  .footer-address {
+    display: grid;
+    gap: 0.2rem;
+    font-style: normal;
+  }
+  .footer-list {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .footer-list a {
+    text-decoration: none;
+  }
+  .footer-list a:hover {
+    text-decoration: underline;
+  }
+  .footer-top {
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-inverse);
+    padding-bottom: 0.2rem;
+  }
+
+  .legal-strip {
+    background: var(--surface-deep);
+    color: var(--ink-inverse-muted);
+  }
+  .legal-strip__inner {
+    display: grid;
+    gap: 0.9rem;
+    padding: 2rem var(--gutter) 3rem var(--gutter-l);
+    max-width: 84rem;
+  }
+  .legal-strip a {
+    text-decoration: underline;
+  }
+  .legal-strip__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    color: var(--ink-inverse);
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--line-inverse);
+  }
+
+  /* ── Magnetic buttons: JS sets --mx/--my, CSS does the easing ───────────── */
+  .circle-btn {
+    translate: var(--mx, 0px) var(--my, 0px);
+    transition: translate 1.6s var(--ease-follow);
+  }
+  .circle-btn[data-away] {
+    transition-timing-function: var(--ease-elastic);
+  }
+  .circle-btn__label {
+    translate: var(--ix, 0px) var(--iy, 0px);
+    transition: translate 2s var(--ease-follow);
+  }
+  .circle-btn[data-away] .circle-btn__label {
+    transition-timing-function: var(--ease-elastic);
+  }
+
+  /* ── Scroll rail + cue (desktop only, decorative) ──────────────────────── */
+  .scroll-rail,
+  .scroll-cue {
+    display: none;
+  }
+  @media (min-width: 992px) {
+    .scroll-rail {
+      position: fixed;
+      z-index: var(--z-fixed);
+      left: var(--gutter);
+      top: calc(var(--gutter) + clamp(5rem, 8.5vw, 8.5rem) + 2.5rem);
+      bottom: calc(var(--gutter) + 4.5rem);
+      width: 2.25rem;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      justify-items: start;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+    .scroll-rail__track {
+      position: relative;
+      width: 2.25rem;
+      height: 100%;
+      pointer-events: auto;
+      cursor: grab;
+      touch-action: none;
+    }
+    .scroll-rail__track::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: currentColor;
+      opacity: 0.28;
+    }
+    .scroll-rail__thumb {
+      position: absolute;
+      left: -0.2rem;
+      top: var(--progress, 0%);
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-top: -0.25rem;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .scroll-cue {
+      position: fixed;
+      z-index: var(--z-fixed);
+      left: var(--gutter);
+      bottom: var(--gutter);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      pointer-events: none;
+      opacity: var(--cue-opacity, 1);
+      writing-mode: vertical-rl;
+      rotate: 180deg;
+    }
+    .scroll-cue i {
+      width: 1px;
+      height: 2.75rem;
+      background: currentColor;
+    }
+  }
+
+  /* ── Page enter: a calm fade on arrival (the reference fades between pages) ─ */
+  @keyframes page-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .motion-ready:not(.intro-on) main[data-page]:not([data-page="home"]),
+  .motion-ready:not(.intro-on) .page {
+    animation: page-in var(--dur-m) var(--ease-in-out) both;
+  }
+}

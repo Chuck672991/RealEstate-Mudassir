@@ -1,0 +1,28 @@
+/*
+ * SECTIONS — index. One partial per home-page section.
+ *
+ * PINNED GEOMETRY RULE
+ * Every “pinned stage” (hero dolly, areas chapter, sold stage, closing scene) is
+ * built from native `position: sticky` inside a tall scroll area. The tall areas
+ * and sticky behaviour exist ONLY under `.motion-ok` (set before first paint, see
+ * components/motion/prepaint.ts) — so reduced-motion visitors, no-JS visitors and
+ * the watchdog fallback all get the same content as a calm, stacked page.
+ *
+ *   scroll area height ≈ distance travelled while pinned + one viewport
+ *
+ * Shared geometry tokens (--arch-h, --overlap, --hero-run, …) live in
+ * styles/tokens.css because @import must precede every other rule here.
+ */
+@import "./sections/hero.css";
+@import "./sections/arch.css";
+@import "./sections/slider.css";
+@import "./sections/expertise.css";
+@import "./sections/about.css";
+@import "./sections/areas.css";
+@import "./sections/horizon.css";
+@import "./sections/featured.css";
+@import "./sections/market.css";
+@import "./sections/sold.css";
+@import "./sections/how.css";
+@import "./sections/proof.css";
+@import "./sections/cta.css";

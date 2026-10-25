@@ -1,0 +1,128 @@
+/*
+ * ABOUT — the reference's pull-quote over a photograph (§S4): a dark timber plate
+ * with a parallax material layer and one large statement. HARD CUT in and out.
+ */
+@layer components {
+  .about {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .about__plate {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background-color: var(--surface-deep);
+  }
+  /* spare height so the layer can drift ±15% (data-parallax) without exposing an edge */
+  .about__material {
+    position: absolute;
+    inset: -16% 0;
+  }
+  .about__plate::after {
+    /* a veil so copy keeps contrast wherever the light rakes across the wood */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in oklab, var(--surface-deep) 55%, transparent) 55%,
+      color-mix(in oklab, var(--surface-deep) 82%, transparent) 100%
+    );
+  }
+  .about__glyph {
+    position: absolute;
+    left: clamp(1.5rem, 8vw, 12rem);
+    bottom: 0;
+    width: clamp(14rem, 34vw, 44rem);
+    height: auto;
+    aspect-ratio: 200 / 160;
+    inset: auto auto 0 clamp(1.5rem, 8vw, 12rem);
+    stroke: var(--glyph-ink-on-dark);
+    opacity: 0.8;
+  }
+
+  .about__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    padding: calc(var(--header-h) + 3rem) var(--gutter) clamp(3rem, 9svh, 7rem);
+  }
+  .about__portrait {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    align-self: end;
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+  }
+  .about__copy {
+    grid-column: 6 / -1;
+    grid-row: 1;
+    display: grid;
+    gap: clamp(1.25rem, 3svh, 2.25rem);
+  }
+  .about__label {
+    color: var(--ink-inverse-muted);
+  }
+  .about__statement {
+    max-width: 20ch;
+    font-size: var(--text-h4);
+  }
+  .about__cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    margin-top: clamp(0.5rem, 2svh, 1.5rem);
+    padding-top: clamp(1.25rem, 3svh, 2rem);
+    border-top: 1px solid var(--line-inverse);
+  }
+  .about__bio {
+    display: grid;
+    gap: 1rem;
+    color: var(--ink-inverse);
+  }
+  .about__facts {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .about__facts dt {
+    color: var(--ink-inverse-muted);
+  }
+  .about__facts dd {
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 991px) {
+    .about__plate::after {
+      background: color-mix(in oklab, var(--surface-deep) 66%, transparent);
+    }
+    .about__copy,
+    .about__portrait {
+      grid-column: 1 / -1;
+    }
+    .about__portrait {
+      grid-row: auto;
+      max-width: 22rem;
+      margin-bottom: 2rem;
+    }
+    .about__copy {
+      grid-row: auto;
+    }
+    .about__cols {
+      grid-template-columns: 1fr;
+    }
+    .about__glyph {
+      width: 70vw;
+      opacity: 0.45;
+    }
+  }
+}

@@ -1,0 +1,261 @@
+/*
+ * CLOSING SCENE → FOOTER (§S11, §S13, §S14) — one pinned stage.
+ *
+ *   1. “Diptych”: two windows onto ONE continuous scene start offset on the page,
+ *      slide into alignment, merge into a band, then the stage zooms to fill the
+ *      screen.   2. The giant closing word and contact actions are revealed.
+ *   3. “Iris”: the scene shrinks to an inset window while the burgundy footer —
+ *      a single large phone number — fades and scales in behind it.
+ *
+ * Default (mobile, short screens, reduced motion, no JS): the scene is a calm
+ * full-bleed section followed by the footer in normal flow. The pinned version is
+ * enabled by .motion-ok on screens that can hold it (≥ 992px wide, ≥ 40rem tall).
+ */
+@layer components {
+  .cta-wrap {
+    position: relative;
+  }
+  .cta-wrap__sticky {
+    position: relative;
+  }
+
+  .cta {
+    position: relative;
+    min-height: min(100svh, 56rem);
+    display: grid;
+    align-items: stretch;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--ink-inverse);
+    /* the stage the windows hang in: the page's own cream, as in the reference */
+    background-color: var(--surface);
+  }
+  .cta__plate {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform-origin: 50% 50%;
+  }
+  .cta__window {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* the scene both windows look onto */
+  .cta-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background-color: var(--surface-inverse);
+  }
+  .cta-scene__photo {
+    position: absolute;
+    inset: 0;
+  }
+  .cta-scene__wall {
+    position: absolute;
+    inset: 0;
+  }
+  /* The closing scene stays flat: its window is clipped and scaled, and a blended
+     sun-sweep would shift visibly as the clip moves. */
+  .cta-scene__wall::after {
+    display: none;
+  }
+  .cta-scene__door {
+    --door-w: clamp(15rem, 27vw, 44rem);
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: var(--door-w);
+    height: 56%;
+    translate: -50% 0;
+    border-top-left-radius: calc(var(--door-w) / 2);
+    border-top-right-radius: calc(var(--door-w) / 2);
+    background: var(--doorway-light), var(--surface-raised);
+    box-shadow:
+      0 0 0 1px var(--line-inverse),
+      0 0 12vw 2vw color-mix(in oklab, var(--surface-raised) 22%, transparent);
+  }
+
+  .cta__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    /* the track may shrink: a nowrap headline must be fitted to the screen, not widen it */
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    justify-items: center;
+    padding: calc(var(--header-h) + 4svh) var(--gutter) clamp(2rem, 6svh, 4rem) var(--gutter-l);
+    text-align: center;
+  }
+  .cta__eyebrow {
+    color: var(--ink-inverse-muted);
+  }
+  /* The words sit on the scene, which may be a bright photograph: the display-size word gets the
+     display scrim across its band at the top, the small print at the bottom the full scrim. The
+     clear middle lets the picture show. (Proven with overlay-contrast.mjs --stress white.) */
+  .cta__content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--veil, 1);
+    background:
+      linear-gradient(0deg, var(--scrim) 0, var(--scrim) 20%, transparent 40%),
+      linear-gradient(180deg, var(--scrim-display) 0, var(--scrim-display) 46%, transparent 64%);
+  }
+  .cta__giant {
+    margin-top: 1.5svh;
+    font-size: clamp(3.5rem, 15vw, 22rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+  .cta__row {
+    grid-row: 4;
+    justify-self: stretch;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    text-align: left;
+  }
+  .cta__row > p {
+    max-width: 18rem;
+  }
+  .cta__actions {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+  }
+  .cta__phone {
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .cta-wrap__footer .site-footer {
+    min-height: 0;
+  }
+
+  @media (max-width: 991px) {
+    .cta {
+      min-height: 100svh;
+    }
+    .cta-scene__door {
+      --door-w: 62vw;
+      height: 36%;
+    }
+    .cta__row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem;
+    }
+    /* the buttons sit inside the lit doorway: dark ink on a pool of light */
+    .cta__content::before {
+      display: none;
+    }
+    /* …but over a real photograph the light words need the veil here too. The phone layout stacks the
+       row (copy above buttons), so the lower scrim reaches higher than on a wide screen.
+       (overlay-contrast.mjs, "closing scene (phone)", with and without --stress white) */
+    .cta[data-scene="photo"] .cta__content::before {
+      display: block;
+      background:
+        linear-gradient(0deg, var(--scrim) 0, var(--scrim) 36%, transparent 56%),
+        linear-gradient(180deg, var(--scrim-display) 0, var(--scrim-display) 46%, transparent 64%);
+    }
+    /* with the veil behind them the buttons and the number are light on dark, as on a wide screen:
+       no pool of light and no dark ink (dark ink on the veil's dark edge failed AA) */
+    .cta[data-scene="photo"] .cta__actions,
+    .cta[data-scene="photo"] .cta__actions .circle-btn,
+    .cta[data-scene="photo"] .cta__actions .cta__phone {
+      color: var(--ink-inverse);
+    }
+    .cta[data-scene="photo"] .cta__actions::before {
+      display: none;
+    }
+    .cta__actions {
+      position: relative;
+      isolation: isolate;
+      color: var(--ink);
+    }
+    .cta__actions .circle-btn,
+    .cta__actions .cta__phone {
+      color: var(--ink);
+    }
+    .cta__actions::before {
+      content: "";
+      position: absolute;
+      inset: -12% -34%;
+      z-index: -1;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, color-mix(in oklab, var(--surface) 92%, transparent) 62%, transparent);
+    }
+    .cta__giant {
+      font-size: clamp(3rem, 19vw, 9rem);
+    }
+  }
+
+  /* ── pinned closing scene ─────────────────────────────────────────────────── */
+  @media (min-width: 992px) and (min-height: 40rem) {
+    .motion-ok .cta-wrap {
+      height: calc(100svh + var(--cta-run));
+    }
+    .motion-ok .cta-wrap__sticky {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      overflow: hidden;
+      background-color: var(--surface); /* the page the windows start on */
+    }
+    .motion-ok .cta {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      min-height: 0;
+      background: transparent;
+    }
+    /* the section is a transparent full-stage box: let clicks and hit-tests reach what is
+       behind it (the footer, the page); its real content stays interactive */
+    .motion-ok .cta {
+      pointer-events: none;
+    }
+    .motion-ok .cta__window,
+    .motion-ok .cta__content a,
+    .motion-ok .cta__content button {
+      pointer-events: auto;
+    }
+    .motion-ok .cta-wrap__footer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: grid;
+    }
+    /* The scene ends as an arched window over the top half; the footer's content
+       lives in the lower half beneath it. */
+    .motion-ok .cta-wrap__footer .site-footer {
+      height: 100%;
+      display: grid;
+      align-content: end;
+    }
+    .motion-ok .cta-wrap__footer .site-footer__inner {
+      gap: clamp(1rem, 2.5svh, 2rem);
+      padding-block: 0 clamp(1.5rem, 4svh, 3rem);
+    }
+    .motion-ok .cta-wrap__footer .site-footer__mark {
+      display: none; /* the header badge is already on screen */
+    }
+    .motion-ok .cta-wrap__footer .footer-phone {
+      font-size: clamp(2.75rem, 7vw, 9.5rem);
+    }
+    .motion-ok .cta-wrap__footer .footer-cols {
+      padding-top: clamp(1rem, 2.5svh, 2rem);
+    }
+    .motion-ok .cta-wrap__footer .footer-top {
+      position: absolute;
+      right: var(--gutter);
+      bottom: clamp(1.5rem, 4svh, 3rem);
+    }
+  }
+}

@@ -1,0 +1,216 @@
+/*
+ * THEME: plum-luxury
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Warm, tactile, architectural. Burgundy leather, travertine, cream plaster,
+ * dark walnut — a sunlit interior rather than a marketplace.
+ *
+ * Everything decorative lives here: palette, materials, type voices, shape,
+ * shadows and motion timing. Structural CSS (../structure/*.css) only consumes
+ * the semantic tokens below.
+ *
+ * HOW TO ADD A THEME — see docs/THEMING.md. In short: copy this file, rename the
+ * selector, change values, import it from ./index.css, add a matching
+ * lib/theme/<id>.ts entry, and point lib/theme/active.ts at it.
+ */
+
+/* ── 1. Palette (raw materials). Referenced only from this file. ──────────── */
+:root[data-theme="plum-luxury"] {
+  --c-deep: #351916; /* burgundy / leather */
+  --c-stone: #9a8c7a; /* stone */
+  --c-plaster: #e8ddc9; /* plaster */
+  --c-night: #30221c; /* dark timber */
+  --c-paper: #f7f3eb; /* warm paper */
+  --c-text: #292522; /* ink */
+
+  /* Explicitly-computed tints so contrast can be verified from this file alone
+   * (scripts/verify/contrast.ts parses these). */
+  --c-text-soft: #5a564f; /* charcoal → ivory 24%  : ≥ 4.5:1 on ivory + cream */
+  --c-text-soft-inverse: #b5a9a3; /* ivory → plum 34%      : ≥ 7:1 on plum/walnut */
+  --c-plate: #dfd3c0; /* cream → taupe 12%     : the "sunken" plate */
+
+  /* ── 2. Semantic roles ──────────────────────────────────────────────────── */
+  --surface: var(--c-paper);
+  --surface-raised: var(--c-plaster);
+  --surface-sunken: var(--c-plate);
+  --surface-inverse: var(--c-deep);
+  --surface-deep: var(--c-night);
+
+  --ink: var(--c-text);
+  --ink-muted: var(--c-text-soft);
+  --ink-subtle: var(--c-stone); /* ornament + hairlines only */
+  --ink-inverse: var(--c-paper);
+  --ink-inverse-muted: var(--c-text-soft-inverse);
+
+  --line: color-mix(in oklab, var(--c-text) 18%, transparent);
+  --line-strong: color-mix(in oklab, var(--c-text) 42%, transparent);
+  --line-inverse: color-mix(in oklab, var(--c-paper) 24%, transparent);
+  --accent: var(--c-stone);
+  --focus: #8c3b2e; /* warm brick: 6.8:1 on ivory, 5.6:1 on cream (scripts/verify/contrast.ts); dark sections switch to --focus-inverse */
+  --focus-inverse: var(--c-paper);
+  --selection-bg: var(--c-deep);
+  --selection-fg: var(--c-paper);
+  --error: #8f1d1d;
+  --success: #2f5d3a;
+
+  --status-sale-bg: var(--c-deep);
+  --status-sale-fg: var(--c-paper);
+  --status-pending-bg: var(--c-stone);
+  --status-pending-fg: var(--c-night);
+  --status-sold-bg: transparent;
+  --status-sold-fg: var(--c-text);
+  --status-sold-border: var(--c-text);
+
+  /* ── 3. Typography ──────────────────────────────────────────────────────────
+   * Three voices, never mixed up:
+   *   display  – high-contrast serif capitals (headlines, big numbers)
+   *   accent   – the same serif in italic, mixed case (1–2 words, overlapping)
+   *   body     – refined grotesque for copy; labels are tiny + widely tracked
+   * The font families themselves are loaded in lib/theme/themes/plum-luxury/fonts.ts. */
+  --ff-display: var(--font-display-face), "Bodoni 72", Didot, "Times New Roman", serif;
+  --ff-accent: var(--font-accent-face), "Bodoni 72", Didot, "Times New Roman", serif;
+  --ff-body: var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
+  --ff-label: var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
+  --display-transform: uppercase;
+  --display-tracking: -0.02em;
+  --display-leading: 0.92;
+  --label-tracking: 0.18em;
+
+  /* Body + labels are rem-based on purpose: they must honour the user's browser
+   * font size. Display sizes use the fluid unit (--px) with sane clamps. */
+  --text-body: clamp(1.0625rem, 1rem + 0.18vw, 1.1875rem);
+  --text-small: clamp(0.9375rem, 0.9rem + 0.1vw, 1rem);
+  --text-label: clamp(0.75rem, 0.72rem + 0.1vw, 0.8125rem);
+
+  --text-h1: clamp(3.4rem, calc(150 * var(--px)), 16rem);
+  --text-h2: clamp(3rem, calc(112 * var(--px)), 12rem);
+  --text-h3: clamp(2.4rem, calc(80 * var(--px)), 8.5rem);
+  --text-h4: clamp(1.7rem, calc(54 * var(--px)), 5.6rem);
+  --text-h5: clamp(1.35rem, calc(36 * var(--px)), 3.6rem);
+  --text-h6: clamp(1.1rem, calc(26 * var(--px)), 2.4rem);
+  --text-accent-lg: clamp(3rem, calc(112 * var(--px)), 11rem);
+  --text-accent-md: clamp(2.1rem, calc(64 * var(--px)), 6rem);
+
+  /* ── 4. Shape ───────────────────────────────────────────────────────────── */
+  --radius-arch: 50vw;
+  --radius-pill: 999px;
+  --radius-card: 0px; /* sharp, architectural — chamfers instead of rounding */
+  --chamfer: 0.95rem;
+  --border-hair: 1px;
+  --shadow-lift: 0 18px 40px -18px color-mix(in oklab, var(--c-night) 45%, transparent);
+
+  /* ── 5. Motion (slow, soft out-curves; nothing bounces) ─────────────────── */
+  --dur-s: 0.4s;
+  --dur-m: 0.8s;
+  --dur-l: 1.2s;
+  --stagger: 0.1s;
+  --stagger-chars: 0.05s;
+  --delay-reveal: 0.3s;
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+  --ease-in-out: cubic-bezier(0.75, 0, 0.25, 1);
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-dive: cubic-bezier(0.6, 0, 0, 1);
+  --ease-hscroll: cubic-bezier(0.25, 0, 0.75, 1);
+  --ease-follow: cubic-bezier(0.16, 1, 0.3, 1); /* power4.out — magnetic follow */
+  /* elastic.out(1, 0.3) sampled — the magnetic spring-back */
+  --ease-elastic: linear(0, 0.272, 0.646, 1, 1.25, 1.364, 1.354, 1.257, 1.125, 1, 0.912, 0.871, 0.875, 0.909, 0.956, 1, 1.031, 1.046, 1.044, 1.032, 1.016, 1, 0.989, 0.984, 0.984, 0.989, 0.994, 1, 1.004, 1.006, 1.006, 1.004, 1.002, 1, 0.999, 0.998, 0.998, 0.999, 0.999, 1, 1);
+  --autoplay-ms: 7000;
+
+  /* ── 6. Materials ───────────────────────────────────────────────────────────
+   * Photography-ready slots fall back to these tactile surfaces when no cleared
+   * photograph exists. Each token is a complete `background` value.
+   * Noise is a tiny inline SVG (feTurbulence) — no network, no asset. */
+  --noise-fine: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --noise-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='g' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.012 .55' numOctaves='3' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .62 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  --noise-mottle: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='m' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.018' numOctaves='4' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .32  0 0 0 0 .25  0 0 0 0 .18  0 0 0 .55 -.12'/></filter><rect width='100%' height='100%' filter='url(%23m)'/></svg>");
+
+  /* warm light raking across a wall */
+  --light-sun: linear-gradient(
+    112deg,
+    transparent 22%,
+    color-mix(in oklab, #fff4dc 46%, transparent) 38%,
+    color-mix(in oklab, #fff4dc 14%, transparent) 54%,
+    transparent 70%
+  );
+
+  --material-plaster:
+    var(--noise-fine),
+    var(--noise-mottle),
+    radial-gradient(130% 100% at 18% 8%, var(--c-paper) 0%, var(--c-plaster) 55%, color-mix(in oklab, var(--c-plaster) 78%, var(--c-stone)) 100%);
+  --material-travertine:
+    var(--noise-fine),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 9px,
+      color-mix(in oklab, var(--c-stone) 20%, transparent) 9px 10px,
+      transparent 10px 23px,
+      color-mix(in oklab, var(--c-night) 7%, transparent) 23px 25px,
+      transparent 25px 41px
+    ),
+    linear-gradient(172deg, color-mix(in oklab, var(--c-plaster) 88%, #fff) 0%, color-mix(in oklab, var(--c-plaster) 70%, var(--c-stone)) 100%);
+  --material-walnut:
+    var(--noise-grain),
+    var(--noise-fine),
+    linear-gradient(100deg, color-mix(in oklab, var(--c-night) 88%, #000) 0%, var(--c-night) 42%, color-mix(in oklab, var(--c-night) 80%, var(--c-deep)) 100%);
+  --material-leather:
+    var(--noise-fine),
+    var(--noise-mottle),
+    radial-gradient(120% 90% at 78% 12%, color-mix(in oklab, var(--c-deep) 78%, #8a4a3a) 0%, var(--c-deep) 55%, color-mix(in oklab, var(--c-deep) 82%, #000) 100%);
+  --material-stone:
+    var(--noise-fine),
+    var(--noise-mottle),
+    linear-gradient(160deg, color-mix(in oklab, var(--c-stone) 62%, var(--c-plaster)) 0%, var(--c-stone) 100%);
+
+  /* The lit doorway (hero + closing scene): warm light pooling at the foot of the
+   * opening, falling to a dim taupe-burgundy at the arch so ivory type stays legible. */
+  --doorway-light:
+    radial-gradient(
+      90% 74% at 50% 100%,
+      color-mix(in oklab, var(--c-paper) 96%, #fff) 0%,
+      color-mix(in oklab, var(--c-plaster) 78%, transparent) 44%,
+      transparent 100%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--c-deep) 62%, var(--c-stone)) 0%,
+      color-mix(in oklab, var(--c-stone) 58%, var(--c-plaster)) 100%
+    );
+  --drop-lift: drop-shadow(0 16px 22px color-mix(in oklab, var(--c-night) 30%, transparent));
+
+  /* the line-art stroke drawn on top of materials (property glyphs etc.) */
+  --glyph-ink-on-light: color-mix(in oklab, var(--c-night) 55%, transparent);
+  --glyph-ink-on-dark: color-mix(in oklab, var(--c-paper) 58%, transparent);
+}
+
+/* ── Mobile type scale ──────────────────────────────────────────────────────
+ * The reference scales its condensed display face by viewport width (h1 = 23vw).
+ * This theme's Didone is wider, so the same words need a smaller share of the
+ * width to fit a phone: "MUDASSIR" (the widest headline) must clear 390px with its
+ * gutters. Sizes still scale with the viewport up to the 992px switch.            */
+@media (max-width: 991px) {
+  :root[data-theme="plum-luxury"] {
+    --text-h1: clamp(2.5rem, 15vw, 9rem);
+    --text-h2: clamp(2.2rem, 11.5vw, 7rem);
+    --text-h3: clamp(1.9rem, 9vw, 5rem);
+    --text-h4: clamp(1.45rem, 6.4vw, 3.6rem);
+    --text-h5: clamp(1.25rem, 5.2vw, 2.6rem);
+    --text-h6: clamp(1.05rem, 4.4vw, 2rem);
+    --text-accent-lg: clamp(2.6rem, 14vw, 7rem);
+    --text-accent-md: clamp(2rem, 9vw, 4.5rem);
+  }
+}
+
+/* UI tone helpers: fixed UI recolours itself as sections pass underneath. */
+:root[data-theme="plum-luxury"] [data-tone="light"] {
+  --ui-ink: var(--c-text);
+  --ui-line: var(--line-strong);
+}
+:root[data-theme="plum-luxury"] [data-tone="dark"] {
+  --ui-ink: var(--c-paper);
+  --ui-line: var(--line-inverse);
+}
+
+/* Botanicals: the bougainvillea sprays in the corners of a few sections (components/ui/Flower.tsx). */
+:root[data-theme="plum-luxury"] {
+  --flower-filter: none; /* the artwork is painted in this theme's magenta */
+}

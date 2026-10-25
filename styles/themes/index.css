@@ -1,0 +1,8 @@
+/*
+ * THEME REGISTRY (CSS side)
+ * One @import per theme. Themes are scoped by `[data-theme="<id>"]`, so having
+ * several imported at once is harmless — only the one named on <html> applies.
+ * The TS side of the registry lives in lib/theme/.
+ */
+@import "./plum-luxury.css";
+@import "./slate-linen.css";

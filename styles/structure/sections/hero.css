@@ -1,0 +1,217 @@
+/*
+ * HERO — a pinned “dolly” (brief §S1.2).
+ * A burgundy leather wall with a lit, arched doorway. While pinned, the type
+ * drifts up faster than the wall (parallax), then the camera pushes into the
+ * doorway until its light fills the screen and the cream arch panel rises over it.
+ */
+@layer components {
+  .hero {
+    position: relative;
+    background: var(--surface-inverse);
+    color: var(--ink-inverse);
+  }
+  .hero__area {
+    position: relative;
+  }
+  .hero__sticky {
+    position: relative;
+    height: 100svh;
+    min-height: 36rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* Pinned geometry — only when motion is allowed AND the screen is tall enough to
+     hold the whole stage (its min-height is 36rem). A landscape phone gets the calm,
+     un-pinned hero instead of a stage taller than the screen. */
+  @media (min-height: 36rem) {
+    .motion-ok .hero__area {
+      height: calc(100svh + var(--hero-run));
+    }
+    .motion-ok .hero__sticky {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  /* The wall is taller than the viewport: spare height to drift upward. */
+  .hero__bg {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 115%;
+    transform-origin: 50% 75%;
+    backface-visibility: hidden;
+  }
+  .hero__wall {
+    position: absolute;
+    inset: 0;
+  }
+  .hero {
+    --door-w: clamp(15rem, 27vw, 44rem);
+  }
+  .hero__doorway {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: var(--door-w);
+    height: 58%;
+    translate: -50% 0;
+    overflow: hidden;
+    border-top-left-radius: calc(var(--door-w) / 2);
+    border-top-right-radius: calc(var(--door-w) / 2);
+    box-shadow:
+      0 0 0 1px var(--line-inverse),
+      0 0 12vw 2vw color-mix(in oklab, var(--surface-raised) 22%, transparent);
+  }
+  .hero__doorway-media {
+    position: absolute;
+    inset: 0;
+  }
+  /* The italic accent word overlaps the top of the doorway by design. Over a photograph that
+     could be white, its top edge carries the display scrim so the word stays legible. */
+  .hero__doorway-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(180deg, var(--scrim-display) 0%, var(--scrim-display) 28%, transparent 48%);
+  }
+  /* the glow is the "lit doorway" of the placeholder; a real photograph supplies its own light */
+  .hero__doorway:has(.hero__doorway-media.media) .hero__doorway-light {
+    display: none;
+  }
+  .hero__doorway-light {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: var(--doorway-light);
+  }
+
+  /* ── Text stage ───────────────────────────────────────────────────────────── */
+  .hero__stage {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    justify-items: center;
+    padding: calc(var(--header-h) + 3svh) var(--gutter) clamp(1.5rem, 5svh, 3.5rem) var(--gutter-l);
+    pointer-events: none;
+  }
+  .hero__stage a {
+    pointer-events: auto;
+  }
+  .hero__eyebrow {
+    margin-top: clamp(0.5rem, 2svh, 1.5rem);
+    color: var(--ink-inverse); /* over a mottled wall: the full ink, not the muted tint */
+    text-align: center;
+  }
+  .hero__title {
+    margin-top: clamp(0.75rem, 2.5svh, 2rem);
+    text-align: center;
+  }
+  .hero__title-visual {
+    position: relative;
+    display: grid;
+    justify-items: center;
+  }
+  .hero__line {
+    display: block;
+    color: var(--ink-inverse);
+  }
+  .hero__accent {
+    position: absolute;
+    right: 2%;
+    bottom: -0.78em;
+    font-size: calc(var(--text-accent-lg) * 0.82);
+    z-index: 2;
+    color: var(--ink-inverse);
+    white-space: nowrap;
+    rotate: -5deg;
+    text-shadow: 0 0 1.2rem color-mix(in oklab, var(--surface-inverse) 70%, transparent);
+  }
+
+  /* sub-copy bottom-left, call to action bottom-right */
+  .hero__foot {
+    grid-row: 3;
+    align-self: end;
+    justify-self: stretch;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+  /* the copy sits left of the lit doorway, never over it */
+  .hero__foot-copy {
+    max-width: min(24rem, calc(50vw - var(--door-w) / 2 - var(--gutter-l) - 1.5rem));
+  }
+  .hero__sub {
+    color: var(--ink-inverse);
+    pointer-events: auto;
+  }
+  .hero__meta {
+    margin-top: 1rem;
+    color: var(--ink-inverse);
+  }
+  .hero__cta {
+    flex: none;
+  }
+
+  /* ── Mobile composition ───────────────────────────────────────────────────── *
+   * Title and copy stack at the top; the lit doorway fills the lower half and the
+   * circular call to action sits inside it, in dark ink on the glow.              */
+  @media (max-width: 991px) {
+    .hero {
+      --door-w: 64vw;
+    }
+    .hero__doorway {
+      height: 42%;
+    }
+    .hero__foot-copy {
+      max-width: none;
+    }
+    .hero__stage {
+      padding: calc(var(--header-h) + 1svh) var(--gutter) clamp(1rem, 3svh, 2rem);
+    }
+    .hero__accent {
+      right: 0;
+      bottom: -0.7em;
+    }
+    .hero__foot {
+      align-self: start;
+      /* room for the italic accent word that hangs below the headline */
+      margin-top: calc(var(--text-accent-lg) * 0.62 + 1rem);
+      display: block;
+    }
+    .hero__sub {
+      max-width: 22rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .hero__meta {
+      text-align: center;
+    }
+    .hero__cta {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(1.25rem, 4svh, 2.5rem);
+      translate: -50% 0;
+    }
+    .hero__cta .circle-btn {
+      color: var(--ink);
+    }
+    /* a soft pool of light behind the button keeps its dark label legible on the glow */
+    .hero__cta {
+      isolation: isolate;
+    }
+    .hero__cta::before {
+      content: "";
+      position: absolute;
+      inset: -14%;
+      z-index: -1;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, color-mix(in oklab, var(--surface) 92%, transparent) 60%, transparent);
+    }
+  }
+}

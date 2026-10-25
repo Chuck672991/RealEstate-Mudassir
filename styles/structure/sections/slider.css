@@ -1,0 +1,91 @@
+/*
+ * SLIDER — shared by the expertise and featured-homes carousels.
+ * All slides share ONE grid cell, so the viewport is exactly as tall as the
+ * tallest slide before and after hydration (no layout shift), and without
+ * scripting every slide is simply listed one under another.
+ */
+@layer components {
+  .slider {
+    position: relative;
+  }
+  .slider__viewport {
+    display: grid;
+  }
+  .slide {
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  /* no scripting: list every slide */
+  html:not(.js) .slider__viewport {
+    display: block;
+  }
+  html:not(.js) .slide + .slide {
+    margin-top: clamp(3rem, 8vw, 6rem);
+  }
+  /* scripting, before hydration: show the first slide only (same box, so no shift) */
+  .js .slider:not([data-ready]) .slide:not(:first-child),
+  .slider[data-ready] .slide[data-state="idle"] {
+    visibility: hidden;
+  }
+  .slide[data-state="leaving"] {
+    pointer-events: none;
+  }
+  .slide[data-state="active"],
+  .js .slider:not([data-ready]) .slide:first-child {
+    z-index: 1;
+  }
+
+  /* ── controls ──────────────────────────────────────────────────────────── */
+  .slider__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .slider__btn {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    font-size: 1.4rem;
+    line-height: 1;
+    border-radius: var(--radius-pill);
+    transition: background-color var(--dur-m) var(--ease-out);
+  }
+  .slider__btn:hover {
+    background-color: color-mix(in oklab, currentColor 10%, transparent);
+  }
+  .slider__pause {
+    font-size: inherit;
+    padding-inline: 1rem;
+    margin-left: 0.5rem;
+    border: var(--border-hair) solid var(--line-strong);
+  }
+  .slider__progress {
+    position: relative;
+    width: clamp(4rem, 14vw, 14rem);
+    flex: 0 1 auto;
+    height: 1px;
+    background: var(--line-strong);
+    overflow: hidden;
+  }
+  .slider__bar {
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+  .slider__bar[data-running] {
+    animation: bar-fill linear forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slider__bar[data-running] {
+      animation: none;
+      transform: scaleX(1);
+    }
+  }
+}

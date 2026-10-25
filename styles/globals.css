@@ -1,0 +1,46 @@
+/*
+ * SITE STYLESHEET ENTRY
+ * Order matters: tokens (contract + fallbacks) → themes (decorative values) →
+ * base → structure. Structure files only consume semantic tokens.
+ * Imported once, by app/(site)/layout.tsx. The Studio route never loads it.
+ */
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./themes/index.css";
+@import "./base.css";
+@import "./structure/type.css";
+@import "./structure/layout.css";
+@import "./structure/motion.css";
+@import "./structure/chrome.css";
+@import "./structure/materials.css";
+@import "./structure/flowers.css";
+@import "./structure/sections.css";
+@import "./structure/properties.css";
+@import "./structure/forms.css";
+
+/* Expose semantic tokens as Tailwind utilities (bg-surface, text-ink, …).
+ * `inline` keeps them as live var() references so a theme switch just works. */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-deep: var(--surface-deep);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-ink-inverse-muted: var(--ink-inverse-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-inverse: var(--line-inverse);
+  --color-accent: var(--accent);
+  --color-focus: var(--focus);
+  --color-error: var(--error);
+  --color-success: var(--success);
+
+  --font-display: var(--ff-display);
+  --font-accent: var(--ff-accent);
+  --font-body: var(--ff-body);
+  --font-label: var(--ff-label);
+}

@@ -1,0 +1,324 @@
+/*
+ * MOTION STATES — CSS half of the reveal vocabulary.
+ *
+ * Progressive-enhancement contract. The inline script in
+ * components/motion/prepaint.ts sets these classes on <html> BEFORE first paint:
+ *
+ *   .js          scripting is available (so hydration-dependent layout may apply)
+ *   .motion-ok   animations are allowed (the visitor has not asked for reduced motion)
+ *   .intro-on    first visit this tab session, home page → the short intro overlay plays
+ *   .motion-ready  added by the motion layer once it is running (cancels the watchdog)
+ *
+ * With none of them (no JS, reduced motion, script failure) every element below
+ * is simply visible and static. A watchdog removes .motion-ok / .intro-on if the
+ * motion layer never confirms, so content can never stay hidden.
+ *
+ * How the two halves split the work:
+ *   • below the fold  → JS only toggles [data-revealed] (IntersectionObserver);
+ *   • above the fold (.hero, .intro) → pure CSS animations that start at first
+ *     paint, so the largest text never waits for hydration (LCP), and are held
+ *     while .intro-on is present.
+ *
+ * Timing & easing come from theme tokens. Per-element delay override:
+ *   style="--rd: 0.6s"        per-character index: style="--i: 3"
+ *
+ * Direction rule (brief §D.2): the HIDDEN state declares the short “hide”
+ * transition (0.4s, ease-in, no delay); the REVEALED state declares the long
+ * “reveal” transition (1.2s, ease-out, staggered). A transition uses the rules
+ * of the state it is going TO, so sliders and tabs hide quickly and reveal slowly.
+ */
+
+@layer components {
+  /* ── ctn: containers fade up ──────────────────────────────────────────── */
+  .motion-ok [data-reveal="ctn"] {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-dist), 0);
+    transition:
+      opacity var(--dur-s) var(--ease-in),
+      transform var(--dur-s) var(--ease-in);
+  }
+  .motion-ok [data-reveal="ctn"][data-revealed] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-l) var(--ease-out) var(--rd, var(--delay-reveal)),
+      transform var(--dur-l) var(--ease-out) var(--rd, var(--delay-reveal));
+  }
+
+  /* ── h: heading characters flip in (rotateY) ──────────────────────────── */
+  .motion-ok [data-reveal="h"],
+  .motion-ok [data-reveal="a"] {
+    perspective: 900px;
+  }
+  .rv-char {
+    display: inline-block;
+  }
+  .motion-ok [data-reveal="h"] .rv-char {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0) rotateY(90deg);
+    transform-origin: 50% 100%;
+    transition:
+      opacity var(--dur-s) var(--ease-in),
+      transform var(--dur-s) var(--ease-in);
+  }
+  .motion-ok [data-reveal="h"][data-revealed] .rv-char {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-l) var(--ease-out),
+      transform var(--dur-l) var(--ease-out);
+    transition-delay: calc(var(--rd, var(--delay-reveal)) + var(--i, 0) * var(--stagger-chars));
+  }
+
+  /* ── a: accent / script characters flip up from the right (rotateX) ───── */
+  .motion-ok [data-reveal="a"] .rv-char {
+    opacity: 0;
+    transform: translate3d(10vw, 0, 0) rotateX(90deg);
+    transform-origin: 50% 100%;
+    transition:
+      opacity var(--dur-s) var(--ease-in),
+      transform var(--dur-s) var(--ease-in);
+  }
+  .motion-ok [data-reveal="a"][data-revealed] .rv-char {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-l) var(--ease-out),
+      transform var(--dur-l) var(--ease-out);
+    transition-delay: calc(var(--rd, var(--delay-reveal)) + var(--i, 0) * var(--stagger));
+  }
+
+  /* ── top: script / accent characters unfold downward from their top edge ─ */
+  .motion-ok [data-reveal="top"] {
+    perspective: 900px;
+  }
+  .motion-ok [data-reveal="top"] .rv-char {
+    opacity: 0;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0%;
+    transition:
+      opacity var(--dur-s) var(--ease-in),
+      transform var(--dur-s) var(--ease-in);
+  }
+  .motion-ok [data-reveal="top"][data-revealed] .rv-char {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-l) var(--ease-out),
+      transform var(--dur-l) var(--ease-out);
+    transition-delay: calc(var(--rd, var(--delay-reveal)) + var(--i, 0) * var(--stagger-chars));
+  }
+
+  /* ── w: statement words rise through a mask (the brief's line masks) ──── */
+  .rv-word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .rv-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    /* room for ascenders/descenders without shifting the line box */
+    padding-block: 0.12em;
+    margin-block: -0.12em;
+  }
+  .rv-word-inner {
+    display: inline-block;
+  }
+  .motion-ok [data-reveal="w"] .rv-word-inner {
+    transform: translate3d(0, 112%, 0);
+    transition: transform var(--dur-s) var(--ease-in);
+  }
+  .motion-ok [data-reveal="w"][data-revealed] .rv-word-inner {
+    transform: none;
+    transition: transform var(--dur-l) var(--ease-out);
+    transition-delay: calc(var(--rd, var(--delay-reveal)) + var(--i, 0) * 0.035s);
+  }
+
+  /* ── line: hairlines draw downward ────────────────────────────────────── */
+  .motion-ok [data-reveal="line"] {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path var(--dur-s) var(--ease-in);
+  }
+  .motion-ok [data-reveal="line"][data-revealed] {
+    clip-path: inset(0);
+    transition: clip-path var(--dur-l) var(--ease-out) var(--rd, var(--delay-reveal));
+  }
+  /* horizontal hairlines / the route line draw left → right */
+  .motion-ok [data-reveal="line-x"] {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path var(--dur-s) var(--ease-in);
+  }
+  .motion-ok [data-reveal="line-x"][data-revealed] {
+    clip-path: inset(0);
+    transition: clip-path calc(var(--dur-l) * 2) var(--ease-out) var(--rd, var(--delay-reveal));
+  }
+
+  /* ── slide: diagonal curtain wipe from the right + inner de-zoom ──────── */
+  .motion-ok [data-reveal="slide"] {
+    clip-path: polygon(100% 0, 100% 0, 101% 100%, 125% 100%);
+    transition: clip-path var(--dur-m) var(--ease-in-out);
+  }
+  .motion-ok [data-reveal="slide"] > .rv-slide-inner {
+    transform: scale(1.5) translate3d(25%, 0, 0);
+    transition: transform var(--dur-m) var(--ease-in-out);
+  }
+  .motion-ok [data-reveal="slide"][data-revealed] {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transition: clip-path var(--dur-l) var(--ease-in-out) var(--rd, 0s);
+  }
+  .motion-ok [data-reveal="slide"][data-revealed] > .rv-slide-inner {
+    transform: none;
+    transition: transform var(--dur-l) var(--ease-in-out) var(--rd, 0s);
+  }
+
+  /* ── ABOVE THE FOLD: CSS-driven, starts at first paint ─────────────────── */
+  @keyframes rv-ctn-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, var(--reveal-dist), 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes rv-h-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 50%, 0) rotateY(90deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes rv-a-in {
+    from {
+      opacity: 0;
+      transform: translate3d(10vw, 0, 0) rotateX(90deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .motion-ok :is(.hero, .intro) [data-reveal="ctn"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: rv-ctn-in var(--dur-l) var(--ease-out) both;
+    animation-delay: var(--rd, var(--delay-reveal));
+  }
+  .motion-ok :is(.hero, .intro) [data-reveal="h"] .rv-char {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: rv-h-in var(--dur-l) var(--ease-out) both;
+    animation-delay: calc(var(--rd, var(--delay-reveal)) + var(--i, 0) * var(--stagger-chars));
+  }
+  .motion-ok :is(.hero, .intro) [data-reveal="a"] .rv-char {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: rv-a-in var(--dur-l) var(--ease-out) both;
+    animation-delay: calc(var(--rd, var(--delay-reveal)) + var(--i, 0) * var(--stagger));
+  }
+  /* hold the hero's entrance until the arch starts to open (.intro-open, ~2s in) */
+  .intro-on:not(.intro-open) .hero [data-reveal],
+  .intro-on:not(.intro-open) .hero [data-reveal] .rv-char {
+    animation-play-state: paused;
+  }
+
+  /* ── hover vocabulary ─────────────────────────────────────────────────── */
+  /* Letter roll: the label is drawn twice, stacked in the same box. Row A leaves
+   * upward while row B arrives from below, staggered left → right. */
+  .roll {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: 1.2;
+    height: 1.2em;
+  }
+  .roll__row {
+    display: block;
+    white-space: pre;
+  }
+  .roll__row[data-row="b"] {
+    position: absolute;
+    inset: 0;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .roll__row .rv-char {
+      transition:
+        transform var(--dur-m) var(--ease-soft),
+        opacity var(--dur-m) var(--ease-soft);
+      transition-delay: calc(var(--i, 0) * 0.02s);
+    }
+    .roll__row[data-row="b"] .rv-char {
+      transform: translate3d(0, 100%, 0);
+      opacity: 0;
+    }
+    .roll-host:hover .roll__row[data-row="a"] .rv-char,
+    .roll-host:focus-visible .roll__row[data-row="a"] .rv-char {
+      transform: translate3d(0, -100%, 0);
+      opacity: 0;
+    }
+    .roll-host:hover .roll__row[data-row="b"] .rv-char,
+    .roll-host:focus-visible .roll__row[data-row="b"] .rv-char {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  /* touch / no-hover: row B is simply never shown */
+  @media (hover: none), (pointer: coarse) {
+    .roll__row[data-row="b"] {
+      display: none;
+    }
+  }
+
+  /* ── perpetual / time-based motion that must stop for reduced motion ─── */
+  @keyframes badge-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes pin-pulse {
+    from {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    to {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+  @keyframes bar-fill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .badge-ring,
+    .pulse-ring {
+      animation: none !important;
+    }
+  }
+}
+
+/* Registered so the intro can animate (interpolate) the arch opening's size and position. */
+@property --arch-w {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 36vw;
+}
+@property --arch-y {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 100vh;
+}

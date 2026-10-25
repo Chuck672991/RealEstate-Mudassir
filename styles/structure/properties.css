@@ -1,0 +1,280 @@
+/*
+ * PROPERTIES — index grid, filter bar, cards and the detail page.
+ * Cards use the chamfered outline (see .chamfer in layout.css).
+ */
+@layer components {
+  /* ── Index ───────────────────────────────────────────────────────────────── */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 3rem;
+    margin-bottom: clamp(1.5rem, 3vw, 3rem);
+    padding-bottom: clamp(1rem, 2vw, 1.75rem);
+    border-bottom: 1px solid var(--line);
+  }
+  .filter-group {
+    display: grid;
+    gap: 0.6rem;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .filter-group legend {
+    padding: 0;
+    margin-bottom: 0.2rem;
+    color: var(--ink-muted);
+  }
+  .filter-group__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .chip {
+    padding: 0.55em 1.15em;
+    border: var(--border-hair) solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    transition:
+      background-color var(--dur-m) var(--ease-out),
+      color var(--dur-m) var(--ease-out);
+  }
+  .chip:hover {
+    background-color: color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+  .chip[aria-pressed="true"] {
+    background-color: var(--ink);
+    color: var(--surface);
+    border-color: var(--ink);
+  }
+  .filters__count {
+    margin-left: auto;
+    align-self: end;
+  }
+
+  .property-grid {
+    display: grid;
+    gap: clamp(1.25rem, 2.4vw, 2.25rem);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .property-grid > li {
+    display: block;
+    min-width: 0; /* a long label must wrap, not widen the whole grid */
+    transition: filter var(--dur-m) var(--ease-out);
+  }
+  .property-grid > li[hidden] {
+    display: none;
+  }
+  @media (hover: hover) {
+    .property-grid > li:hover {
+      filter: var(--drop-lift);
+    }
+    .property-card:hover {
+      translate: 0 -4px;
+    }
+    .property-card:hover .property-card__media {
+      scale: 1.03;
+    }
+  }
+  .property-card {
+    position: relative;
+    height: 100%;
+    transition: translate var(--dur-m) var(--ease-out);
+  }
+  .property-card__face {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    background-color: var(--surface);
+    color: var(--ink);
+  }
+  .property-card__face > .material,
+  .property-card__face > .media {
+    aspect-ratio: 4 / 3;
+  }
+  /* the title link is stretched over the whole card (one large click target) */
+  .property-card__link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .property-card__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  /* the chamfer clips outlines, so the focus ring is drawn just inside the card */
+  .property-card__link:focus-visible {
+    outline: none;
+  }
+  .property-card:has(.property-card__link:focus-visible) .property-card__face {
+    outline: 2px solid var(--focus);
+    outline-offset: -6px;
+  }
+  .property-card__media {
+    transition: scale var(--dur-l) var(--ease-out);
+  }
+  .property-card__body {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    padding: 1.25rem 1.4rem 1.6rem;
+  }
+  .property-card__top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem 0.75rem;
+  }
+  .property-card__title {
+    font-size: var(--text-h6);
+    line-height: 1.12;
+  }
+  .property-card__price {
+    font-size: var(--text-h5);
+    line-height: 1;
+  }
+  .property-card__change {
+    display: block;
+    margin-top: 0.3rem;
+    color: var(--ink-muted);
+  }
+  .empty-state {
+    padding: clamp(2rem, 6vw, 5rem) 0;
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+    max-width: 38rem;
+  }
+
+  /* ── Detail ──────────────────────────────────────────────────────────────── */
+  .property-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 5rem);
+    align-items: start;
+  }
+  .property-detail__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .property-detail__media > * {
+    width: 100%;
+    height: 100%;
+  }
+  .property-detail__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .property-detail__gallery > * {
+    aspect-ratio: 4 / 3;
+  }
+  .property-detail__panel {
+    display: grid;
+    gap: 1.4rem;
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+  }
+  .property-detail__price {
+    font-size: var(--text-h3);
+    line-height: 0.95;
+  }
+  .property-detail__facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr));
+    gap: 1rem 1.5rem;
+    margin: 0;
+    padding-block: 1.25rem;
+    border-block: 1px solid var(--line);
+  }
+  .property-detail__facts dd {
+    margin: 0;
+    font-size: var(--text-h6);
+    font-family: var(--ff-display);
+  }
+  .more-facts {
+    display: grid;
+    margin: 0;
+  }
+  .more-facts > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .more-facts dd {
+    margin: 0;
+    text-align: right;
+  }
+  .property-detail__notes {
+    display: grid;
+    gap: 0.6rem;
+    max-width: 44rem;
+    margin-top: clamp(2rem, 4vw, 4rem);
+  }
+  .property-detail__summary {
+    margin-top: 1.25rem;
+  }
+  .property-detail__actions {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+  }
+  .property-detail__call,
+  .property-detail__source {
+    text-underline-offset: 0.2em;
+  }
+  .page__fine {
+    margin-top: clamp(2rem, 5vw, 4rem);
+    max-width: 52rem;
+  }
+  /* loading placeholder for the detail page (shown only while a home streams in) */
+  .skeleton {
+    background: color-mix(in oklab, var(--ink) 7%, transparent);
+    animation: skeleton-pulse 1.6s var(--ease-in-out) infinite alternate;
+  }
+  .skeleton--line {
+    height: 1rem;
+    max-width: 14rem;
+  }
+  .skeleton--title {
+    height: clamp(4rem, 9vw, 8rem);
+  }
+  .skeleton--block {
+    height: 12rem;
+  }
+  @keyframes skeleton-pulse {
+    from {
+      opacity: 0.55;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+    }
+  }
+  .property-more {
+    margin-top: clamp(3.5rem, 8vw, 8rem);
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+  }
+
+  @media (max-width: 991px) {
+    .property-detail {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .property-detail__panel {
+      position: static;
+    }
+  }
+}

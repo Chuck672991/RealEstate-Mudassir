@@ -1,0 +1,173 @@
+/*
+ * TOKEN CONTRACT
+ * ─────────────────────────────────────────────────────────────────────────────
+ * This file does two things:
+ *
+ *  1. Declares the STRUCTURAL tokens that every theme shares (layout rhythm,
+ *     z-index scale, breakpoints) — these describe geometry, never decoration.
+ *  2. Declares neutral FALLBACK values for every SEMANTIC token a theme may
+ *     override, so a half-finished theme degrades to something readable instead
+ *     of producing invalid CSS.
+ *
+ * A theme (see ./themes/*.css) overrides the semantic tokens under
+ * `:root[data-theme="<id>"]`. Components and Tailwind utilities only ever read
+ * semantic tokens (`--surface`, `--ink`, `--ff-display` …) — never hex values.
+ *
+ * Naming rule: tokens are named for ROLE, not for the section that uses them
+ * (`--surface-raised`, not `--hero-background`).
+ */
+
+:root {
+  /* ── Fluid unit ───────────────────────────────────────────────────────────
+   * The reference design is a 1600px canvas where 1 design-px = 1/16 vw.
+   * `--u` is "1vw, bounded"; `--px` is one design pixel. The rem bounds keep the
+   * scale readable on small laptops and stop it growing without limit on very
+   * wide displays. Body copy does NOT use this unit (see typography tokens).   */
+  --u: clamp(0.5rem, 1vw, 1.1rem);
+  --px: calc(var(--u) / 16);
+
+  /* ── Layout ───────────────────────────────────────────────────────────────*/
+  --gutter: clamp(1.25rem, 3vw, 4rem); /* page side offset (3vw in the brief) */
+  --gutter-l: var(--gutter); /* left offset: wider on desktop, where the scroll rail lives */
+  --cell: calc(136 * var(--px)); /* the 136 × 96 layout "cell" */
+  --measure: 38rem; /* comfortable reading width */
+  --header-h: clamp(4.5rem, 7vw, 7rem);
+
+  /* ── Pinned-stage geometry (structural; see styles/structure/sections.css) ───
+   * --arch-h    height of the arch-topped panel that rises over a pinned stage
+   * --overlap   how much of a pinned scroll area the next panel covers
+   * --*-run     scroll distance a stage stays pinned. Each is sized so the next
+   *             panel starts rising roughly half-way (hero) / a quarter-way (sold)
+   *             through, the proportions measured in the reference brief §E.3.   */
+  --arch-h: max(50vw, 22rem);
+  --overlap: calc(100svh + var(--arch-h));
+  --hero-run: calc(var(--overlap) * 2.45);
+  --sold-run: calc(var(--overlap) * 1.3);
+  --cta-run: 360svh;
+
+  /* ── Stacking scale ───────────────────────────────────────────────────────*/
+  --z-base: 0;
+  --z-raised: 10;
+  --z-fixed: 1200;
+  --z-overlay: 1300;
+  --z-intro: 1400;
+
+  /* ── Breakpoint (JS reads the same value from motion config) ─────────────*/
+  --bp-desktop: 992px;
+
+  /* ═══ SEMANTIC FALLBACKS (overridden by the active theme) ═══════════════════*/
+
+  /* colour */
+  --surface: #ffffff;
+  --surface-raised: #f4f4f4;
+  --surface-sunken: #e8e8e8;
+  --surface-inverse: #111111;
+  --surface-deep: #000000;
+  --ink: #111111;
+  --ink-muted: #555555;
+  --ink-subtle: #8a8a8a; /* decorative only — fails text contrast on light */
+  --ink-inverse: #ffffff;
+  --ink-inverse-muted: #cccccc;
+  --line: rgb(0 0 0 / 0.16);
+  --line-strong: rgb(0 0 0 / 0.4);
+  --line-inverse: rgb(255 255 255 / 0.22);
+  /* Backing for text that sits on a photograph (the .scrim utility). The picture is unknown
+     and may be white, so the backing is strong: --ink-inverse stays >= 4.5:1 over it even on
+     a pure-white photo. `npm run verify:contrast` proves that for every theme. */
+  --scrim-strength: 90%; /* small text: needs 4.5:1 */
+  --scrim-display-strength: 65%; /* display-size type (>= 24px): needs 3:1, so the photo can stay visible */
+  --scrim: color-mix(in oklab, var(--surface-deep) var(--scrim-strength), transparent);
+  --scrim-display: color-mix(in oklab, var(--surface-deep) var(--scrim-display-strength), transparent);
+  --scrim-feather: 1.75rem;
+  --accent: #888888;
+  --focus: #1a5fb4;
+  --focus-inverse: #ffffff;
+  --selection-bg: #111111;
+  --selection-fg: #ffffff;
+  --error: #b00020;
+  --success: #1b6b35;
+
+  /* listing status chips (bg / fg pairs) */
+  --status-sale-bg: #111111;
+  --status-sale-fg: #ffffff;
+  --status-pending-bg: #dddddd;
+  --status-pending-fg: #111111;
+  --status-sold-bg: transparent;
+  --status-sold-fg: #111111;
+  --status-sold-border: #111111;
+
+  /* typography */
+  --ff-display: Georgia, "Times New Roman", serif;
+  --ff-accent: var(--ff-display);
+  --ff-body: system-ui, sans-serif;
+  --ff-label: var(--ff-body);
+  --display-transform: uppercase;
+  --display-tracking: -0.024em;
+  --display-leading: 0.9;
+  --label-tracking: 0.14em;
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-label: 0.75rem;
+  --text-h1: clamp(3.5rem, 12vw, 15rem);
+  --text-h2: clamp(3rem, 8.5vw, 11rem);
+  --text-h3: clamp(2.5rem, 6vw, 8rem);
+  --text-h4: clamp(1.75rem, 3.94vw, 5.2rem);
+  --text-h5: clamp(1.375rem, 2.5vw, 3.4rem);
+  --text-h6: clamp(1.125rem, 1.75vw, 2.4rem);
+  --text-accent-lg: clamp(3.25rem, 7.5vw, 10rem);
+  --text-accent-md: clamp(2.25rem, 4vw, 5.5rem);
+
+  /* shape */
+  --radius-arch: 50vw; /* semicircular panel tops */
+  --radius-pill: 999px;
+  --radius-card: 0px;
+  --chamfer: 0.9rem; /* diagonal card corners */
+  --border-hair: 1px;
+  --shadow-lift: 0 12px 32px rgb(0 0 0 / 0.12);
+  --drop-lift: drop-shadow(0 12px 18px rgb(0 0 0 / 0.14));
+  --doorway-light: linear-gradient(180deg, transparent, var(--surface-raised));
+  --light-glow: none;
+  --light-sun: none;
+
+  /* botanicals: the flower artwork is magenta; a theme may re-tint it with a CSS filter (hue-rotate/saturate) */
+  --flower-filter: none;
+  /* material surfaces: flat fallbacks so a theme without textures still renders */
+  --material-plaster: linear-gradient(var(--surface-raised), var(--surface-raised));
+  --material-travertine: linear-gradient(var(--surface-sunken), var(--surface-sunken));
+  --material-stone: linear-gradient(var(--accent), var(--accent));
+  --material-walnut: linear-gradient(var(--surface-deep), var(--surface-deep));
+  --material-leather: linear-gradient(var(--surface-inverse), var(--surface-inverse));
+  --glyph-ink-on-light: var(--line-strong);
+  --glyph-ink-on-dark: var(--line-inverse);
+
+  /* motion (read by CSS transitions AND by GSAP via motion/tokens.ts) */
+  --dur-s: 0.4s;
+  --dur-m: 0.8s;
+  --dur-l: 1.2s;
+  --stagger: 0.1s;
+  --stagger-chars: 0.05s;
+  --delay-reveal: 0.3s;
+  --reveal-dist: 3.333vw;
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+  --ease-in-out: cubic-bezier(0.75, 0, 0.25, 1);
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-dive: cubic-bezier(0.6, 0, 0, 1);
+  --ease-hscroll: cubic-bezier(0.25, 0, 0.75, 1);
+  --ease-follow: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --autoplay-ms: 7000;
+}
+
+@media (min-width: 992px) {
+  :root {
+    --gutter-l: calc(var(--gutter) + 3.5rem);
+  }
+}
+
+@media (max-width: 991px) {
+  :root {
+    --reveal-dist: 11.54vw;
+    --header-h: 4.25rem;
+  }
+}

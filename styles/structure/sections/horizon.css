@@ -1,0 +1,170 @@
+/*
+ * HORIZON — clouds drifting over an aerial photograph.
+ *
+ * Layers, back to front:  cream page → aerial photo (parallaxed) → title → clouds A/B/C →
+ * cream fades. The clouds are `pointer-events: none` and sit ABOVE the title, as in the
+ * reference. They start 6vw above the section so they straddle the boundary with the
+ * previous section (horizontal overflow is clipped; vertical is not).
+ *
+ * Without motion (reduced motion, no JS) the clouds are still and the photo is static.
+ */
+@layer components {
+  .horizon {
+    position: relative;
+    z-index: 2;
+    overflow-x: clip;
+    background: var(--surface);
+    color: var(--ink-inverse);
+  }
+  .horizon__stage {
+    position: relative;
+    height: clamp(34rem, 88vw, 125svh);
+    isolation: isolate;
+    background: var(--surface);
+  }
+
+  /* only the photo is clipped (the clouds must spill above the section) */
+  .horizon__window {
+    position: absolute;
+    inset: 0;
+    overflow: clip;
+  }
+  /* the parallax wrapper fills the window; the photo inside is oversized so a slide never shows an edge */
+  .horizon__bg {
+    position: absolute;
+    inset: 0;
+  }
+  .horizon__photo {
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% 100%;
+  }
+  .horizon__media {
+    position: absolute;
+    inset: 0;
+  }
+  @media (min-width: 992px) {
+    .motion-ok .horizon__photo {
+      inset: -17% -8%;
+    }
+  }
+  /* a veil under the title: display-size type needs only 3:1, so the photograph stays visible */
+  .horizon__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, var(--scrim-display) 0, var(--scrim-display) 24%, transparent 52%);
+    pointer-events: none;
+  }
+
+  .horizon__text {
+    position: absolute;
+    z-index: 1;
+    inset: auto var(--gutter) clamp(2rem, 6vw, 6rem) var(--gutter-l);
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+  .horizon__title {
+    font-size: var(--text-h2);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .horizon__line {
+    width: fit-content;
+  }
+
+  /* ── cloud layers ─────────────────────────────────────────────────────────── */
+  .horizon__clouds {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .clouds {
+    --strip-h: 30vw;
+    --drift: 64s;
+    position: absolute;
+    left: -3vw;
+    right: -3vw;
+    top: -6vw;
+    overflow: clip;
+    pointer-events: none;
+  }
+  .clouds--a {
+    --strip-h: 37.5vw;
+  }
+  .clouds--b {
+    top: 5vw;
+  }
+  .clouds--c {
+    top: 17vw;
+  }
+  .clouds__track {
+    display: flex;
+    width: max-content;
+  }
+  .clouds__list {
+    display: flex;
+    flex: none;
+  }
+  .clouds__strip {
+    flex: none;
+    width: auto;
+    height: var(--strip-h);
+    max-width: none;
+  }
+  .clouds__strip:nth-child(2n) {
+    transform: scaleY(-1);
+  }
+  @keyframes clouds-drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  /* time-based and only while near the viewport (data-live, engine/flowers.ts) */
+  .motion-ok .clouds__track {
+    animation: clouds-drift var(--drift) linear infinite;
+    animation-play-state: paused;
+  }
+  .motion-ok .clouds[data-live] .clouds__track {
+    animation-play-state: running;
+  }
+
+  .horizon__fade {
+    position: absolute;
+    left: -3vw;
+    right: -3vw;
+    top: -1px;
+    z-index: 5;
+    height: 20vw;
+    pointer-events: none;
+    background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
+  }
+  .horizon__fade--b {
+    height: 9vw;
+  }
+
+  @media (max-width: 991px) {
+    .horizon__stage {
+      height: clamp(32rem, 125vw, 110svh);
+    }
+    .clouds {
+      --strip-h: 57.7vw;
+      --drift: 120s;
+      top: -4vw;
+    }
+    .clouds--a {
+      --strip-h: 72vw;
+    }
+    .clouds--b {
+      top: 8vw;
+    }
+    .clouds--c {
+      top: 20vw;
+    }
+  }
+}

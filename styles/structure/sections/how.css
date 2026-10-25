@@ -1,0 +1,156 @@
+/*
+ * HOW HE WORKS — the reference's “the space to live in” (§S10): a cream arch panel
+ * that rises over the sold stage, a stacked headline with one italic accent word
+ * overlapping it, and an asymmetric two-column composition.
+ */
+@layer components {
+  .how {
+    position: relative;
+    z-index: 1;
+    overflow-x: clip;
+    /* behind the arch’s curved corners: the (still dark) stage above */
+    background: var(--surface-inverse);
+  }
+  @media (min-height: 36rem) {
+    .motion-ok .how {
+      margin-top: calc(-1 * var(--overlap));
+      background: transparent;
+    }
+  }
+  .how__panel {
+    min-height: var(--overlap);
+    padding: clamp(5rem, 14vw, 15rem) var(--gutter) clamp(4rem, 9vw, 9rem) var(--gutter-l);
+    background-color: var(--surface-raised);
+    color: var(--ink);
+    display: grid;
+    align-content: start;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+  .how__title {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+  }
+  .how__title-visual {
+    position: relative;
+    display: grid;
+    justify-items: center;
+  }
+  /* the title: display capitals, one word per line, the italic accent the same size, tucked under */
+  .how__line {
+    display: block;
+    font-size: var(--text-h1);
+    line-height: 0.875;
+  }
+  .how__accent {
+    display: block;
+    position: relative;
+    z-index: 2;
+    font-size: var(--text-h1);
+    line-height: 1;
+    margin-top: -0.36em;
+    margin-left: -0.07em;
+  }
+
+  /* two tall photographs that drift in opposite directions (engine/home.ts → drift) */
+  .how__imgs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1vw;
+    align-items: start;
+    width: 100%;
+    max-width: 100rem;
+    margin-inline: auto;
+  }
+  .how__img {
+    position: relative;
+    min-width: 0;
+  }
+  .how__img--r {
+    margin-top: 15vw;
+  }
+  .how__frame {
+    background: var(--surface-inverse);
+    padding: clamp(0.75rem, 3vw, 3rem);
+  }
+  .how__photo {
+    width: 100%;
+    aspect-ratio: 773 / 1252;
+  }
+  .how__note {
+    display: grid;
+    gap: 1.5rem;
+    justify-items: start;
+    max-width: 24rem;
+    padding-top: 1.75rem;
+  }
+
+  .how__cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 8rem);
+    max-width: 100rem;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .how__services {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-content: start;
+  }
+  .how__services > p {
+    max-width: 30ch;
+  }
+  .service-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+  }
+  .service-list li {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    column-gap: 1rem;
+    row-gap: 0.35rem;
+    padding-block: clamp(1rem, 2.2vw, 1.6rem);
+    border-top: 1px solid var(--line-strong);
+  }
+  .service-list li:last-child {
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .service-list li > span {
+    grid-row: 1;
+    padding-top: 0.35rem;
+  }
+  .service-list li > h3,
+  .service-list li > p {
+    grid-column: 2;
+  }
+  .how__aside {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-content: start;
+    justify-items: start;
+  }
+  .how__languages {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .how__languages ul {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  @media (max-width: 991px) {
+    .how__cols,
+    .how__imgs {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .how__img--r {
+      margin-top: 0;
+    }
+    .how__accent {
+      margin-top: -0.3em;
+    }
+  }
+}

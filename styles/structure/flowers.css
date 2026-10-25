@@ -1,0 +1,158 @@
+/*
+ * FLOWERS — bougainvillea clips at the edges of a few sections (components/ui/Flower.tsx).
+ *
+ * Each is a looped, transparent video (lib/flower.ts), a child of the section it decorates and
+ * positioned by that section's own wrapper, as in the reference: absolute, negative offsets so
+ * that the clip's own cut edges (it was filmed cropped) sit outside the section, a rotation or
+ * mirror so the same clip does not read as repeated. Sizes use the viewport-relative unit.
+ *
+ * The clips (numbered as the reference numbers them — brief §2.3), each filmed cropped, so each has
+ * a cut edge or two that must sit outside the section:
+ *   01  hangs from the TOP-LEFT corner      02  a pendant bunch from the TOP edge, right of centre
+ *   04  hangs from the TOP-LEFT corner      05  a band hanging along the whole TOP edge
+ *   06  a cluster in the TOP-RIGHT corner   07  hangs from the TOP edge, right of centre
+ * 03 has not been supplied yet: its placement (areas-end) follows the brief but has not been looked
+ * at on screen, and the component renders nothing for it until the clip exists.
+ *
+ * PLACEMENT RULE: a spray may overlap a photograph or sit in a corner or margin, but it must
+ * never cover text. Each placement was checked against the section's copy at desktop and phone width.
+ *
+ * Layers: the wrapper takes the scroll motion (GSAP), the <video> the rotation / mirroring (CSS
+ * individual transform properties), so the two never fight over one `transform`.
+ */
+@layer components {
+  .flower {
+    position: absolute;
+    z-index: 1;
+    width: var(--w, 40vw);
+    aspect-ratio: 1;
+    pointer-events: none;
+    /* decorative: never part of layout, never selectable */
+    user-select: none;
+  }
+  .flower__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    rotate: var(--flower-rot, 0deg);
+    scale: var(--flower-flip-x, 1) var(--flower-flip-y, 1);
+    transform-origin: 50% 50%;
+    filter: var(--flower-filter);
+    pointer-events: none;
+  }
+
+  /* ── phone / tablet / reduced motion / no JS ─────────────────────────────────
+     Only the first spray (the Areas section's) is shown below 992px: small, in the section's
+     top-left corner and clear of the copy. The rest are desktop placements. */
+  .flower {
+    display: none;
+  }
+  .flower--areas-intro {
+    display: block;
+    --w: 46vw;
+    top: -16vw;
+    left: -6vw;
+  }
+  .area-panel:has(> .flower) {
+    position: static; /* the spray is placed against the section's own corner */
+  }
+
+  /* ── wide screens ─────────────────────────────────────────────────────────── */
+  @media (min-width: 992px) {
+    .flower--areas-intro,
+    .flower--market,
+    .flower--living,
+    .flower--closing {
+      display: block;
+    }
+    .flower--areas-intro {
+      --w: 26vw;
+      top: -3vw;
+      left: -3vw;
+    }
+    /* #4 hangs from the top-left, so mirrored top-to-bottom it grows out of the bottom-left corner */
+    .flower--market {
+      --w: 30vw;
+      left: -4vw;
+      bottom: -4vw;
+      --flower-flip-y: -1;
+    }
+    /* #6 lies over the top-right corner of the left photograph: its cut edges (top, right) are the
+       frame's own top and right edges. No parallax here — a drift would pull the cut into view. */
+    .flower--living {
+      --w: 58%;
+      top: 0;
+      right: 0;
+    }
+    /* #7 for the closing statement. The reference hangs it from the top-right (rotated 45°), which is
+       exactly where this site's fixed navigation sits: at the natural reading position the links
+       would sit on flowers. Mirrored left-to-right it hangs from the top-LEFT corner instead. */
+    .flower--closing {
+      --w: 30vw;
+      top: -10vw; /* the dense crown stays above the section: only the lighter fringe reaches the logo */
+      left: -5vw;
+      --flower-flip-x: -1;
+    }
+  }
+
+  /* The pinned chapter: panels are positioned again and the sprays sit against the STAGE's edges,
+     which are --stage-pad-t / --stage-pad-b away from the panels' own. */
+  @media (min-width: 992px) and (min-height: 40rem) {
+    .motion-ok .area-panel:has(> .flower) {
+      position: relative;
+    }
+    /* #1 the stage's top-left corner (first panel); the rail carries it away as you scroll */
+    .motion-ok .flower--areas-intro {
+      --w: 26vw;
+      top: calc(var(--stage-pad-t) * -1 - 3vw);
+      left: calc(var(--gutter-l) * -1 - 3vw);
+    }
+    /* #2 and #3 rise out of the stage's bottom edge, mirrored so the cut edge is below it. The box is
+       placed wholly BELOW the panels' bottom (by 0.75rem), so only the strip under the panels shows:
+       it can never reach their copy. */
+    .motion-ok .flower--areas-mid {
+      display: block;
+      --w: 26vw;
+      left: -6vw;
+      bottom: calc(var(--w) * -1 - 0.75rem);
+      --flower-flip-y: -1;
+    }
+    /* (clip 03 has not been supplied — this placement is unverified) */
+    .motion-ok .flower--areas-end {
+      display: block;
+      --w: 26vw;
+      right: -2vw;
+      bottom: calc(var(--w) * -1 - 0.75rem);
+      --flower-flip-y: -1;
+    }
+  }
+
+  /* ── the two-window scene (#6, #7): wide, tall screens with motion only ──────
+     Both sit in the bottom corners with their cut edges off screen; during the zoom they swell
+     and are thrown outward (engine/home.ts → closingScene). */
+  /* Sized by the SMALLER of the screen's width and height: the windows are a share of both, so on a wide,
+     short window (2:1 and wider) a width-only size made the flowers swallow the picture. */
+  .flower--windows-left,
+  .flower--windows-right {
+    display: none;
+  }
+  .flower--windows-left {
+    --w: min(40vw, 74svh);
+    left: calc(var(--w) * -0.2);
+    bottom: calc(var(--w) * -0.1);
+    --flower-rot: -150deg;
+  }
+  .flower--windows-right {
+    --w: min(36vw, 68svh);
+    right: calc(var(--w) * -0.2);
+    bottom: calc(var(--w) * -0.25);
+    --flower-rot: 65deg;
+  }
+  @media (min-width: 992px) and (min-height: 40rem) {
+    .motion-ok .flower--windows-left,
+    .motion-ok .flower--windows-right {
+      display: block;
+    }
+  }
+}

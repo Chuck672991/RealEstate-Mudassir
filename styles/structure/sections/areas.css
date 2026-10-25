@@ -1,0 +1,186 @@
+/*
+ * AREAS — the reference's horizontal chapter (§S5).
+ *
+ * Default (mobile, tablet, reduced motion, no JS): the panels simply stack / form
+ * a grid. With motion on a wide screen the section becomes a tall scroll area
+ * holding a sticky stage; the motion layer maps vertical scroll to the sideways
+ * travel of the rail (1:1) and keeps the area’s height in step with the rail’s
+ * measured width. The CSS height below is a close estimate used before measuring,
+ * so the page does not jump when scripts load.
+ */
+@layer components {
+  .areas {
+    --intro-w: clamp(24rem, 40vw, 60rem);
+    --panel-w: clamp(19rem, 30vw, 44rem);
+    --panel-gap: clamp(2.5rem, 6vw, 9rem);
+    /* the pinned track's top / bottom padding: the flower sprays are positioned against these */
+    --stage-pad-t: calc(var(--header-h) + 2rem);
+    --stage-pad-b: clamp(7rem, 20svh, 12rem);
+    position: relative;
+    overflow-x: clip;
+    background-color: var(--surface);
+    color: var(--ink);
+  }
+  .areas__area,
+  .areas__sticky,
+  .areas__rail {
+    position: relative;
+  }
+
+  /* ── stacked / grid layout ───────────────────────────────────────────────── */
+  .areas__track {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(5rem, 11vw, 9rem) var(--gutter) clamp(5rem, 11vw, 9rem) var(--gutter-l);
+    list-style: none;
+    margin: 0;
+  }
+  @media (min-width: 700px) {
+    .areas__track {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .area-panel--intro,
+    .area-panel--end {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 1100px) {
+    .areas__track {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .area-panel {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line-strong);
+  }
+  .area-panel--intro {
+    border-top: 0;
+    padding-top: 0;
+    gap: 1.25rem;
+    max-width: 44rem;
+  }
+  .area-panel--end {
+    border-top: 0;
+    justify-items: start;
+    gap: 1.5rem;
+  }
+  .area-panel__hint {
+    display: none;
+    color: var(--ink-muted);
+  }
+  .area-panel__index {
+    color: var(--ink-muted);
+  }
+  /* an arch-topped photograph of the area, when one has been supplied */
+  .area-panel__photo {
+    position: relative; /* the slide wrapper inside is absolutely positioned */
+    width: min(100%, 22rem);
+    height: clamp(9rem, 28svh, 17rem);
+    overflow: hidden;
+    border-radius: var(--radius-arch) var(--radius-arch) 0 0;
+    margin-bottom: 0.5rem;
+  }
+  .area-panel__photo .rv-slide-inner,
+  .area-panel__media {
+    height: 100%;
+  }
+  .area-panel__count {
+    font-size: clamp(4.5rem, 9vw, 12rem);
+    line-height: 1;
+    padding-bottom: 0.12em;
+    letter-spacing: -0.03em;
+  }
+  .area-panel__name {
+    margin-top: 0.5rem;
+    font-size: var(--text-h4);
+  }
+  .area-panel__bar {
+    margin-top: 0.75rem;
+    height: 2px;
+    background: var(--line);
+  }
+  .area-panel__bar > span {
+    display: block;
+    height: 100%;
+    background: var(--ink);
+    transform-origin: left;
+    transform: scaleX(var(--share, 0));
+  }
+  .areas__route {
+    display: none;
+  }
+
+  /* ── pinned horizontal chapter (wide screens, motion allowed) ─────────────── */
+  @media (min-width: 992px) and (min-height: 40rem) {
+    .motion-ok .areas__area {
+      height: calc(
+        var(--intro-w) + (var(--n) - 1) * (var(--panel-w) + var(--panel-gap)) + var(--gutter) + var(--gutter-l) - 100vw + 100svh
+      );
+    }
+    .motion-ok .areas__sticky {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      overflow: hidden;
+    }
+    .motion-ok .areas__rail {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      height: 100%;
+      will-change: transform;
+    }
+    .motion-ok .areas__track {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: var(--panel-gap);
+      padding: var(--stage-pad-t) var(--gutter) var(--stage-pad-b) var(--gutter-l);
+      height: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .motion-ok .area-panel {
+      flex: 0 0 var(--panel-w);
+      align-content: end;
+      border-top: 0;
+      border-left: 1px solid var(--line-strong);
+      padding: 0 0 0 clamp(1.25rem, 2.5vw, 2.5rem);
+    }
+    .motion-ok .area-panel--intro {
+      flex-basis: var(--intro-w);
+      border-left: 0;
+      padding-left: 0;
+      align-content: center;
+    }
+    .motion-ok .area-panel--end {
+      border-left: 0;
+      align-content: center;
+    }
+    .motion-ok .area-panel__hint {
+      display: block;
+    }
+    .motion-ok .areas__route {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: clamp(3rem, 11svh, 8rem);
+      width: 100%;
+      height: clamp(3rem, 9svh, 6rem);
+      fill: none;
+      stroke: var(--ink);
+      stroke-width: 1.2;
+      vector-effect: non-scaling-stroke;
+      opacity: 0.55;
+      z-index: 0;
+    }
+    .motion-ok .areas__route path {
+      vector-effect: non-scaling-stroke;
+    }
+  }
+}

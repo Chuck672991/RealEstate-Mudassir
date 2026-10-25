@@ -1,0 +1,252 @@
+/*
+ * FORMS — the inquiry form and the “Book a call” dialog.
+ * Underline-only fields (as in the reference's modal), a pill submit, errors
+ * linked to their fields and never signalled by colour alone.
+ */
+@layer components {
+  .inquiry {
+    display: grid;
+    gap: clamp(1.1rem, 2.4vw, 1.75rem);
+    max-width: 40rem;
+    min-width: 0;
+  }
+  .inquiry__summary {
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--error);
+    color: var(--error);
+  }
+  .inquiry__summary::before {
+    content: "Problem: ";
+    font-weight: 600;
+  }
+  .inquiry__phone a {
+    text-underline-offset: 0.2em;
+  }
+  .field {
+    display: grid;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: clamp(1.1rem, 2.4vw, 1.75rem);
+  }
+  .field label {
+    color: var(--ink-muted);
+  }
+  .field input:not([type="checkbox"]),
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 0.7rem 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line-strong);
+    border-radius: 0;
+    color: var(--ink);
+    transition: border-color var(--dur-m) var(--ease-out);
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+  }
+  .field select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:
+      calc(100% - 0.6rem) 1.15rem,
+      calc(100% - 0.25rem) 1.15rem;
+    background-size: 0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    padding-right: 1.5rem;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-bottom-color: var(--ink);
+  }
+  .field [aria-invalid="true"] {
+    border-bottom: 2px solid var(--error);
+  }
+  .field__hint {
+    margin: 0;
+  }
+  .field__error {
+    margin: 0;
+    color: var(--error);
+  }
+  .field__error::before {
+    content: "Error: ";
+    font-weight: 600;
+  }
+  .field--check {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.75rem;
+    align-items: start;
+  }
+  .field--check input {
+    margin-top: 0;
+    width: 1.5rem; /* 24px: a touch-sized target (WCAG 2.5.8) */
+    height: 1.5rem;
+    accent-color: var(--ink);
+  }
+  .field--check .field__error {
+    grid-column: 1 / -1;
+  }
+  .field--check label {
+    color: var(--ink);
+  }
+  /* honeypot: off-screen, not display:none (some bots skip those) */
+  .field--trap {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .inquiry__submit {
+    justify-self: start;
+    cursor: pointer;
+  }
+  .inquiry__submit:disabled {
+    opacity: 0.5;
+    cursor: progress;
+  }
+  .inquiry-done {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+    max-width: 34rem;
+    padding: clamp(1rem, 3vw, 2rem) 0;
+  }
+  .inquiry-done:focus-visible {
+    outline-offset: 8px;
+  }
+
+  /* ── Contact page layout ─────────────────────────────────────────────────── */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: start;
+  }
+  .contact-layout__form {
+    display: grid;
+    gap: 1.5rem;
+    min-width: 0;
+  }
+  /* no verified contact details to place beside the form: the form stands alone */
+  .contact-layout--solo {
+    grid-template-columns: minmax(0, 44rem);
+  }
+  .contact-layout__details {
+    display: grid;
+    gap: 1.75rem;
+    border-top: 1px solid var(--line-strong);
+    padding-top: 1.75rem;
+  }
+  .contact-layout__phone {
+    display: inline-block;
+    font-size: var(--text-h4);
+    text-decoration: none;
+  }
+  .contact-layout__phone:hover {
+    text-decoration: underline;
+  }
+  .contact-layout__address {
+    display: grid;
+    gap: 0.15rem;
+    font-style: normal;
+  }
+  @media (max-width: 991px) {
+    .contact-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .contact-layout__details {
+      order: -1;
+    }
+  }
+
+  /* ── Dialog ──────────────────────────────────────────────────────────────── */
+  .contact-dialog,
+  .menu-dialog {
+    transition:
+      opacity var(--dur-m) var(--ease-out),
+      overlay var(--dur-m) var(--ease-out) allow-discrete,
+      display var(--dur-m) var(--ease-out) allow-discrete;
+    opacity: 0;
+  }
+  .contact-dialog[open],
+  .menu-dialog[open] {
+    opacity: 1;
+  }
+  @starting-style {
+    .contact-dialog[open],
+    .menu-dialog[open] {
+      opacity: 0;
+    }
+  }
+  .contact-dialog {
+    width: min(76rem, calc(100vw - 2 * var(--gutter)));
+    max-width: none;
+    max-height: calc(100svh - 2rem);
+    padding: 0;
+    margin: auto;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    overflow: visible;
+  }
+  .contact-dialog::backdrop {
+    background: color-mix(in oklab, var(--surface-deep) 72%, transparent);
+    transition: opacity var(--dur-m) var(--ease-out);
+  }
+  .contact-dialog__card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(1.5rem, 4vw, 5rem);
+    max-height: calc(100svh - 2rem);
+    overflow-y: auto;
+    padding: clamp(1.5rem, 4.5vw, 4.5rem);
+    background-color: var(--surface-raised);
+    overscroll-behavior: contain;
+  }
+  .contact-dialog__intro {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .contact-dialog__close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    transition: background-color var(--dur-m) var(--ease-out);
+  }
+  .contact-dialog__close:hover {
+    background-color: color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+  @media (max-width: 767px) {
+    .contact-dialog__card {
+      grid-template-columns: minmax(0, 1fr);
+      padding-top: 4.5rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-dialog,
+    .menu-dialog {
+      transition: none;
+    }
+  }
+}

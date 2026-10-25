@@ -1,0 +1,75 @@
+/*
+ * ARCH INTRO — the cream, semicircle-topped panel that rises over the hero
+ * (brief §S2). Pure document flow: a negative top margin pulls it up over the
+ * pinned hero; nothing is tweened. Three short words are set along the arch like
+ * spokes of a wheel; the motion layer fans them apart as you scroll (§S2.2).
+ */
+@layer components {
+  .arch-intro {
+    position: relative;
+    z-index: 1;
+    /* the dark behind the arch’s curved corners when the hero is not pinned */
+    background: var(--surface-inverse);
+  }
+  @media (min-height: 36rem) {
+    .motion-ok .arch-intro {
+      margin-top: calc(-1 * var(--overlap));
+      background: transparent; /* the pinned hero shows through the corners */
+    }
+  }
+  .arch-intro .arch-panel {
+    height: var(--arch-h);
+    background: var(--surface-raised);
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .arc-words {
+    --spread: 40deg; /* scrubbed by the motion layer */
+    --radius: calc(50vw - clamp(3.25rem, 8vw, 9rem));
+    position: absolute;
+    left: 50%;
+    top: min(50vw, var(--arch-h));
+    width: 0;
+    height: 0;
+  }
+  .arc-spoke {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    transform: rotate(calc((var(--i) - (var(--n) - 1) / 2) * var(--spread)));
+  }
+  .arc-word {
+    position: absolute;
+    left: 0;
+    bottom: var(--radius);
+    translate: -50% 0;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .arch-intro__foot {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding-bottom: clamp(1.25rem, 3svh, 2.5rem);
+    text-align: center;
+  }
+  .arch-intro__foot .hairline--v {
+    height: clamp(2.5rem, 9svh, 6rem);
+  }
+
+  @media (max-width: 991px) {
+    .arc-words {
+      --spread: 54deg;
+      --radius: calc(50vw - 3.1rem);
+    }
+    .arc-word {
+      font-size: clamp(1.05rem, 4.6vw, 1.6rem);
+    }
+  }
+}

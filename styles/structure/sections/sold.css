@@ -1,0 +1,200 @@
+/*
+ * RECENTLY SOLD — the reference's amenities stage (§S9): a full-bleed dark plate
+ * that scales up and fades while the cream panel of the next section rises over
+ * it, with a tab list that wipes between records.
+ */
+@layer components {
+  .sold {
+    position: relative;
+  }
+  .sold__area {
+    position: relative;
+  }
+  .sold__sticky {
+    position: relative;
+    min-height: max(100svh, 36rem);
+    overflow: hidden;
+  }
+  /* pinned only on screens tall enough for the stage (see the note in hero.css) */
+  @media (min-height: 36rem) {
+    .motion-ok .sold__area {
+      height: calc(100svh + var(--sold-run));
+    }
+    .motion-ok .sold__sticky {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+    }
+  }
+
+  .sold-show {
+    position: relative;
+    height: 100%;
+    min-height: max(100svh, 36rem);
+  }
+  /* the stage that is scaled / faded by the scroll scrub */
+  .sold-show__stage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    transform-origin: 50% 60%;
+  }
+  .sold-panel {
+    grid-area: 1 / 1;
+    position: relative;
+    min-width: 0;
+  }
+  .sold-panel:focus-visible {
+    outline-offset: -6px;
+  }
+  /* no scripting: list every record; scripting before hydration: first only */
+  html:not(.js) .sold-show,
+  html:not(.js) .sold-show__stage {
+    position: relative;
+    display: block;
+    height: auto;
+  }
+  .js .sold-show:not([data-ready]) .sold-panel:not(:first-child) {
+    visibility: hidden;
+  }
+
+  .sold-stage {
+    position: relative;
+    min-height: max(100svh, 36rem);
+    height: 100%;
+    display: grid;
+    align-items: end;
+  }
+  .sold-stage__plate {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background-color: var(--surface-deep);
+  }
+  .sold-stage__plate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      color-mix(in oklab, var(--surface-deep) 78%, transparent) 0%,
+      transparent 58%
+    );
+  }
+  /* the line drawing sits low-right, clear of the caption (left) and tab list (top) */
+  .sold-stage__media .material__glyph {
+    inset: auto clamp(2rem, 8vw, 10rem) clamp(2rem, 9svh, 6rem) auto;
+    width: clamp(12rem, 24vw, 30rem);
+    height: min(40svh, 24rem);
+  }
+  .sold-stage__caption {
+    position: relative;
+    z-index: 2;
+    width: fit-content;
+    display: grid;
+    gap: 0.7rem;
+    justify-items: start;
+    padding: 0 var(--gutter) clamp(3rem, 11svh, 8rem) var(--gutter-l);
+    max-width: 62rem;
+  }
+  .sold-stage__price {
+    font-size: var(--text-h1);
+    line-height: 0.9;
+  }
+  .sold-stage__link {
+    display: inline-block;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.15rem;
+    text-decoration: none;
+  }
+
+  /* heading + tab list float above the stage */
+  .sold-show__ui {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    padding: calc(var(--header-h) + 5svh) var(--gutter) 0 var(--gutter-l);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .sold-show__ui > * {
+    pointer-events: auto;
+  }
+
+  .sold-show__heading {
+    display: grid;
+    gap: 0.3rem;
+    max-width: 18rem;
+  }
+  .t-muted-inverse {
+    color: var(--ink-inverse-muted);
+  }
+  .sold-show__nav {
+    width: min(24rem, 30vw);
+    margin-right: clamp(0rem, 14vw, 18rem);
+  }
+  .sold-show__list {
+    position: relative;
+    display: grid;
+    gap: 0.15rem;
+    padding-left: 1.1rem;
+  }
+  .sold-show__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    background: var(--ink-inverse);
+    transition:
+      transform var(--dur-m) var(--ease-in-out),
+      height var(--dur-m) var(--ease-in-out);
+  }
+  /* inactive tabs are muted by a token (not by opacity, which no contrast check can see) */
+  .sold-show__tab {
+    text-align: left;
+    padding: 0.45rem 0;
+    color: var(--ink-inverse-muted);
+    transition: color var(--dur-m) var(--ease-out);
+  }
+  .sold-show__tab:hover,
+  .sold-show__tab.is-active {
+    color: var(--ink-inverse);
+  }
+
+  @media (max-width: 991px) {
+    .sold-show__ui {
+      flex-direction: column;
+      gap: 1rem;
+      padding-top: calc(var(--header-h) + 2svh);
+    }
+    .sold-show__nav {
+      width: auto;
+      max-width: 100%;
+      margin-right: 0;
+    }
+    .sold-show__list {
+      display: flex;
+      padding-left: 0;
+      overflow-x: auto;
+      gap: 1.5rem;
+      scrollbar-width: none;
+    }
+    .sold-show__bar {
+      display: none;
+    }
+    .sold-show__tab {
+      flex: none;
+      white-space: nowrap;
+      border-bottom: 1px solid transparent;
+    }
+    .sold-show__tab.is-active {
+      border-bottom-color: currentColor;
+    }
+    .sold-stage__price {
+      font-size: var(--text-h2);
+    }
+  }
+}

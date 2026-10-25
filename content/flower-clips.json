@@ -1,0 +1,84 @@
+{
+  "note": "Written by scripts/assets/flower-clips.mjs — do not edit by hand.",
+  "fps": 16,
+  "clips": [
+    {
+      "n": 1,
+      "width": 720,
+      "height": 720,
+      "webm": "/flowers/clips/01.webm",
+      "mov": "/flowers/clips/01.mov",
+      "poster": "/flowers/clips/01.webp",
+      "bytes": {
+        "webm": 2237230,
+        "mov": 1498396,
+        "poster": 92108
+      }
+    },
+    {
+      "n": 2,
+      "width": 720,
+      "height": 720,
+      "webm": "/flowers/clips/02.webm",
+      "mov": "/flowers/clips/02.mov",
+      "poster": "/flowers/clips/02.webp",
+      "bytes": {
+        "webm": 2976031,
+        "mov": 1899082,
+        "poster": 99134
+      }
+    },
+    {
+      "n": 4,
+      "width": 720,
+      "height": 720,
+      "webm": "/flowers/clips/04.webm",
+      "mov": "/flowers/clips/04.mov",
+      "poster": "/flowers/clips/04.webp",
+      "bytes": {
+        "webm": 956348,
+        "mov": 1551639,
+        "poster": 75296
+      }
+    },
+    {
+      "n": 5,
+      "width": 720,
+      "height": 720,
+      "webm": "/flowers/clips/05.webm",
+      "mov": "/flowers/clips/05.mov",
+      "poster": "/flowers/clips/05.webp",
+      "bytes": {
+        "webm": 1575859,
+        "mov": 1171568,
+        "poster": 75358
+      }
+    },
+    {
+      "n": 6,
+      "width": 720,
+      "height": 720,
+      "webm": "/flowers/clips/06.webm",
+      "mov": "/flowers/clips/06.mov",
+      "poster": "/flowers/clips/06.webp",
+      "bytes": {
+        "webm": 1895519,
+        "mov": 1099355,
+        "poster": 94318
+      }
+    },
+    {
+      "n": 7,
+      "width": 720,
+      "height": 720,
+      "webm": "/flowers/clips/07.webm",
+      "mov": "/flowers/clips/07.mov",
+      "poster": "/flowers/clips/07.webp",
+      "bytes": {
+        "webm": 2881202,
+        "mov": 2011403,
+        "poster": 105820
+      }
+    }
+  ]
+}

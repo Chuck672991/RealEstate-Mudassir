@@ -1,0 +1,55 @@
+/*
+ * REVIEWS & CREDENTIALS — the reference's credibility statement (§S12): a centred
+ * statement under a long hairline. Every claim carries its source and date.
+ */
+@layer components {
+  .proof {
+    position: relative;
+    overflow: clip; /* the flower sprays reach past the edges: their cut sides must never show */
+    padding: clamp(5rem, 12svh, 10rem) var(--gutter);
+  }
+  .proof__inner {
+    display: grid;
+    justify-items: center;
+    gap: clamp(1.25rem, 3.5svh, 2.5rem);
+    text-align: center;
+    max-width: 70rem;
+    margin-inline: auto;
+  }
+  .proof__statement {
+    max-width: 24ch;
+    font-size: var(--text-h4);
+  }
+  .proof__rating {
+    display: grid;
+    justify-items: center;
+    gap: 0.6rem;
+    max-width: 34rem;
+  }
+  .proof__score {
+    font-size: var(--text-h1);
+    line-height: 0.9;
+  }
+  .proof__link {
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.15rem;
+    text-decoration: none;
+  }
+  .proof__quotes {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .proof__quotes blockquote {
+    margin: 0 0 0.75rem;
+  }
+  .proof__credentials {
+    display: grid;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}

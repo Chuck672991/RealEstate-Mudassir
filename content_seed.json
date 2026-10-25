@@ -1,0 +1,3860 @@
+{
+  "meta": {
+    "subject": "Mudassir Siddiqui",
+    "primary_source": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+    "observed_on": "2026-10-24",
+    "currency": "USD",
+    "status_values": [
+      "verified",
+      "calculated",
+      "inferred",
+      "unavailable",
+      "needs_verification"
+    ],
+    "policy": "Third-party review text, bio and listing descriptions are not reproduced; see brief Section 8.2."
+  },
+  "agent_profile": {
+    "full_name": {
+      "value": "Mudassir Siddiqui",
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "display_name": {
+      "value": "Mudassir Siddiqui",
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "title": {
+      "value": null,
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "Bio says broker; FAQ says agent and REALTOR"
+    },
+    "illinois_license": {
+      "value": "475192496",
+      "status": "verified",
+      "source_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "note": "As displayed; not checked against state registry"
+    },
+    "phone_primary": {
+      "value": "(224) 231-4552",
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "phone_secondary": {
+      "value": "630-965-5492",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "End of bio text only"
+    },
+    "email": {
+      "value": null,
+      "status": "unavailable",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "website": {
+      "value": "https://www.buywithms.com/",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01",
+        "S19"
+      ],
+      "note": "DNS error on 2026-10-24"
+    },
+    "facebook": {
+      "value": "https://www.facebook.com/mskeytomyhome/",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01",
+        "S20"
+      ],
+      "note": "Not viewable logged out"
+    },
+    "languages": {
+      "value": [
+        "English",
+        "Arabic",
+        "Hindi",
+        "Punjabi",
+        "Turkish",
+        "Urdu"
+      ],
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "years_experience": {
+      "value": 18,
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "Agent-stated"
+    },
+    "property_types": {
+      "value": [
+        "House",
+        "Condo",
+        "Townhouse",
+        "Multifamily"
+      ],
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "rating": {
+      "value": {
+        "average": 5.0,
+        "count": 88
+      },
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "education": {
+      "value": null,
+      "status": "unavailable",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "career_history": {
+      "value": null,
+      "status": "unavailable",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "Finance and banking background stated without dates; 2021 reviews mention Realty Executives (inferred prior brokerage)"
+    },
+    "awards": {
+      "value": [
+        "100% Club",
+        "Hall of Fame",
+        "Highest Total Sales Volume",
+        "Outstanding Real Estate Educator Award",
+        "Platinum Club",
+        "Top REALTOR"
+      ],
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "No issuer or year"
+    },
+    "designations": {
+      "value": [
+        "NAR",
+        "ASA",
+        "C-RETS",
+        "CIAS",
+        "CMRS",
+        "CNE",
+        "FTBS",
+        "rCRMS",
+        "SFR"
+      ],
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "other_experience_listed": {
+      "value": [
+        "First Time Homebuyers",
+        "Investments",
+        "Military Families",
+        "Veteran's Programs",
+        "Senior Communities",
+        "Short Sales",
+        "Luxury Homes",
+        "New Construction",
+        "Property Management",
+        "Distressed Properties",
+        "Foreclosures",
+        "Timeshares"
+      ],
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "Listed by the profile; supporting evidence varies, see agent_specialties"
+    }
+  },
+  "brokerage_details": {
+    "name": {
+      "value": "HomeSmart Connect LLC",
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    "office_address": {
+      "value": "3030 Salt Creek Lane #145, Arlington Heights, IL 60005",
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "Homes.com spells city 'Arlington Height'"
+    },
+    "logo_url": {
+      "value": "https://images.homes.com/brands/105/145_aspect.png",
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ],
+      "note": "Trademark; approval needed"
+    },
+    "official_page": {
+      "value": null,
+      "status": "unavailable",
+      "source_ids": [
+        "S21"
+      ]
+    },
+    "team": {
+      "value": null,
+      "status": "unavailable",
+      "source_ids": [
+        "S01"
+      ]
+    }
+  },
+  "agent_experience": {
+    "years_experience": 18,
+    "production_by_window": [
+      {
+        "window": "1y",
+        "side": "seller",
+        "deals": 6,
+        "value": 2182500,
+        "average": 363750,
+        "range": "$213K - $580K",
+        "status": "verified"
+      },
+      {
+        "window": "1y",
+        "side": "buyer",
+        "deals": 13,
+        "value": 4630490,
+        "average": 356192,
+        "range": "$213K - $733K",
+        "status": "verified"
+      },
+      {
+        "window": "2y",
+        "side": "seller",
+        "deals": 15,
+        "value": 4592250,
+        "average": 306150,
+        "range": "$125K - $580K",
+        "status": "verified"
+      },
+      {
+        "window": "2y",
+        "side": "buyer",
+        "deals": 28,
+        "value": 8883876,
+        "average": 317281,
+        "range": "$122K - $733K",
+        "status": "verified"
+      },
+      {
+        "window": "5y",
+        "side": "seller",
+        "deals": 34,
+        "value": 10587626,
+        "average": 311401,
+        "range": "$125K - $640K",
+        "status": "verified"
+      },
+      {
+        "window": "5y",
+        "side": "buyer",
+        "deals": 66,
+        "value": 21796962,
+        "average": 330257,
+        "range": "$105K - $990K",
+        "status": "verified"
+      }
+    ],
+    "headline_5y": {
+      "closed_sales": 100,
+      "total_value": 32384588,
+      "average": 323846,
+      "range_shown": "$193K - $990K",
+      "range_status": "needs_verification"
+    },
+    "bio_summary": "See brief Section 2.2 (summarised, not copied)."
+  },
+  "agent_specialties": [
+    {
+      "name": "First-time homebuyers",
+      "evidence": "Other Experience; FTBS; 10 reviews",
+      "basis": "explicit",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [
+        7,
+        11,
+        21,
+        23,
+        41,
+        42,
+        50,
+        51,
+        57,
+        75
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Investors / investment properties",
+      "evidence": "Other Experience; CIAS; tenant-occupied listing; multifamily sale; reviews",
+      "basis": "explicit",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [
+        52,
+        68
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Residential buying and selling",
+      "evidence": "66 buyer-side and 34 seller-side deals",
+      "basis": "explicit",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Condos, townhomes, detached homes, multifamily",
+      "evidence": "Home types field and sold records",
+      "basis": "explicit",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Negotiation and pricing strategy",
+      "evidence": "Bio; CNE; reviews",
+      "basis": "explicit",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [
+        50,
+        57,
+        60,
+        64,
+        78,
+        84,
+        87
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Local neighborhood knowledge",
+      "evidence": "Bio; six areas with counts; reviews",
+      "basis": "explicit",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [
+        7,
+        27,
+        64
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Rentals and leasing",
+      "evidence": "Property Management listed; rental tiles; reviews",
+      "basis": "explicit and inferred",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [
+        10,
+        40,
+        82
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Luxury homes",
+      "evidence": "Listed, but max collected price $732,500; published max $990K",
+      "basis": "explicit (listing only)",
+      "status": "needs_verification",
+      "safe_to_feature": false,
+      "evidence_reviews": [],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Military families and veteran programs",
+      "evidence": "Listed; CMRS; no records",
+      "basis": "explicit (listing only)",
+      "status": "verified",
+      "safe_to_feature": false,
+      "evidence_reviews": [],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Senior communities",
+      "evidence": "Listed; ASA; no records",
+      "basis": "explicit (listing only)",
+      "status": "verified",
+      "safe_to_feature": false,
+      "evidence_reviews": [],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Short sales, foreclosures, distressed",
+      "evidence": "Listed; SFR; no records",
+      "basis": "explicit (listing only)",
+      "status": "verified",
+      "safe_to_feature": false,
+      "evidence_reviews": [],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "New construction; timeshares",
+      "evidence": "Listed only",
+      "basis": "explicit (listing only)",
+      "status": "verified",
+      "safe_to_feature": false,
+      "evidence_reviews": [],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Relocation services",
+      "evidence": "Weak signals only",
+      "basis": "inferred",
+      "status": "needs_verification",
+      "safe_to_feature": false,
+      "evidence_reviews": [
+        7,
+        73
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Mortgage / refinance guidance",
+      "evidence": "Reviews mention refinance; no licence shown",
+      "basis": "inferred",
+      "status": "needs_verification",
+      "safe_to_feature": false,
+      "evidence_reviews": [
+        21,
+        33
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Commercial real estate",
+      "evidence": "One review remark",
+      "basis": "inferred",
+      "status": "needs_verification",
+      "safe_to_feature": false,
+      "evidence_reviews": [
+        4
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Multilingual service",
+      "evidence": "Six languages listed",
+      "basis": "explicit",
+      "status": "verified",
+      "safe_to_feature": true,
+      "evidence_reviews": [
+        73
+      ],
+      "source_ids": [
+        "S01"
+      ]
+    }
+  ],
+  "service_areas": [
+    {
+      "name": "Hanover Park",
+      "closed_sales_5yr": 18,
+      "share_of_100": 0.18,
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "South Tri Village",
+      "closed_sales_5yr": 14,
+      "share_of_100": 0.14,
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Schaumburg",
+      "closed_sales_5yr": 10,
+      "share_of_100": 0.1,
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Bartlett",
+      "closed_sales_5yr": 10,
+      "share_of_100": 0.1,
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Streamwood",
+      "closed_sales_5yr": 9,
+      "share_of_100": 0.09,
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "South Schaumburg",
+      "closed_sales_5yr": 8,
+      "share_of_100": 0.08,
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Arlington Heights",
+      "role": "office city; named in FAQ",
+      "status": "verified",
+      "source_ids": [
+        "S01"
+      ]
+    },
+    {
+      "name": "Chicagoland",
+      "role": "stated coverage; 'expanding Midwest markets' unverified",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ]
+    }
+  ],
+  "sold_properties": [
+    {
+      "id": "SOLD-001",
+      "tier": "full_detail",
+      "address": "8030 Riverwalk Dr Unit 2F",
+      "city": "Lyons",
+      "state": "IL",
+      "zip": "60534",
+      "neighborhood_label": "Lyons Area (building: Riverwalk Condominiums)",
+      "type": "Condo",
+      "sold_price": 251000,
+      "sold_date": "2026-09-03",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1120,
+      "lot": null,
+      "year_built": 2009,
+      "days_on_market": 15,
+      "list_date": "2026-07-22",
+      "price_vs_list_profile": "3% below list",
+      "price_vs_list_page": "3% below list",
+      "price_per_sqft": 224,
+      "hoa_monthly": 302,
+      "est_taxes_annual": 4662,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/8030-riverwalk-dr-lyons-il-unit-2f/6syxm89g1fgwg/",
+      "photo_url": "https://images.homes.com/listings/102/1167124205-723554032/8030-riverwalk-dr-lyons-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S02",
+        "S01"
+      ],
+      "notes": "Days on market (15) appears on the profile card only; the listing page did not display it."
+    },
+    {
+      "id": "SOLD-002",
+      "tier": "full_detail",
+      "address": "4440 Castlebar Ln",
+      "city": "Hanover Park",
+      "state": "IL",
+      "zip": "60133",
+      "neighborhood_label": "South Tri Village",
+      "type": "Townhouse",
+      "sold_price": 300000,
+      "sold_date": "2026-08-21",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1263,
+      "lot": null,
+      "year_built": 1992,
+      "days_on_market": 8,
+      "list_date": "2026-07-15",
+      "price_vs_list_profile": "3% above list",
+      "price_vs_list_page": "3% above list",
+      "price_per_sqft": 238,
+      "hoa_monthly": 218,
+      "est_taxes_annual": 4837,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/4440-castlebar-ln-hanover-park-il/tw7edtqdg0ycc/",
+      "photo_url": "https://images.homes.com/listings/102/8598353105-315300032/4440-castlebar-ln-hanover-park-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S03",
+        "S01"
+      ],
+      "notes": "Listing text states the home was sold as-is."
+    },
+    {
+      "id": "SOLD-003",
+      "tier": "full_detail",
+      "address": "629 Waterford Ln",
+      "city": "South Elgin",
+      "state": "IL",
+      "zip": "60177",
+      "neighborhood_label": "South Elgin Area",
+      "type": "House",
+      "sold_price": 580000,
+      "sold_date": "2026-05-15",
+      "beds": 6,
+      "baths": 5,
+      "sqft": 4240,
+      "lot": 9583,
+      "year_built": 2001,
+      "days_on_market": 14,
+      "list_date": "2026-03-23",
+      "price_vs_list_profile": "1% above list",
+      "price_vs_list_page": "1% above list",
+      "price_per_sqft": 137,
+      "hoa_monthly": null,
+      "est_taxes_annual": 12027,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/629-waterford-ln-south-elgin-il/6sd0dl3w8sdpd/",
+      "photo_url": "https://images.homes.com/listings/102/8059661384-365736712/629-waterford-ln-south-elgin-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S04",
+        "S01"
+      ],
+      "notes": "DISCREPANCY: the header shows 6 beds / 5 baths, while the listing text describes a '4BR' home with nearly 4,200 sq ft including a finished walk-out basement."
+    },
+    {
+      "id": "SOLD-004",
+      "tier": "full_detail",
+      "address": "209 E Washington St",
+      "city": "West Chicago",
+      "state": "IL",
+      "zip": "60185",
+      "neighborhood_label": "Chicago West (Homes.com neighborhood label)",
+      "type": "House",
+      "sold_price": 384000,
+      "sold_date": "2026-04-08",
+      "beds": 7,
+      "baths": 3,
+      "sqft": 2923,
+      "lot": 8712,
+      "year_built": 1907,
+      "days_on_market": 21,
+      "list_date": "2026-02-04",
+      "price_vs_list_profile": "6% below list",
+      "price_vs_list_page": "6% below list",
+      "price_per_sqft": 131,
+      "hoa_monthly": null,
+      "est_taxes_annual": 4254,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/209-e-washington-st-west-chicago-il/6h9rlmjkpw8wb/",
+      "photo_url": "https://images.homes.com/listings/102/5734440774-605137512/209-e-washington-st-west-chicago-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S05",
+        "S01"
+      ],
+      "notes": "Listing text places it in downtown West Chicago."
+    },
+    {
+      "id": "SOLD-005",
+      "tier": "full_detail",
+      "address": "27W125 Chestnut Ln",
+      "city": "Winfield",
+      "state": "IL",
+      "zip": "60190",
+      "neighborhood_label": "Winfield Area",
+      "type": "House",
+      "sold_price": 455000,
+      "sold_date": "2026-02-17",
+      "beds": 3,
+      "baths": 2.5,
+      "sqft": 1664,
+      "lot": null,
+      "year_built": 1987,
+      "days_on_market": 12,
+      "list_date": "2025-12-11",
+      "price_vs_list_profile": "1% below list",
+      "price_vs_list_page": "1% below list",
+      "price_per_sqft": 273,
+      "hoa_monthly": null,
+      "est_taxes_annual": 8528,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/27w125-chestnut-ln-winfield-il/k2esspfjmgkq4/",
+      "photo_url": "https://images.homes.com/listings/102/9472414074-226801312/27w125-chestnut-ln-winfield-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S06",
+        "S01"
+      ],
+      "notes": null
+    },
+    {
+      "id": "SOLD-006",
+      "tier": "full_detail",
+      "address": "4018 Oxford Ct",
+      "city": "Streamwood",
+      "state": "IL",
+      "zip": "60107",
+      "neighborhood_label": "Streamwood Area",
+      "type": "Townhouse",
+      "sold_price": 212500,
+      "sold_date": "2025-11-05",
+      "beds": 4,
+      "baths": 1.5,
+      "sqft": 820,
+      "lot": null,
+      "year_built": 1970,
+      "days_on_market": 86,
+      "list_date": "2025-07-05",
+      "price_vs_list_profile": "15% below list",
+      "price_vs_list_page": "4% below list",
+      "price_per_sqft": 259,
+      "hoa_monthly": 250,
+      "est_taxes_annual": 4621,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/4018-oxford-ct-streamwood-il/svbfxbmscwrej/",
+      "photo_url": "https://images.homes.com/listings/102/4169362044-234132002/4018-oxford-ct-streamwood-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S07",
+        "S01"
+      ],
+      "notes": "DISCREPANCY: price vs list is 15% below on the profile card but 4% below on the listing page. Also, 4 beds in 820 sq ft is unusual and may be a source-data error."
+    },
+    {
+      "id": "SOLD-007",
+      "tier": "full_detail",
+      "address": "6N772 Tuscola Ave",
+      "city": "Saint Charles",
+      "state": "IL",
+      "zip": "60174",
+      "neighborhood_label": "Valley View",
+      "type": "Multifamily",
+      "sold_price": 360000,
+      "sold_date": "2025-08-27",
+      "beds": 4,
+      "baths": 2,
+      "sqft": null,
+      "lot": "0.59 acre",
+      "year_built": null,
+      "days_on_market": 60,
+      "list_date": "2025-05-16",
+      "price_vs_list_profile": "9% below list",
+      "price_vs_list_page": "(not shown; 'Last sale price' format)",
+      "price_per_sqft": null,
+      "hoa_monthly": null,
+      "est_taxes_annual": 6291,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/6n772-tuscola-ave-saint-charles-il/grg3q18x5gltl/",
+      "photo_url": "https://images.homes.com/listings/102/1991307234-078479791/6n772-tuscola-ave-saint-charles-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S08",
+        "S01"
+      ],
+      "notes": "Page labels the home 'Not listed for sale' (post-sale view). Square footage and year built not displayed. Listing text mentions three separate PINs on the 0.59-acre lot."
+    },
+    {
+      "id": "SOLD-008",
+      "tier": "full_detail",
+      "address": "5011 Valley Ln Unit 404",
+      "city": "Streamwood",
+      "state": "IL",
+      "zip": "60107",
+      "neighborhood_label": "Streamwood Area",
+      "type": "Condo",
+      "sold_price": 125000,
+      "sold_date": "2025-05-12",
+      "beds": 1,
+      "baths": 1,
+      "sqft": null,
+      "lot": null,
+      "year_built": 1975,
+      "days_on_market": 12,
+      "list_date": "2025-04-10",
+      "price_vs_list_profile": "7% below list",
+      "price_vs_list_page": "(not shown; 'Last sale price' format)",
+      "price_per_sqft": null,
+      "hoa_monthly": 457,
+      "est_taxes_annual": 1186,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/5011-valley-ln-streamwood-il-unit-404/1fkpqvthdjldr/",
+      "photo_url": "https://images.homes.com/listings/102/4654453724-681960691/5011-valley-ln-streamwood-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S09",
+        "S01"
+      ],
+      "notes": "Lowest-priced sale in the detailed set and equal to the published 5-year seller-side low ($125K). Square footage not displayed."
+    },
+    {
+      "id": "SOLD-009",
+      "tier": "full_detail",
+      "address": "5624 Court Leona Unit 397",
+      "city": "Hanover Park",
+      "state": "IL",
+      "zip": "60133",
+      "neighborhood_label": "South Tri Village",
+      "type": "Townhouse",
+      "sold_price": 219750,
+      "sold_date": "2025-04-14",
+      "beds": 2,
+      "baths": 1.5,
+      "sqft": 1499,
+      "lot": null,
+      "year_built": 1978,
+      "days_on_market": 4,
+      "list_date": "2025-03-14",
+      "price_vs_list_profile": "2% below list",
+      "price_vs_list_page": "(not shown; 'Last sale price' format)",
+      "price_per_sqft": 147,
+      "hoa_monthly": 260,
+      "est_taxes_annual": 997,
+      "side": "listing_agent",
+      "listing_url": "https://www.homes.com/property/5624-court-leona-hanover-park-il-unit-397/rbd43cvmyhxs0/",
+      "photo_url": "https://images.homes.com/listings/102/1148682324-212706491/5624-court-leona-hanover-park-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S10",
+        "S01"
+      ],
+      "notes": "Listing text mentions a full finished basement."
+    },
+    {
+      "id": "SOLD-010",
+      "tier": "price_address_only",
+      "address": "1114 Countryside Dr",
+      "city": "Hanover Park",
+      "state": "IL",
+      "sold_price": 267000,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/9809231783-071800871/1114-countryside-dr-hanover-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-011",
+      "tier": "price_address_only",
+      "address": "1041 S Edson Ave",
+      "city": "Lombard",
+      "state": "IL",
+      "sold_price": 391101,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/5767056873-299586471/1041-s-edson-ave-lombard-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-012",
+      "tier": "price_address_only",
+      "address": "2118 Glasgow Ct",
+      "city": "Hanover Park",
+      "state": "IL",
+      "sold_price": 299500,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/5942028163-122181961/2118-glasgow-ct-hanover-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-013",
+      "tier": "price_address_only",
+      "address": "363 Wilmington Dr Unit 2B",
+      "city": "Bartlett",
+      "state": "IL",
+      "sold_price": 209500,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/9242518163-125081961/363-wilmington-dr-bartlett-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-014",
+      "tier": "price_address_only",
+      "address": "1128 Angle Tarn",
+      "city": "West Dundee",
+      "state": "IL",
+      "sold_price": 489500,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/5311067463-644811071/1128-angle-tarn-west-dundee-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-015",
+      "tier": "price_address_only",
+      "address": "709 Stratford Ln",
+      "city": "Schaumburg",
+      "state": "IL",
+      "sold_price": 591000,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/2472397623-741084651/709-stratford-ln-schaumburg-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-016",
+      "tier": "price_address_only",
+      "address": "23 S Elm St",
+      "city": "Palatine",
+      "state": "IL",
+      "sold_price": 640000,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/4293132483-453316671/23-s-elm-st-palatine-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-017",
+      "tier": "price_address_only",
+      "address": "1009 S Norbury Ave",
+      "city": "Lombard",
+      "state": "IL",
+      "sold_price": 469000,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/7593198204-752977781/1009-s-norbury-ave-lombard-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-018",
+      "tier": "price_address_only",
+      "address": "1500 Normantown Rd Unit 388",
+      "city": "Naperville",
+      "state": "IL",
+      "sold_price": 245000,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/3745602893-340682681/1500-normantown-rd-naperville-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-019",
+      "tier": "price_address_only",
+      "address": "256 Corrington Ct",
+      "city": "Streamwood",
+      "state": "IL",
+      "sold_price": 298000,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/3044920893-099921681/256-corrington-ct-streamwood-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-020",
+      "tier": "price_address_only",
+      "address": "1957 Blackberry Ln Unit 103",
+      "city": "Hoffman Estates",
+      "state": "IL",
+      "sold_price": 325000,
+      "sold_date": null,
+      "side": "listing_agent",
+      "photo_url": "https://images.homes.com/listings/102/8538623793-958886581/1957-blackberry-ln-hoffman-estates-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-021",
+      "tier": "price_address_only",
+      "address": "204 Dunridge Cir Unit 2B",
+      "city": "East Dundee",
+      "state": "IL",
+      "sold_price": 303250,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/8120691034-660909691/204-dunridge-cir-east-dundee-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-022",
+      "tier": "price_address_only",
+      "address": "668 Bluebird Dr",
+      "city": "Bolingbrook",
+      "state": "IL",
+      "sold_price": 375000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/8998254924-676086691/668-bluebird-dr-bolingbrook-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-023",
+      "tier": "price_address_only",
+      "address": "9205 S Albany Ave",
+      "city": "Evergreen Park",
+      "state": "IL",
+      "sold_price": 355000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/5498186514-391154291/9205-s-albany-ave-evergreen-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-024",
+      "tier": "price_address_only",
+      "address": "1166 Countryside Dr Unit 4",
+      "city": "Hanover Park",
+      "state": "IL",
+      "sold_price": 280000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/6069653514-238693291/1166-countryside-dr-hanover-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-025",
+      "tier": "price_address_only",
+      "address": "1412 Quincy Bridge Ct Unit 21",
+      "city": "Bartlett",
+      "state": "IL",
+      "sold_price": 406000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/8169360015-607824332/1412-quincy-bridge-ct-bartlett-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-026",
+      "tier": "price_address_only",
+      "address": "224 Foxhead Ct Unit B",
+      "city": "Bolingbrook",
+      "state": "IL",
+      "sold_price": 213000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/8960797805-352157332/224-foxhead-ct-bolingbrook-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-027",
+      "tier": "price_address_only",
+      "address": "37 Ione Dr Unit B",
+      "city": "South Elgin",
+      "state": "IL",
+      "sold_price": 330000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/3553014005-155556922/37-ione-dr-south-elgin-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-028",
+      "tier": "price_address_only",
+      "address": "10046 Edgebrook Ln",
+      "city": "Huntley",
+      "state": "IL",
+      "sold_price": 514990,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/2268827694-113881622/10046-edgebrook-ln-huntley-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-029",
+      "tier": "price_address_only",
+      "address": "909 Hampton Dr",
+      "city": "Carol Stream",
+      "state": "IL",
+      "sold_price": 732500,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/6394476284-466884712/909-hampton-dr-carol-stream-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-030",
+      "tier": "price_address_only",
+      "address": "2065 Millpond Ln",
+      "city": "Hanover Park",
+      "state": "IL",
+      "sold_price": 320000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/4230877084-432869612/2065-millpond-ln-hanover-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-031",
+      "tier": "price_address_only",
+      "address": "951 Chelsea Ln",
+      "city": "Schaumburg",
+      "state": "IL",
+      "sold_price": 260000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/8329841374-117628312/951-chelsea-ln-schaumburg-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-032",
+      "tier": "price_address_only",
+      "address": "1612 Islandview Ct",
+      "city": "Hoffman Estates",
+      "state": "IL",
+      "sold_price": 270000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/210/2558627074-985451312/1612-islandview-ct-hoffman-estates-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-033",
+      "tier": "price_address_only",
+      "address": "350 Newgate Ct Unit 2Z",
+      "city": "Schaumburg",
+      "state": "IL",
+      "sold_price": 280000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/4925727164-257232902/350-newgate-ct-schaumburg-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-034",
+      "tier": "price_address_only",
+      "address": "3 Dorchester Ct",
+      "city": "Streamwood",
+      "state": "IL",
+      "sold_price": 330000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/8371488454-309152602/3-dorchester-ct-streamwood-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-035",
+      "tier": "price_address_only",
+      "address": "760 Canterbury Ln",
+      "city": "Pingree Grove",
+      "state": "IL",
+      "sold_price": 405000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/1191143844-026344302/760-canterbury-ln-pingree-grove-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-036",
+      "tier": "price_address_only",
+      "address": "580 Mesa Verde Ct Unit 1",
+      "city": "Carol Stream",
+      "state": "IL",
+      "sold_price": 370000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/7821501244-527322102/580-mesa-verde-ct-carol-stream-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-037",
+      "tier": "price_address_only",
+      "address": "2116 Glasgow Ct Unit 340D",
+      "city": "Hanover Park",
+      "state": "IL",
+      "sold_price": 335000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/3557700734-797991991/2116-glasgow-ct-hanover-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-038",
+      "tier": "price_address_only",
+      "address": "(address not displayed)",
+      "city": "(not displayed)",
+      "state": "IL",
+      "sold_price": 282000,
+      "sold_date": null,
+      "side": "buyers_agent",
+      "photo_url": "https://images.homes.com/listings/102/4661543984-008604122-original.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-039",
+      "tier": "price_address_only",
+      "address": "5155 N East River Rd Unit 115",
+      "city": "Chicago",
+      "state": "IL",
+      "sold_price": 219000,
+      "sold_date": null,
+      "side": "both_sides",
+      "photo_url": "https://images.homes.com/listings/102/6063865883-544908081/5155-n-east-river-rd-chicago-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel label only; no date or specs"
+    },
+    {
+      "id": "SOLD-040",
+      "tier": "map_sample",
+      "address": "2241 Nichols Rd Unit 32C",
+      "city": "Arlington Heights",
+      "state": "IL",
+      "zip": "60004",
+      "sold_price": 172500,
+      "sold_date": "2023-11-21",
+      "beds": 2,
+      "baths": 1.5,
+      "sqft": 994,
+      "side": null,
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Read from a map-pin popup screenshot"
+    }
+  ],
+  "active_listings": [
+    {
+      "id": "LIST-001",
+      "listing_status": "active",
+      "address": "5011 Valley Ln Unit 304",
+      "city": "Streamwood",
+      "state": "IL",
+      "zip": "60107",
+      "neighborhood_label": "Streamwood Area",
+      "type": "Condominium",
+      "price": 135000,
+      "price_change_shown": null,
+      "beds": 1,
+      "baths": 1,
+      "sqft": null,
+      "price_per_sqft": null,
+      "year_built": 1975,
+      "hoa_monthly": 358,
+      "est_taxes_annual": 2658,
+      "list_date": "2026-10-09",
+      "listing_url": "https://www.homes.com/property/5011-valley-ln-streamwood-il-unit-304/rgcx2y80jzmrd/",
+      "photo_url": "https://images.homes.com/listings/102/5959847515-846396732/5011-valley-ln-streamwood-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S11"
+      ],
+      "notes": "Tenant-occupied; listing text states an existing lease through 2027-01-28 and 48-hour showing notice. Positioned for investors."
+    },
+    {
+      "id": "LIST-002",
+      "listing_status": "active",
+      "address": "640 Settlement Dr",
+      "city": "Maple Park",
+      "state": "IL",
+      "zip": "60151",
+      "neighborhood_label": "Maple Park Area",
+      "type": "Single Family",
+      "price": 399000,
+      "price_change_shown": "$26K price drop (as displayed)",
+      "beds": 4,
+      "baths": 2.5,
+      "sqft": 3160,
+      "price_per_sqft": 126,
+      "year_built": 2006,
+      "hoa_monthly": null,
+      "est_taxes_annual": 9489,
+      "list_date": "2026-10-02",
+      "listing_url": "https://www.homes.com/property/640-settlement-dr-maple-park-il/fvf17j9exr1s3/",
+      "photo_url": "https://images.homes.com/listings/102/2417677415-954733732/640-settlement-dr-maple-park-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S12"
+      ],
+      "notes": "Same address also carries a for-rent card at $3,500/month (see LIST-009)."
+    },
+    {
+      "id": "LIST-003",
+      "listing_status": "active",
+      "address": "5011 Valley Ln Unit 501",
+      "city": "Streamwood",
+      "state": "IL",
+      "zip": "60107",
+      "neighborhood_label": "Streamwood Area",
+      "type": "Condominium",
+      "price": 154000,
+      "price_change_shown": "$21K price drop (as displayed)",
+      "beds": 2,
+      "baths": 2,
+      "sqft": null,
+      "price_per_sqft": null,
+      "year_built": 1974,
+      "hoa_monthly": 494,
+      "est_taxes_annual": 1934,
+      "list_date": "2026-08-25",
+      "listing_url": "https://www.homes.com/property/5011-valley-ln-streamwood-il-unit-501/1fdlq46s3evdp/",
+      "photo_url": "https://images.homes.com/listings/102/0483165805-910335332/5011-valley-ln-streamwood-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S13"
+      ],
+      "notes": "Top-floor end unit with pond and pool views per listing text. A separate 'For Rent $2,000/month' tile for Unit 501 also appears in the profile carousel (see RENT-003)."
+    },
+    {
+      "id": "LIST-004",
+      "listing_status": "active",
+      "address": "117 Arthur Ave",
+      "city": "South Elgin",
+      "state": "IL",
+      "zip": "60177",
+      "neighborhood_label": "South Elgin Area",
+      "type": "Single Family (ranch)",
+      "price": 310000,
+      "price_change_shown": "$9K price drop (as displayed)",
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1255,
+      "price_per_sqft": 247,
+      "year_built": 1960,
+      "hoa_monthly": null,
+      "est_taxes_annual": 5879,
+      "list_date": "2026-08-19",
+      "listing_url": "https://www.homes.com/property/117-arthur-ave-south-elgin-il/vzxwy34886n8w/",
+      "photo_url": "https://images.homes.com/listings/102/7616037705-064451332/117-arthur-ave-south-elgin-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S14"
+      ],
+      "notes": "Listing text mentions possible down-payment assistance for qualified buyers and Fox River views; treat those as listing claims that need compliance review before reuse."
+    },
+    {
+      "id": "LIST-005",
+      "listing_status": "pending",
+      "address": "1784 Mccormick Ln",
+      "city": "Hanover Park",
+      "state": "IL",
+      "zip": "60133",
+      "neighborhood_label": "South Tri Village",
+      "type": "Townhome (duplex)",
+      "price": 298000,
+      "price_change_shown": null,
+      "beds": 3,
+      "baths": 1.5,
+      "sqft": 1208,
+      "price_per_sqft": 247,
+      "year_built": 1983,
+      "hoa_monthly": null,
+      "est_taxes_annual": 6864,
+      "list_date": "2026-10-10",
+      "listing_url": "https://www.homes.com/property/1784-mccormick-ln-hanover-park-il/fs25yqexzwl3f/",
+      "photo_url": "https://images.homes.com/listings/102/2522738515-266317732/1784-mccormick-ln-hanover-park-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S15"
+      ],
+      "notes": "Listing text states no monthly HOA fees."
+    },
+    {
+      "id": "LIST-006",
+      "listing_status": "pending",
+      "address": "1051 Ashton Ct",
+      "city": "Streamwood",
+      "state": "IL",
+      "zip": "60107",
+      "neighborhood_label": "Streamwood Area",
+      "type": "Townhome",
+      "price": 224500,
+      "price_change_shown": null,
+      "beds": 3,
+      "baths": 2,
+      "sqft": null,
+      "price_per_sqft": null,
+      "year_built": 1967,
+      "hoa_monthly": 230,
+      "est_taxes_annual": 4228,
+      "list_date": "2026-10-08",
+      "listing_url": "https://www.homes.com/property/1051-ashton-ct-streamwood-il/2zh1b4g7ezmh2/",
+      "photo_url": "https://images.homes.com/listings/102/6566305515-859246732/1051-ashton-ct-streamwood-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S16"
+      ],
+      "notes": "DISCREPANCY: header shows 3 beds; listing text describes a 2-bedroom, 2-bath home plus an office/flex room."
+    },
+    {
+      "id": "LIST-007",
+      "listing_status": "pending",
+      "address": "1713 Fulton Ln",
+      "city": "Hanover Park",
+      "state": "IL",
+      "zip": "60133",
+      "neighborhood_label": "South Tri Village",
+      "type": "Townhome (half duplex)",
+      "price": 315000,
+      "price_change_shown": null,
+      "beds": 3,
+      "baths": 1.5,
+      "sqft": 1356,
+      "price_per_sqft": 232,
+      "year_built": 1979,
+      "hoa_monthly": null,
+      "est_taxes_annual": 7758,
+      "list_date": "2026-09-17",
+      "listing_url": "https://www.homes.com/property/1713-fulton-ln-hanover-park-il/t2rpj83hc3vp0/",
+      "photo_url": "https://images.homes.com/listings/102/8157204215-884974632/1713-fulton-ln-hanover-park-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S17"
+      ],
+      "notes": "Listing text states no HOA dues."
+    },
+    {
+      "id": "LIST-008",
+      "listing_status": "pending",
+      "address": "7128 Glenwood Ln",
+      "city": "Hanover Park",
+      "state": "IL",
+      "zip": "60133",
+      "neighborhood_label": "Hanover Park Area",
+      "type": "Single Family",
+      "price": 439000,
+      "price_change_shown": "$10K price drop (as displayed)",
+      "beds": 4,
+      "baths": 3,
+      "sqft": 2186,
+      "price_per_sqft": 201,
+      "year_built": 1967,
+      "hoa_monthly": null,
+      "est_taxes_annual": 7206,
+      "list_date": "2026-08-30",
+      "listing_url": "https://www.homes.com/property/7128-glenwood-ln-hanover-park-il/y3v2brcffh8ce/",
+      "photo_url": "https://images.homes.com/listings/102/5409079215-921502432/7128-glenwood-ln-hanover-park-il-primaryphoto.jpg",
+      "status": "verified",
+      "source_ids": [
+        "S18"
+      ],
+      "notes": "Highest-priced current listing in the collected set."
+    },
+    {
+      "id": "LIST-009",
+      "listing_status": "for_rent",
+      "address": "640 Settlement Dr",
+      "city": "Maple Park",
+      "state": "IL",
+      "zip": "60151",
+      "monthly_rent": 3500,
+      "beds": 4,
+      "baths": 2.5,
+      "sqft": 3160,
+      "listing_url": "https://www.homes.com/property/640-settlement-dr-maple-park-il/fvf17j9exr1s3/",
+      "photo_url": "https://images.homes.com/listings/102/4585064615-274839732/640-settlement-dr-maple-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01",
+        "S12"
+      ],
+      "notes": "The rental card links to the same property page as the for-sale listing, which displayed only the for-sale price; no separate rental page was reachable."
+    },
+    {
+      "id": "RENT-001",
+      "listing_status": "rent_unverified",
+      "address": "5011 Valley Ln Unit 504",
+      "city": "Streamwood",
+      "state": "IL",
+      "monthly_rent": 1350,
+      "photo_url": "https://images.homes.com/listings/102/3864264615-902939732/5011-valley-ln-streamwood-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel tile only; not among the profile's listing cards"
+    },
+    {
+      "id": "RENT-002",
+      "listing_status": "rent_unverified",
+      "address": "121 W Elk Trail Unit 221",
+      "city": "Carol Stream",
+      "state": "IL",
+      "monthly_rent": 1750,
+      "photo_url": "https://images.homes.com/listings/102/1362800615-187367732/121-w-elk-trail-carol-stream-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel tile only; not among the profile's listing cards"
+    },
+    {
+      "id": "RENT-003",
+      "listing_status": "rent_unverified",
+      "address": "5011 Valley Ln Unit 501",
+      "city": "Streamwood",
+      "state": "IL",
+      "monthly_rent": 2000,
+      "photo_url": "https://images.homes.com/listings/102/0266354615-761739732/5011-valley-ln-streamwood-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel tile only; not among the profile's listing cards"
+    },
+    {
+      "id": "RENT-004",
+      "listing_status": "rent_unverified",
+      "address": "1191 Hialeah Ln",
+      "city": "Hanover Park",
+      "state": "IL",
+      "monthly_rent": 2995,
+      "photo_url": "https://images.homes.com/listings/102/0168994515-255246732/1191-hialeah-ln-hanover-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel tile only; not among the profile's listing cards"
+    },
+    {
+      "id": "RENT-005",
+      "listing_status": "rent_unverified",
+      "address": "2004 Fieldstone Ct",
+      "city": "Plainfield",
+      "state": "IL",
+      "monthly_rent": 3600,
+      "photo_url": "https://images.homes.com/listings/102/2635099315-267880732/2004-fieldstone-ct-plainfield-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel tile only; not among the profile's listing cards"
+    },
+    {
+      "id": "RENT-006",
+      "listing_status": "rent_unverified",
+      "address": "2109 Camden Ln",
+      "city": "Hanover Park",
+      "state": "IL",
+      "monthly_rent": 2600,
+      "photo_url": "https://images.homes.com/listings/102/1202047215-901217632/2109-camden-ln-hanover-park-il-primaryphoto.jpg",
+      "status": "needs_verification",
+      "source_ids": [
+        "S01"
+      ],
+      "notes": "Photo-carousel tile only; not among the profile's listing cards"
+    }
+  ],
+  "price_statistics": {
+    "published": {
+      "5yr": {
+        "total_n": 100,
+        "seller_n": 34,
+        "seller_v": 10587626,
+        "seller_avg": 311401,
+        "seller_rng": "$125K - $640K",
+        "buyer_n": 66,
+        "buyer_v": 21796962,
+        "buyer_avg": 330257,
+        "buyer_rng": "$105K - $990K"
+      },
+      "2yr": {
+        "seller_n": 15,
+        "seller_v": 4592250,
+        "seller_avg": 306150,
+        "seller_rng": "$125K - $580K",
+        "buyer_n": 28,
+        "buyer_v": 8883876,
+        "buyer_avg": 317281,
+        "buyer_rng": "$122K - $733K"
+      },
+      "1yr": {
+        "seller_n": 6,
+        "seller_v": 2182500,
+        "seller_avg": 363750,
+        "seller_rng": "$213K - $580K",
+        "buyer_n": 13,
+        "buyer_v": 4630490,
+        "buyer_avg": 356192,
+        "buyer_rng": "$213K - $733K"
+      }
+    },
+    "headline": {
+      "closed_sales": 100,
+      "total_value": "$32.4M",
+      "average": "$323.8K",
+      "range": "$193K - $990K",
+      "range_status": "needs_verification"
+    },
+    "consistency_checks": [
+      {
+        "check": "5-yr deal counts add up",
+        "result": "Pass",
+        "detail": "34 seller-side + 66 buyer-side = 100"
+      },
+      {
+        "check": "5-yr total value matches headline",
+        "result": "Pass",
+        "detail": "$10,587,626 + $21,796,962 = $32,384,588 (headline $32.4M)"
+      },
+      {
+        "check": "5-yr average matches headline",
+        "result": "Pass",
+        "detail": "$32,384,588 / 100 = 323,846 (headline $323.8K)"
+      },
+      {
+        "check": "5-yr seller average",
+        "result": "Pass",
+        "detail": "$10,587,626 / 34 = 311,400.8 (published $311,401)"
+      },
+      {
+        "check": "5-yr buyer average",
+        "result": "Pass",
+        "detail": "$21,796,962 / 66 = 330,257.0 (published $330,257)"
+      },
+      {
+        "check": "2-yr seller average",
+        "result": "Pass",
+        "detail": "$4,592,250 / 15 = 306,150.0 (published $306,150)"
+      },
+      {
+        "check": "2-yr buyer average",
+        "result": "Pass",
+        "detail": "$8,883,876 / 28 = 317,281.3 (published $317,281)"
+      },
+      {
+        "check": "1-yr seller average",
+        "result": "Pass",
+        "detail": "$2,182,500 / 6 = 363,750.0 (published $363,750)"
+      },
+      {
+        "check": "1-yr buyer average",
+        "result": "Pass",
+        "detail": "$4,630,490 / 13 = 356,191.5 (published $356,192)"
+      },
+      {
+        "check": "1-yr seller deals reconcile to detailed records",
+        "result": "Pass",
+        "detail": "6 detailed sales dated 2025-11-05 to 2026-09-03 total $2,182,500 (published 6 deals / $2,182,500)"
+      },
+      {
+        "check": "2-yr seller deals: detailed records are a subset",
+        "result": "Pass",
+        "detail": "6 of 15 published 2-yr seller deals ($1,705,000) are not individually visible"
+      },
+      {
+        "check": "Headline price range vs component ranges",
+        "result": "FAIL",
+        "detail": "Headline shows $193K-$990K, but the same profile publishes a buyer-side low of $105K and a seller-side low of $125K (and a collected sale at $125,000)."
+      }
+    ],
+    "collected_sets": [
+      {
+        "set": "detailed9",
+        "n": 9,
+        "total": 2887250,
+        "min": 125000,
+        "max": 580000,
+        "mean": 320805.56,
+        "median": 300000,
+        "status": "calculated"
+      },
+      {
+        "set": "listing_side20",
+        "n": 20,
+        "total": 7111851,
+        "min": 125000,
+        "max": 640000,
+        "mean": 355592.55,
+        "median": 312500.0,
+        "status": "calculated"
+      },
+      {
+        "set": "buyer_side18",
+        "n": 18,
+        "total": 6361740,
+        "min": 213000,
+        "max": 732500,
+        "mean": 353430.0,
+        "median": 330000.0,
+        "status": "calculated"
+      },
+      {
+        "set": "dual1",
+        "n": 1,
+        "total": 219000,
+        "min": 219000,
+        "max": 219000,
+        "mean": 219000.0,
+        "median": 219000,
+        "status": "calculated"
+      },
+      {
+        "set": "all39",
+        "n": 39,
+        "total": 13692591,
+        "min": 125000,
+        "max": 732500,
+        "mean": 351092.08,
+        "median": 325000,
+        "status": "calculated"
+      },
+      {
+        "set": "active4",
+        "n": 4,
+        "total": 998000,
+        "min": 135000,
+        "max": 399000,
+        "mean": 249500.0,
+        "median": 232000.0,
+        "status": "calculated"
+      },
+      {
+        "set": "pending4",
+        "n": 4,
+        "total": 1276500,
+        "min": 224500,
+        "max": 439000,
+        "mean": 319125.0,
+        "median": 306500.0,
+        "status": "calculated"
+      },
+      {
+        "set": "forsale8",
+        "n": 8,
+        "total": 2274500,
+        "min": 135000,
+        "max": 439000,
+        "mean": 284312.5,
+        "median": 304000.0,
+        "status": "calculated"
+      }
+    ],
+    "bands": [
+      {
+        "band": "Under $200,000",
+        "count": 1
+      },
+      {
+        "band": "$200,000-$299,999",
+        "count": 15
+      },
+      {
+        "band": "$300,000-$399,999",
+        "count": 13
+      },
+      {
+        "band": "$400,000-$499,999",
+        "count": 5
+      },
+      {
+        "band": "$500,000-$699,999",
+        "count": 4
+      },
+      {
+        "band": "$700,000 and over",
+        "count": 1
+      }
+    ],
+    "limitations": "Collected sets are non-random subsets; published min ($105K) and max ($990K) are not among them."
+  },
+  "testimonials": [
+    {
+      "number": 1,
+      "reviewer_display_name": "A Shah",
+      "date_displayed": "7/28/22",
+      "date_iso": "2022-07-28",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 4,
+      "themes": "general praise",
+      "flags": [],
+      "text_fingerprint_sha256_10": "8251c87083",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 2,
+      "reviewer_display_name": "Mohammed Ehaab Siddiqui",
+      "date_displayed": "7/15/22",
+      "date_iso": "2022-07-15",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 32,
+      "themes": "general praise; family-like care",
+      "flags": [
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "14ad467909",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 3,
+      "reviewer_display_name": "K Syed",
+      "date_displayed": "6/30/22",
+      "date_iso": "2022-06-30",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "81ed0feda7",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 4,
+      "reviewer_display_name": "Parizay Rayyan",
+      "date_displayed": "5/30/22",
+      "date_iso": "2022-05-30",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 61,
+      "themes": "team; communication; mentions residential + commercial; reviewer also refers clients",
+      "flags": [],
+      "text_fingerprint_sha256_10": "91a51415f0",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 5,
+      "reviewer_display_name": "Carlos Hernandez",
+      "date_displayed": "5/30/22",
+      "date_iso": "2022-05-30",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 4,
+      "themes": "general recommendation",
+      "flags": [],
+      "text_fingerprint_sha256_10": "21a88ce86d",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 6,
+      "reviewer_display_name": "Fernando Hernandez",
+      "date_displayed": "5/29/22",
+      "date_iso": "2022-05-29",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "b21eb93655",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 7,
+      "reviewer_display_name": "Pari Management",
+      "date_displayed": "5/6/22",
+      "date_iso": "2022-05-06",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 57,
+      "themes": "buyer; first home; new to the city; local-area guidance",
+      "flags": [
+        "business_style_name"
+      ],
+      "text_fingerprint_sha256_10": "513b7af468",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 8,
+      "reviewer_display_name": "Zorawar Maan",
+      "date_displayed": "4/25/22",
+      "date_iso": "2022-04-25",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "ddb25f5806",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 9,
+      "reviewer_display_name": "Shazia Khan",
+      "date_displayed": "4/16/22",
+      "date_iso": "2022-04-16",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 27,
+      "themes": "seller; step-by-step guidance; responsive",
+      "flags": [],
+      "text_fingerprint_sha256_10": "89dbf349bc",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 10,
+      "reviewer_display_name": "Jennifer Palacz",
+      "date_displayed": "3/30/22",
+      "date_iso": "2022-03-30",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 128,
+      "themes": "renter / lease; responsive; knowledgeable",
+      "flags": [],
+      "text_fingerprint_sha256_10": "1511024db9",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 11,
+      "reviewer_display_name": "Rental Admin Team",
+      "date_displayed": "3/23/22",
+      "date_iso": "2022-03-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 132,
+      "themes": "buyer; first home; long search; market knowledge; organised team",
+      "flags": [
+        "business_style_name"
+      ],
+      "text_fingerprint_sha256_10": "82dee346d7",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 12,
+      "reviewer_display_name": "Ammar Aadeez",
+      "date_displayed": "3/11/22",
+      "date_iso": "2022-03-11",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 111,
+      "themes": "buyer; referral from relatives; offer-to-close in 3-4 weeks; post-sale support",
+      "flags": [],
+      "text_fingerprint_sha256_10": "4c0f287da0",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 13,
+      "reviewer_display_name": "Latikka Martin",
+      "date_displayed": "2/16/22",
+      "date_iso": "2022-02-16",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 44,
+      "themes": "seller; responsive; professional",
+      "flags": [],
+      "text_fingerprint_sha256_10": "e1a6f2ac3d",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 14,
+      "reviewer_display_name": "Hammad Ur Rehman",
+      "date_displayed": "1/20/22",
+      "date_iso": "2022-01-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "9bad4d5ef6",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 15,
+      "reviewer_display_name": "Saadia Sheikh",
+      "date_displayed": "1/19/22",
+      "date_iso": "2022-01-19",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 45,
+      "themes": "professionalism; empathy; would refer",
+      "flags": [],
+      "text_fingerprint_sha256_10": "f933a7268b",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 16,
+      "reviewer_display_name": "hina kauser",
+      "date_displayed": "1/14/22",
+      "date_iso": "2022-01-14",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 82,
+      "themes": "responsive; team; commitment (transaction type not stated)",
+      "flags": [],
+      "text_fingerprint_sha256_10": "7d21ed5877",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 17,
+      "reviewer_display_name": "Waqar Ahmed",
+      "date_displayed": "1/2/22",
+      "date_iso": "2022-01-02",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "b5ab526edf",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 18,
+      "reviewer_display_name": "Ms. Sharia Ilyas",
+      "date_displayed": "12/4/21",
+      "date_iso": "2021-12-04",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 31,
+      "themes": "helpful; found a place for reviewer (type not stated)",
+      "flags": [],
+      "text_fingerprint_sha256_10": "59acc2a176",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 19,
+      "reviewer_display_name": "Daniela Monsalve",
+      "date_displayed": "11/28/21",
+      "date_iso": "2021-11-28",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 17,
+      "themes": "professional; available (type not stated)",
+      "flags": [],
+      "text_fingerprint_sha256_10": "82c93f403b",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 20,
+      "reviewer_display_name": "Ashe Shahid",
+      "date_displayed": "11/28/21",
+      "date_iso": "2021-11-28",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 29,
+      "themes": "seller and buyer (sold, then bought next home); responsive",
+      "flags": [],
+      "text_fingerprint_sha256_10": "f3772e903f",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 21,
+      "reviewer_display_name": "Yasir Hockla",
+      "date_displayed": "11/22/21",
+      "date_iso": "2021-11-22",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 84,
+      "themes": "buyer; first-time; mentions refinance; knowledgeable; team",
+      "flags": [],
+      "text_fingerprint_sha256_10": "18f2d27468",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 22,
+      "reviewer_display_name": "PRITI PATEL",
+      "date_displayed": "11/22/21",
+      "date_iso": "2021-11-22",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 35,
+      "themes": "seller (home sale in Hoffman Estates); responsive; reviewer may be an industry peer",
+      "flags": [],
+      "text_fingerprint_sha256_10": "859400fcb2",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 23,
+      "reviewer_display_name": "Sufyan Ahmed",
+      "date_displayed": "11/11/21",
+      "date_iso": "2021-11-11",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 61,
+      "themes": "buyer; first home; loan approval through closing; renovations",
+      "flags": [],
+      "text_fingerprint_sha256_10": "aded62bd41",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 24,
+      "reviewer_display_name": "Munim Ahmed",
+      "date_displayed": "11/4/21",
+      "date_iso": "2021-11-04",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 58,
+      "themes": "buyer; property selection; responsive",
+      "flags": [],
+      "text_fingerprint_sha256_10": "f008d09a32",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 25,
+      "reviewer_display_name": "Cecilia Catlett",
+      "date_displayed": "11/2/21",
+      "date_iso": "2021-11-02",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "a1fa3d4ddb",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 26,
+      "reviewer_display_name": "Alfonzia Martin",
+      "date_displayed": "11/2/21",
+      "date_iso": "2021-11-02",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "91126ad88d",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 27,
+      "reviewer_display_name": "Salman Ahmed",
+      "date_displayed": "10/31/21",
+      "date_iso": "2021-10-31",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 57,
+      "themes": "buyer; neighbourhood information; no pressure; family-like care",
+      "flags": [],
+      "text_fingerprint_sha256_10": "2dd6f82c2e",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 28,
+      "reviewer_display_name": "Atiq Saeed",
+      "date_displayed": "10/30/21",
+      "date_iso": "2021-10-30",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 36,
+      "themes": "knowledge; customer service",
+      "flags": [],
+      "text_fingerprint_sha256_10": "e2cf54578b",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 29,
+      "reviewer_display_name": "Mashhood Ahmad",
+      "date_displayed": "10/29/21",
+      "date_iso": "2021-10-29",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "f1e2638482",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 30,
+      "reviewer_display_name": "Tina Khan",
+      "date_displayed": "10/29/21",
+      "date_iso": "2021-10-29",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "6319f1c674",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 31,
+      "reviewer_display_name": "Abdullah Alsaafin",
+      "date_displayed": "10/29/21",
+      "date_iso": "2021-10-29",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 54,
+      "themes": "buyer; detail-oriented; proactive",
+      "flags": [],
+      "text_fingerprint_sha256_10": "8b2a9f700e",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 32,
+      "reviewer_display_name": "Rehan Shahid",
+      "date_displayed": "10/28/21",
+      "date_iso": "2021-10-28",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 38,
+      "themes": "knowledgeable; timely; available",
+      "flags": [],
+      "text_fingerprint_sha256_10": "2872b8a36a",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 33,
+      "reviewer_display_name": "farnaz syed",
+      "date_displayed": "10/28/21",
+      "date_iso": "2021-10-28",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 77,
+      "themes": "buyer and refinance client; team; rates",
+      "flags": [],
+      "text_fingerprint_sha256_10": "080eb59946",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 34,
+      "reviewer_display_name": "Muhammad Siddiqui",
+      "date_displayed": "10/26/21",
+      "date_iso": "2021-10-26",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 77,
+      "themes": "buyer/seller/lease; inspector referral; communication",
+      "flags": [
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "e1eb5cfd3e",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 35,
+      "reviewer_display_name": "Naqvi",
+      "date_displayed": "10/18/21",
+      "date_iso": "2021-10-18",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 47,
+      "themes": "buyer; contractor network; energy",
+      "flags": [],
+      "text_fingerprint_sha256_10": "179ce8b399",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 36,
+      "reviewer_display_name": "Tracy Bushur",
+      "date_displayed": "10/16/21",
+      "date_iso": "2021-10-16",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 15,
+      "themes": "buyer; hard-working; smooth process",
+      "flags": [],
+      "text_fingerprint_sha256_10": "8f4bdf34e4",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 37,
+      "reviewer_display_name": "jay siddiqui",
+      "date_displayed": "10/16/21",
+      "date_iso": "2021-10-16",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "cfef526fd4",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 38,
+      "reviewer_display_name": "Zuzu Khan",
+      "date_displayed": "10/3/21",
+      "date_iso": "2021-10-03",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 15,
+      "themes": "responsive; professional",
+      "flags": [],
+      "text_fingerprint_sha256_10": "1e019a3fb4",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 39,
+      "reviewer_display_name": "Adil Siddiqui",
+      "date_displayed": "10/3/21",
+      "date_iso": "2021-10-03",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "ad467bb584",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 40,
+      "reviewer_display_name": "Kawal Kaura",
+      "date_displayed": "10/3/21",
+      "date_iso": "2021-10-03",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 159,
+      "themes": "renter turned buyer; pre-approval within hours; loan; on-time closing; ongoing follow-up",
+      "flags": [],
+      "text_fingerprint_sha256_10": "8413998e65",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 41,
+      "reviewer_display_name": "sabah adil",
+      "date_displayed": "10/3/21",
+      "date_iso": "2021-10-03",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 42,
+      "themes": "buyer; first home; available for questions",
+      "flags": [],
+      "text_fingerprint_sha256_10": "fea996c94c",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 42,
+      "reviewer_display_name": "salman adil",
+      "date_displayed": "9/25/21",
+      "date_iso": "2021-09-25",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 44,
+      "themes": "buyer; first home; names the brokerage 'Realty Executives Advance' (possible former brokerage)",
+      "flags": [],
+      "text_fingerprint_sha256_10": "21227491c2",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 43,
+      "reviewer_display_name": "N Khan",
+      "date_displayed": "9/20/21",
+      "date_iso": "2021-09-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 70,
+      "themes": "buyer; integrity; dedication",
+      "flags": [
+        "shared_opening_sentence_with_#44"
+      ],
+      "text_fingerprint_sha256_10": "c0c8a14783",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 44,
+      "reviewer_display_name": "Jehanzeb Khan",
+      "date_displayed": "9/20/21",
+      "date_iso": "2021-09-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 87,
+      "themes": "buyer; detail-oriented; mentions buying, selling and investing",
+      "flags": [
+        "shared_opening_sentence_with_#43"
+      ],
+      "text_fingerprint_sha256_10": "7d1339fe4c",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 45,
+      "reviewer_display_name": "Hamza Zaidi",
+      "date_displayed": "9/12/21",
+      "date_iso": "2021-09-12",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "531072d056",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 46,
+      "reviewer_display_name": "Mudassir Siddiqui",
+      "date_displayed": "9/4/21",
+      "date_iso": "2021-09-04",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 53,
+      "themes": "seller (townhouse sold quickly); text duplicated in #72 and overlaps #60",
+      "flags": [
+        "identical_text_to_#72",
+        "reviewer_name_equals_agent_name",
+        "overlapping_sentences_with_#60_#72"
+      ],
+      "text_fingerprint_sha256_10": "75abb39c7c",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 47,
+      "reviewer_display_name": "Humza Khan",
+      "date_displayed": "9/3/21",
+      "date_iso": "2021-09-03",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 50,
+      "themes": "family-like care; availability; text overlaps #88",
+      "flags": [],
+      "text_fingerprint_sha256_10": "50a3a891da",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 48,
+      "reviewer_display_name": "Rida Shaikh",
+      "date_displayed": "8/31/21",
+      "date_iso": "2021-08-31",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 14,
+      "themes": "general praise",
+      "flags": [],
+      "text_fingerprint_sha256_10": "90c26ae537",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 49,
+      "reviewer_display_name": "M Siddiqui",
+      "date_displayed": "8/28/21",
+      "date_iso": "2021-08-28",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 37,
+      "themes": "buyer; one-stop shop; text identical to #53",
+      "flags": [
+        "identical_text_to_#53",
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "0b26097b82",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 50,
+      "reviewer_display_name": "Kamran Hasan",
+      "date_displayed": "8/25/21",
+      "date_iso": "2021-08-25",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 68,
+      "themes": "buyer; first-time; value / best-possible-deal",
+      "flags": [],
+      "text_fingerprint_sha256_10": "9e0863b719",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 51,
+      "reviewer_display_name": "Jahanzaib Siddiqui",
+      "date_displayed": "8/25/21",
+      "date_iso": "2021-08-25",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 48,
+      "themes": "buyer; first home; reassurance through legal and procedural steps",
+      "flags": [
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "336eb88b7d",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 52,
+      "reviewer_display_name": "Jay Karim",
+      "date_displayed": "8/20/21",
+      "date_iso": "2021-08-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 37,
+      "themes": "investor purchase; organised; communication",
+      "flags": [],
+      "text_fingerprint_sha256_10": "b2673922f1",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 53,
+      "reviewer_display_name": "Mubashir Ali",
+      "date_displayed": "8/20/21",
+      "date_iso": "2021-08-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 37,
+      "themes": "text identical to #49",
+      "flags": [
+        "identical_text_to_#49"
+      ],
+      "text_fingerprint_sha256_10": "d9bfc04b29",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 54,
+      "reviewer_display_name": "Ibrahim Shaik",
+      "date_displayed": "8/18/21",
+      "date_iso": "2021-08-18",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "3a3d0a21fd",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 55,
+      "reviewer_display_name": "Musab Ahmed",
+      "date_displayed": "8/16/21",
+      "date_iso": "2021-08-16",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "69e9e87f27",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 56,
+      "reviewer_display_name": "Shaik Zakir Hussain",
+      "date_displayed": "8/16/21",
+      "date_iso": "2021-08-16",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 119,
+      "themes": "buyer; help with loan issue; repeat family client (four homes)",
+      "flags": [],
+      "text_fingerprint_sha256_10": "faf2b1fcd3",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 57,
+      "reviewer_display_name": "Mohammad Haris",
+      "date_displayed": "8/16/21",
+      "date_iso": "2021-08-16",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 68,
+      "themes": "buyer; first-time; competitive offer on renovated home; closed January 2021",
+      "flags": [],
+      "text_fingerprint_sha256_10": "2fc760d476",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 58,
+      "reviewer_display_name": "Alejandro Aguilar",
+      "date_displayed": "8/13/21",
+      "date_iso": "2021-08-13",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [],
+      "text_fingerprint_sha256_10": "4abefe6f06",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 59,
+      "reviewer_display_name": "Anthony Fraser",
+      "date_displayed": "8/12/21",
+      "date_iso": "2021-08-12",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 56,
+      "themes": "buyer; moved in within a week; refers to 'Realty executives' (possible former brokerage)",
+      "flags": [],
+      "text_fingerprint_sha256_10": "63f42a8c4a",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 60,
+      "reviewer_display_name": "Waqas Shakil",
+      "date_displayed": "8/11/21",
+      "date_iso": "2021-08-11",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 62,
+      "themes": "seller; top price in short time; text overlaps #46/#72",
+      "flags": [
+        "overlapping_sentences_with_#46_#72"
+      ],
+      "text_fingerprint_sha256_10": "0fce3838e9",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 61,
+      "reviewer_display_name": "A Google User",
+      "date_displayed": "8/11/21",
+      "date_iso": "2021-08-11",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 2,
+      "themes": "general praise (reviewer shown as 'A Google User')",
+      "flags": [],
+      "text_fingerprint_sha256_10": "9a8fd60229",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 62,
+      "reviewer_display_name": "Gabriel Carrero",
+      "date_displayed": "8/2/21",
+      "date_iso": "2021-08-02",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 6,
+      "themes": "general praise",
+      "flags": [],
+      "text_fingerprint_sha256_10": "ad9671fa8a",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 63,
+      "reviewer_display_name": "Christine Cruz",
+      "date_displayed": "8/1/21",
+      "date_iso": "2021-08-01",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 9,
+      "themes": "general praise; emoji",
+      "flags": [],
+      "text_fingerprint_sha256_10": "a998ebde40",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 64,
+      "reviewer_display_name": "Wasiullah Khan",
+      "date_displayed": "7/29/21",
+      "date_iso": "2021-07-29",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 68,
+      "themes": "negotiation; community care; honesty",
+      "flags": [],
+      "text_fingerprint_sha256_10": "d4580b3637",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 65,
+      "reviewer_display_name": "shan lala",
+      "date_displayed": "7/24/21",
+      "date_iso": "2021-07-24",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 87,
+      "themes": "seller; prep coordination; under contract 3 hours after first showing; closed within a month",
+      "flags": [],
+      "text_fingerprint_sha256_10": "3794bd78f4",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 66,
+      "reviewer_display_name": "Husanara Moughies",
+      "date_displayed": "7/24/21",
+      "date_iso": "2021-07-24",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 34,
+      "themes": "general praise; partially reproduced inside #88",
+      "flags": [],
+      "text_fingerprint_sha256_10": "60e943082a",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 67,
+      "reviewer_display_name": "MS RealEstate Broker",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 118,
+      "themes": "buyer; patient through months of showings; right-fit home",
+      "flags": [
+        "business_style_name",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "a9a3dcba03",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 68,
+      "reviewer_display_name": "MS Real Estate Broker",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 90,
+      "themes": "investor; first investment property; same-day accepted offer; mentor",
+      "flags": [
+        "business_style_name",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "386a52a2c6",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 69,
+      "reviewer_display_name": "RealEstate Closing",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 49,
+      "themes": "buyer; detail-oriented; responsive",
+      "flags": [
+        "business_style_name",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "55c30be478",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 70,
+      "reviewer_display_name": "Syed Tehseen Fatima",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 16,
+      "themes": "general praise; dedicated",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "05df02b957",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 71,
+      "reviewer_display_name": "Kiran Noor",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 45,
+      "themes": "buyer and seller; proactive",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "6a85b1f368",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 72,
+      "reviewer_display_name": "kiran mudassir",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 53,
+      "themes": "text identical to #46",
+      "flags": [
+        "identical_text_to_#46",
+        "reviewer_name_contains_agent_first_name",
+        "dated_2021-07-23_cluster",
+        "overlapping_sentences_with_#46_#60"
+      ],
+      "text_fingerprint_sha256_10": "0a7c0e9bc2",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 73,
+      "reviewer_display_name": "MK Consulting",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 111,
+      "themes": "out-of-state agent's buyer client; home found in under a week; bilingual closing attorney referral",
+      "flags": [
+        "business_style_name",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "bf37430dc8",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 74,
+      "reviewer_display_name": "MK Properties",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 40,
+      "themes": "general praise; emoji",
+      "flags": [
+        "business_style_name",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "e24bb74ad1",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 75,
+      "reviewer_display_name": "MK Management",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 36,
+      "themes": "buyer; first-time; patient; closing sentence shared with #76/#77",
+      "flags": [
+        "business_style_name",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "674d406dc7",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 76,
+      "reviewer_display_name": "M Siddiqui",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 16,
+      "themes": "general praise; text identical to #77",
+      "flags": [
+        "identical_text_to_#77",
+        "reviewer_shares_agent_surname",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "35a43aa8c2",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 77,
+      "reviewer_display_name": "almas siddiqui",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 16,
+      "themes": "text identical to #76",
+      "flags": [
+        "identical_text_to_#76",
+        "reviewer_shares_agent_surname",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "b0af03b8bc",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 78,
+      "reviewer_display_name": "Tehseen Fatima",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 23,
+      "themes": "buyer and seller; maximum price",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "241877eb36",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 79,
+      "reviewer_display_name": "Qaiser Siddiqui",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 10,
+      "themes": "general praise",
+      "flags": [
+        "reviewer_shares_agent_surname",
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "1e6bab5158",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 80,
+      "reviewer_display_name": "shayan ali",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 18,
+      "themes": "available; professional",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "f43ec8be96",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 81,
+      "reviewer_display_name": "umer hussaini",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "96caff9883",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 82,
+      "reviewer_display_name": "N Shah",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 59,
+      "themes": "renter; kind; professionalism",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "12eb67af90",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 83,
+      "reviewer_display_name": "syed farooq",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "c1569724a7",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 84,
+      "reviewer_display_name": "Adnan Ulhaq",
+      "date_displayed": "7/23/21",
+      "date_iso": "2021-07-23",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 32,
+      "themes": "buyer; family-like care; best price; emoji",
+      "flags": [
+        "dated_2021-07-23_cluster"
+      ],
+      "text_fingerprint_sha256_10": "02b30fa524",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 85,
+      "reviewer_display_name": "Almas Siddiqui",
+      "date_displayed": "7/20/21",
+      "date_iso": "2021-07-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": false,
+      "word_count": 0,
+      "themes": "rating only",
+      "flags": [
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "9ca8894351",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 86,
+      "reviewer_display_name": "M Siddiqui",
+      "date_displayed": "7/20/21",
+      "date_iso": "2021-07-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 16,
+      "themes": "general praise",
+      "flags": [
+        "reviewer_shares_agent_surname"
+      ],
+      "text_fingerprint_sha256_10": "e2d602cbbe",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 87,
+      "reviewer_display_name": "mk Management",
+      "date_displayed": "7/20/21",
+      "date_iso": "2021-07-20",
+      "platform": "Google Review",
+      "rating": 5,
+      "has_text": true,
+      "word_count": 18,
+      "themes": "seller; maximum price (plural 'houses')",
+      "flags": [
+        "business_style_name"
+      ],
+      "text_fingerprint_sha256_10": "27fc960f75",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    },
+    {
+      "number": 88,
+      "reviewer_display_name": "Syed Fatima",
+      "date_displayed": "1/25/22",
+      "date_iso": "2022-01-25",
+      "platform": "Homes.com Review",
+      "rating": null,
+      "has_text": true,
+      "word_count": 84,
+      "themes": "Homes.com-labelled; no star rating displayed; text appears to combine wording found in #66 and #47",
+      "flags": [
+        "composite_text_no_star_rating"
+      ],
+      "text_fingerprint_sha256_10": "d5c99105ab",
+      "text": null,
+      "text_note": "Not reproduced; copy from source after approval and verify fingerprint",
+      "source_url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified",
+      "approved_for_publication": false
+    }
+  ],
+  "professional_links": [
+    {
+      "label": "Homes.com profile",
+      "url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "status": "verified"
+    },
+    {
+      "label": "Agent website",
+      "url": "https://www.buywithms.com/",
+      "status": "needs_verification",
+      "note": "Does not resolve"
+    },
+    {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/mskeytomyhome/",
+      "status": "needs_verification",
+      "note": "Not viewable logged out"
+    }
+  ],
+  "media_assets": [
+    {
+      "id": "MEDIA-001",
+      "type": "portrait",
+      "url": "https://imagescdn.homes.com/i2/x4YT4sd86fNHVPxzH7DY_olvR9GY6sllXcOP2UM1Ysk/117/mudassir-siddiqui.jpg",
+      "description": "Agent portrait in dark suit in front of a house",
+      "intended_use": "hero / about",
+      "reuse_flag": "obtain original and licence"
+    },
+    {
+      "id": "MEDIA-002",
+      "type": "brokerage_logo",
+      "url": "https://images.homes.com/brands/105/145_aspect.png",
+      "description": "HomeSmart logo",
+      "intended_use": "footer / disclosure",
+      "reuse_flag": "trademark; written approval"
+    },
+    {
+      "id": "MEDIA-003",
+      "type": "neighborhood",
+      "url": "https://imagescdn.homes.com/i2/CuIKOVD_qd65uxnKJD9xIss525aaISnQ2K1nFmV7e0c/117/image.jpg",
+      "description": "Hanover Park area photo",
+      "intended_use": "service-area tile",
+      "reuse_flag": "licence unknown; replace"
+    },
+    {
+      "id": "MEDIA-004",
+      "type": "neighborhood",
+      "url": "https://imagescdn.homes.com/i2/MQ1mfoYTU3oPkIosQjIum_76KGTfFouA8EoRxk548PA/117/south-tri-village-bartlett-il-neighborhoodphoto.jpg",
+      "description": "South Tri Village area photo",
+      "intended_use": "service-area tile",
+      "reuse_flag": "licence unknown; replace"
+    },
+    {
+      "id": "MEDIA-005",
+      "type": "neighborhood",
+      "url": "https://imagescdn.homes.com/i2/KvNf3HGUr4G-Q6rBx-vBQcTtTntzst7TXz3wG8S3fhQ/117/image.jpg",
+      "description": "Schaumburg area photo",
+      "intended_use": "service-area tile",
+      "reuse_flag": "licence unknown; replace"
+    },
+    {
+      "id": "MEDIA-006",
+      "type": "neighborhood",
+      "url": "https://imagescdn.homes.com/i2/hMSEY54DReexkmfWLS_gh6GOAeOUkL8Ppbs9ZANEH9c/117/image.jpg",
+      "description": "Bartlett area photo",
+      "intended_use": "service-area tile",
+      "reuse_flag": "licence unknown; replace"
+    },
+    {
+      "id": "MEDIA-007",
+      "type": "neighborhood",
+      "url": "https://imagescdn.homes.com/i2/a3qhDOocQjBr2Kzct734T3YmAeUBzn8HIMrsFyzRVOE/117/image.jpg",
+      "description": "Streamwood area photo",
+      "intended_use": "service-area tile",
+      "reuse_flag": "licence unknown; replace"
+    },
+    {
+      "id": "MEDIA-008",
+      "type": "neighborhood",
+      "url": "https://imagescdn.homes.com/i2/Bj9xapWUpRpli8Gv2bAUtECxwx-OSLuHTsn4OoMIjjQ/117/south-schaumburg-schaumburg-il-neighborhoodphoto.jpg",
+      "description": "South Schaumburg area photo",
+      "intended_use": "service-area tile",
+      "reuse_flag": "licence unknown; replace"
+    }
+  ],
+  "source_references": [
+    {
+      "id": "S01",
+      "url": "https://www.homes.com/real-estate-agents/mudassir-siddiqui/m5j1jgj/",
+      "supports": "Agent profile: identity, bio, stats, areas, awards, reviews, listing cards, photo carousel, FAQ",
+      "access_result": "Accessed in full (all tabs, reviews expanded)",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S02",
+      "url": "https://www.homes.com/property/8030-riverwalk-dr-lyons-il-unit-2f/6syxm89g1fgwg/",
+      "supports": "Sold page for 8030 Riverwalk Dr Unit 2F (SOLD-001)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.homes.com/property/4440-castlebar-ln-hanover-park-il/tw7edtqdg0ycc/",
+      "supports": "Sold page for 4440 Castlebar Ln (SOLD-002)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.homes.com/property/629-waterford-ln-south-elgin-il/6sd0dl3w8sdpd/",
+      "supports": "Sold page for 629 Waterford Ln (SOLD-003)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.homes.com/property/209-e-washington-st-west-chicago-il/6h9rlmjkpw8wb/",
+      "supports": "Sold page for 209 E Washington St (SOLD-004)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S06",
+      "url": "https://www.homes.com/property/27w125-chestnut-ln-winfield-il/k2esspfjmgkq4/",
+      "supports": "Sold page for 27W125 Chestnut Ln (SOLD-005)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S07",
+      "url": "https://www.homes.com/property/4018-oxford-ct-streamwood-il/svbfxbmscwrej/",
+      "supports": "Sold page for 4018 Oxford Ct (SOLD-006)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S08",
+      "url": "https://www.homes.com/property/6n772-tuscola-ave-saint-charles-il/grg3q18x5gltl/",
+      "supports": "Sold page for 6N772 Tuscola Ave (SOLD-007)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S09",
+      "url": "https://www.homes.com/property/5011-valley-ln-streamwood-il-unit-404/1fkpqvthdjldr/",
+      "supports": "Sold page for 5011 Valley Ln Unit 404 (SOLD-008)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S10",
+      "url": "https://www.homes.com/property/5624-court-leona-hanover-park-il-unit-397/rbd43cvmyhxs0/",
+      "supports": "Sold page for 5624 Court Leona Unit 397 (SOLD-009)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S11",
+      "url": "https://www.homes.com/property/5011-valley-ln-streamwood-il-unit-304/rgcx2y80jzmrd/",
+      "supports": "Listing page for 5011 Valley Ln Unit 304 (LIST-001)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S12",
+      "url": "https://www.homes.com/property/640-settlement-dr-maple-park-il/fvf17j9exr1s3/",
+      "supports": "Listing page for 640 Settlement Dr (LIST-002)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S13",
+      "url": "https://www.homes.com/property/5011-valley-ln-streamwood-il-unit-501/1fdlq46s3evdp/",
+      "supports": "Listing page for 5011 Valley Ln Unit 501 (LIST-003)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S14",
+      "url": "https://www.homes.com/property/117-arthur-ave-south-elgin-il/vzxwy34886n8w/",
+      "supports": "Listing page for 117 Arthur Ave (LIST-004)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S15",
+      "url": "https://www.homes.com/property/1784-mccormick-ln-hanover-park-il/fs25yqexzwl3f/",
+      "supports": "Listing page for 1784 Mccormick Ln (LIST-005)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S16",
+      "url": "https://www.homes.com/property/1051-ashton-ct-streamwood-il/2zh1b4g7ezmh2/",
+      "supports": "Listing page for 1051 Ashton Ct (LIST-006)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S17",
+      "url": "https://www.homes.com/property/1713-fulton-ln-hanover-park-il/t2rpj83hc3vp0/",
+      "supports": "Listing page for 1713 Fulton Ln (LIST-007)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S18",
+      "url": "https://www.homes.com/property/7128-glenwood-ln-hanover-park-il/y3v2brcffh8ce/",
+      "supports": "Listing page for 7128 Glenwood Ln (LIST-008)",
+      "access_result": "Accessed",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S19",
+      "url": "https://www.buywithms.com/",
+      "supports": "Agent website linked from S01",
+      "access_result": "Failed: DNS error, domain does not resolve (2026-10-24)",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S20",
+      "url": "https://www.facebook.com/mskeytomyhome/",
+      "supports": "Facebook page linked from S01",
+      "access_result": "Not viewable logged out (\"content isn't available\"); no login attempted",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S21",
+      "url": "Web searches (agent + HomeSmart; brokerage office; brand name)",
+      "supports": "Corroboration of brokerage and agent details",
+      "access_result": "No usable independent source; only S01 and unrelated agents returned",
+      "accessed": "2026-10-24"
+    },
+    {
+      "id": "S22",
+      "url": "https://www.homes.com/property/1128-angle-tarn-west-dundee-il/",
+      "supports": "Direct URL attempt for a carousel-only sold record",
+      "access_result": "Not found; web searches for that and two other carousel-only addresses returned nothing relevant",
+      "accessed": "2026-10-24"
+    }
+  ]
+}

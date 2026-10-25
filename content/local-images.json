@@ -1,0 +1,303 @@
+{
+  "_note": "Photographs saved from the agent's public Homes.com profile by the site owner and placed in public/photos/. Rights: owner_directed = used at the owner's direction; permission from the photographers/MLS has NOT been independently confirmed. The four unnamed area photos (image.jpg) were matched to areas by the page's order and should be checked. See docs/ASSETS.md.",
+  "images": [
+    {
+      "doc": "agentProfile",
+      "field": "headshot",
+      "file": "/photos/portrait.jpg",
+      "width": 630,
+      "height": 630,
+      "alt": "Mudassir Siddiqui in a dark suit and sunglasses, standing outside a modern house at dusk",
+      "rights": "owner_directed",
+      "source": "https://imagescdn.homes.com/i2/x4YT4sd86fNHVPxzH7DY_olvR9GY6sllXcOP2UM1Ysk/117/mudassir-siddiqui.jpg",
+      "hotspot": {
+        "x": 0.58,
+        "y": 0.38
+      }
+    },
+    {
+      "doc": "serviceArea-hanover-park",
+      "field": "image",
+      "file": "/photos/areas/hanover-park.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "Aerial view of a neighbourhood with a water tower",
+      "rights": "owner_directed",
+      "source": "https://imagescdn.homes.com/i2/CuIKOVD_qd65uxnKJD9xIss525aaISnQ2K1nFmV7e0c/117/image.jpg"
+    },
+    {
+      "doc": "serviceArea-south-tri-village",
+      "field": "image",
+      "file": "/photos/areas/south-tri-village.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "Two people at a library service desk",
+      "rights": "owner_directed",
+      "source": "https://imagescdn.homes.com/i2/MQ1mfoYTU3oPkIosQjIum_76KGTfFouA8EoRxk548PA/117/south-tri-village-bartlett-il-neighborhoodphoto.jpg"
+    },
+    {
+      "doc": "serviceArea-schaumburg",
+      "field": "image",
+      "file": "/photos/areas/schaumburg.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "An outdoor shopping and entertainment district at dusk",
+      "rights": "owner_directed",
+      "source": "https://imagescdn.homes.com/i2/KvNf3HGUr4G-Q6rBx-vBQcTtTntzst7TXz3wG8S3fhQ/117/image.jpg"
+    },
+    {
+      "doc": "serviceArea-bartlett",
+      "field": "image",
+      "file": "/photos/areas/bartlett.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "A water tower beside a railway line in winter",
+      "rights": "owner_directed",
+      "source": "https://imagescdn.homes.com/i2/hMSEY54DReexkmfWLS_gh6GOAeOUkL8Ppbs9ZANEH9c/117/image.jpg"
+    },
+    {
+      "doc": "serviceArea-streamwood",
+      "field": "image",
+      "file": "/photos/areas/streamwood.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "Aerial view of a busy road junction",
+      "rights": "owner_directed",
+      "source": "https://imagescdn.homes.com/i2/a3qhDOocQjBr2Kzct734T3YmAeUBzn8HIMrsFyzRVOE/117/image.jpg"
+    },
+    {
+      "doc": "serviceArea-south-schaumburg",
+      "field": "image",
+      "file": "/photos/areas/south-schaumburg.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "Aerial view of a residential neighbourhood with a cul-de-sac",
+      "rights": "owner_directed",
+      "source": "https://imagescdn.homes.com/i2/Bj9xapWUpRpli8Gv2bAUtECxwx-OSLuHTsn4OoMIjjQ/117/south-schaumburg-schaumburg-il-neighborhoodphoto.jpg"
+    },
+    {
+      "doc": "property-sold-001",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-001.jpg",
+      "width": 1349,
+      "height": 900,
+      "alt": "Six-storey red-brick condominium building under a blue sky",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/1167124205-723554032/8030-riverwalk-dr-lyons-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-002",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-002.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Brick and siding townhouse with a two-car garage",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/8598353105-315300032/4440-castlebar-ln-hanover-park-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-003",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-003.jpg",
+      "width": 650,
+      "height": 432,
+      "alt": "Two-storey grey house with a front porch at dusk",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/8059661384-365736712/629-waterford-ln-south-elgin-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-004",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-004.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Grey two-storey house with a porch and front lawn",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/5734440774-605137512/209-e-washington-st-west-chicago-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-005",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-005.jpg",
+      "width": 650,
+      "height": 429,
+      "alt": "Split-level house with a garage and a long driveway",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/9472414074-226801312/27w125-chestnut-ln-winfield-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-006",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-006.jpg",
+      "width": 650,
+      "height": 434,
+      "alt": "Brick ranch-style home with large windows glowing at dusk",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/4169362044-234132002/4018-oxford-ct-streamwood-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-007",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-007.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Grey home with a wooden deck among trees",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/1991307234-078479791/6n772-tuscola-ave-saint-charles-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-008",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-008.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Red-brick apartment building with a green entrance awning",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/4654453724-681960691/5011-valley-ln-streamwood-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-009",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-009.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Single-storey home with a covered porch and a large front lawn",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/1148682324-212706491/5624-court-leona-hanover-park-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-014",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-014.jpg",
+      "width": 1200,
+      "height": 900,
+      "alt": "Two-storey house with a double garage, seen from above in spring",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/5311067463-644811071/1128-angle-tarn-west-dundee-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-015",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-015.jpg",
+      "width": 1600,
+      "height": 900,
+      "alt": "Two-storey house with grey siding, a double garage and a landscaped front garden",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/2472397623-741084651/709-stratford-ln-schaumburg-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-sold-016",
+      "field": "heroImage",
+      "file": "/photos/homes/sold-016.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "Stone-fronted house with a paved driveway at sunset",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/4293132483-453316671/23-s-elm-st-palatine-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-001",
+      "field": "heroImage",
+      "file": "/photos/homes/list-001.jpg",
+      "width": 640,
+      "height": 427,
+      "alt": "Entrance of a red-brick building with a green awning and the number 5011",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/5959847515-846396732/5011-valley-ln-streamwood-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-002",
+      "field": "heroImage",
+      "file": "/photos/homes/list-002.jpg",
+      "width": 1200,
+      "height": 900,
+      "alt": "Cream two-storey house with a garage, lit at sunset",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/2417677415-954733732/640-settlement-dr-maple-park-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-003",
+      "field": "heroImage",
+      "file": "/photos/homes/list-003.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Multi-storey red-brick building with a green entrance awning",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/0483165805-910335332/5011-valley-ln-streamwood-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-004",
+      "field": "heroImage",
+      "file": "/photos/homes/list-004.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Single-storey home with a wide driveway and stone details",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/7616037705-064451332/117-arthur-ave-south-elgin-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-005",
+      "field": "heroImage",
+      "file": "/photos/homes/list-005.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "Two-storey townhouse with beige siding and a garage",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/2522738515-266317732/1784-mccormick-ln-hanover-park-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-006",
+      "field": "heroImage",
+      "file": "/photos/homes/list-006.jpg",
+      "width": 650,
+      "height": 488,
+      "alt": "Brick and siding townhouse with a lawn and a walkway",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/6566305515-859246732/1051-ashton-ct-streamwood-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-007",
+      "field": "heroImage",
+      "file": "/photos/homes/list-007.jpg",
+      "width": 650,
+      "height": 433,
+      "alt": "Two-storey home with a white garage door and a landscaped entrance",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/8157204215-884974632/1713-fulton-ln-hanover-park-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-008",
+      "field": "heroImage",
+      "file": "/photos/homes/list-008.jpg",
+      "width": 650,
+      "height": 434,
+      "alt": "Split-level grey house with a lit stone entrance at dusk",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/5409079215-921502432/7128-glenwood-ln-hanover-park-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "property-list-009",
+      "field": "heroImage",
+      "file": "/photos/homes/list-009.jpg",
+      "width": 650,
+      "height": 488,
+      "alt": "Cream two-storey house with a garage, lit at sunset",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/4585064615-274839732/640-settlement-dr-maple-park-il-primaryphoto.jpg"
+    },
+    {
+      "doc": "homePage",
+      "field": "ctaImage",
+      "file": "/photos/homes/sold-016.jpg",
+      "width": 1350,
+      "height": 900,
+      "alt": "Stone-fronted house with a paved driveway at sunset",
+      "rights": "owner_directed",
+      "source": "https://images.homes.com/listings/102/4293132483-453316671/23-s-elm-st-palatine-il-primaryphoto.jpg",
+      "hotspot": {
+        "x": 0.5,
+        "y": 0.22
+      }
+    }
+  ]
+}
