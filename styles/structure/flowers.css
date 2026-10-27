@@ -30,15 +30,22 @@
     /* decorative: never part of layout, never selectable */
     user-select: none;
   }
-  .flower__video {
-    display: block;
+  /* the full square the placements were tuned against: it carries the rotation / mirroring / tint ... */
+  .flower__frame {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: contain;
     rotate: var(--flower-rot, 0deg);
     scale: var(--flower-flip-x, 1) var(--flower-flip-y, 1);
     transform-origin: 50% 50%;
     filter: var(--flower-filter);
+    pointer-events: none;
+  }
+  /* ... and the cropped video sits inside it (left / top / width / height are set from the manifest) */
+  .flower__video {
+    position: absolute;
+    display: block;
+    object-fit: contain;
     pointer-events: none;
   }
 

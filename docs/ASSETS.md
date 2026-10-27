@@ -72,13 +72,17 @@ The script reads **local files only** (it never fetches a URL), requires an expl
 
 `next/image` with AVIF → WebP negotiation, an allow-list of qualities (60/75/85), explicit `sizes` on every use, `width`/`height` from the CMS asset metadata (so no layout shift), a blurred LQIP placeholder when Sanity provides one, hotspot-aware `object-position`, `priority`/`preload` only for the first card(s) and the hero doorway, lazy loading elsewhere. Sanity serves the originals from its CDN; the site never re-hosts them.
 
+**Optimised photographs are cached for 31 days** (`images.minimumCacheTTL`, up from the 4-hour default; same bytes). A *local* picture that is replaced under the same file name can therefore show the old one for up to 31 days; Sanity pictures are addressed by content and are not affected.
+
+**The local masters are large PNGs** (28 files, 239 MB in `public/photos`, 4.4–15 MB each). Visitors never receive them — the optimiser serves AVIF/WebP at the width asked for — but they are deployed, and the optimiser decodes one on the first request of each size (0.3–2 s cold per large file). Measured on three of them, a lossy master would be **9–12 % of the PNG's size as WebP q90** (mean error 1.4–1.9 / 255) or 6–8 % as AVIF q70. **Not converted** (it would change every path, the manifest and the `photos:hires` pipeline, and only three pictures were compared); see [`PERFORMANCE.md`](PERFORMANCE.md#asset-report) for the numbers and the recommendation.
+
 ## Brand marks and generated artwork
 
 The monogram (an arch around "MS"), the line-art property glyphs, the material textures, the favicon/Apple icon and the social card (`/og`) are **original artwork** generated in code from the active theme; the lettering of the monogram is outlined from Bodoni Moda (SIL OFL). Nothing in that list is taken from the reference site or from Homes.com. The exceptions are the **bougainvillea flower clips**, which are the reference's own media supplied by the site owner (see *Flower clips* below, including their unconfirmed rights); the cloud artwork is original but was painted to match the reference's look.
 
 ## Flower clips (bougainvillea video)
 
-The flowers are short looped videos with a transparent background, as in the reference (brief §2). The site owner supplied the clips as `public/flowers/bougainvillea-flowers_NN.mov` (Apple HEVC-with-alpha, 7.6–10.6 MB each) and `…_04.webm` (VP9-with-alpha). **They are the reference site's own media. They were supplied at the owner's direction; permission from their creator has not been independently confirmed** — treat them like the `owner_directed` photographs: replace them, or confirm the licence, before launch.
+The flowers are short looped videos with a transparent background, as in the reference (brief §2). The site owner supplied the clips as `assets/flowers/bougainvillea-flowers_NN.mov` (outside `public/`, so they are not deployed) (Apple HEVC-with-alpha, 7.6–10.6 MB each) and `…_04.webm` (VP9-with-alpha). **They are the reference site's own media. They were supplied at the owner's direction; permission from their creator has not been independently confirmed** — treat them like the `owner_directed` photographs: replace them, or confirm the licence, before launch.
 
 | Clip | Shape | Used for (brief row) |
 |---|---|---|
@@ -92,13 +96,15 @@ The flowers are short looped videos with a transparent background, as in the ref
 
 **They are not served as supplied.** `npm run flowers:build` (macOS with Xcode command-line tools and ffmpeg; `scripts/assets/flower-clips.mjs`) turns each into three small files under `public/flowers/clips/` and records them in `content/flower-clips.json`:
 
-- `NN.webm` — VP9 + alpha, 720 px, 16 fps (1–3 MB) for Chrome, Firefox and Edge;
-- `NN.mov` — HEVC + alpha (1–2 MB) for Safari;
-- `NN.webp` — the first frame, transparent: the poster, and the only picture reduced-motion visitors and no-JS visitors ever see.
+- `NN.<hash>.webm` — VP9 + alpha, 16 fps (1.5–3 MB) for Chrome, Firefox and Edge;
+- `NN.<hash>.mov` — HEVC + alpha (0.7–2 MB) for Safari;
+- `NN.<hash>.webp` — the first frame, transparent: the poster, and the only picture reduced-motion visitors and no-JS visitors ever see.
 
-ffmpeg cannot read the alpha layer of an Apple HEVC `.mov` (it decodes it onto white), so the script decodes with AVFoundation (`scripts/assets/alpha-video.swift`) and encodes both outputs from those frames. **Adding a clip is: drop `bougainvillea-flowers_NN.mov` (or `.webm`) into `public/flowers/` or `assets/flowers/`, run `npm run flowers:build`, commit the outputs.** A placement whose clip does not exist renders nothing — never a stand-in picture. The built files are committed so that building or deploying the site needs neither tool.
+**Cropped, and content-hashed.** Each clip is a 720 px square in which the flowers fill only part (a spray hangs from a corner or an edge; 21–53 % of each square was transparent). VP9-with-alpha is decoded in software on every desktop browser, and transparent pixels cost as much to decode as visible ones, so each clip is **cropped to the union of everything non-transparent over its whole length** (checked on every frame: no visible pixel lies outside the crop). `content/flower-clips.json` records the square (`frame`) and the crop (`box`), and `components/ui/Flower.tsx` positions the cropped video inside a full-size `.flower__frame`, so every placement in the CSS is unchanged. The cropped clips decode 39 % fewer pixels in total; **the files are not smaller** (WebM 12.5 → 12.9 MB for all six, MOV 9.2 → 8.1 MB). The `<hash>` is the first ten hex digits of each file's SHA-256: a changed clip is a new URL, which is what lets `next.config.ts` serve them with a one-year `immutable` cache. Re-running `npm run flowers:build` replaces a clip's old files; the manifest is rewritten after every clip, so a run that stops half-way (a full disk, Ctrl-C) leaves it consistent with the files on disk. See [`PERFORMANCE.md`](PERFORMANCE.md#asset-report).
 
-> **Deploy size.** The supplied masters (≈ 50 MB) sit in `public/flowers/`, so they are deployed although nothing references them. Move them to `assets/flowers/` (the script reads both) to keep them out of the deploy.
+ffmpeg cannot read the alpha layer of an Apple HEVC `.mov` (it decodes it onto white), so the script decodes with AVFoundation (`scripts/assets/alpha-video.swift`) and encodes both outputs from those frames. **Adding a clip is: drop `bougainvillea-flowers_NN.mov` (or `.webm`) into `assets/flowers/` (`public/flowers/` is also read), run `npm run flowers:build`, commit the outputs.** A placement whose clip does not exist renders nothing — never a stand-in picture. The built files are committed so that building or deploying the site needs neither tool.
+
+> **Deploy size.** The supplied masters (≈ 48 MB) live in `assets/flowers/`, outside `public/`, so they are not deployed (nothing on the site references them). Only the built clips in `public/flowers/clips/` (≈ 21 MB for all six, each cropped to where its flowers are) ship.
 
 Playback: `preload="none"`, muted, looped, `playsinline`, no `autoplay`; `engine/live.ts` plays a clip only while its section is within a quarter of a screen of the viewport and pauses it otherwise. The `.mov` is listed first under a QuickTime MIME type only Safari claims to play, so Chrome and Firefox take the WebM.
 

@@ -16,6 +16,10 @@ import { flowerClip } from "@/lib/flower";
  * clip is fetched until then; the poster (the first frame, with its transparency) stands in meanwhile.
  * Without JavaScript, or with reduced motion, the poster is all that is ever shown.
  *
+ * Cropped files: each clip is cropped to where its flowers are (the rest of the square was transparent and
+ * only cost decoding). The <video> is positioned inside a full-size square frame by the crop box, so the
+ * flower sits exactly where the uncropped square put it and every placement in the CSS is unchanged.
+ *
  * Sources: the HEVC-alpha `.mov` is listed FIRST under a QuickTime type that only Safari claims to
  * play, so Chrome and Firefox skip it and take the WebM; Safari takes the `.mov`.
  *
@@ -42,6 +46,7 @@ export function Flower({
 }) {
   const media = flowerClip(clip);
   if (!media) return null;
+  const at = (px: number) => `${((px / media.frame) * 100).toFixed(3)}%`;
 
   return (
     <div
@@ -52,22 +57,25 @@ export function Flower({
       style={style}
       aria-hidden="true"
     >
-      <video
-        className="flower__video"
-        muted
-        loop
-        playsInline
-        preload="none"
-        disablePictureInPicture
-        disableRemotePlayback
-        tabIndex={-1}
-        width={media.width}
-        height={media.height}
-        poster={media.poster}
-      >
-        <source src={media.mov} type='video/quicktime; codecs="hvc1"' />
-        <source src={media.webm} type="video/webm" />
-      </video>
+      <div className="flower__frame">
+        <video
+          className="flower__video"
+          muted
+          loop
+          playsInline
+          preload="none"
+          disablePictureInPicture
+          disableRemotePlayback
+          tabIndex={-1}
+          width={media.width}
+          height={media.height}
+          poster={media.poster}
+          style={{ left: at(media.box.x), top: at(media.box.y), width: at(media.box.w), height: at(media.box.h) }}
+        >
+          <source src={media.mov} type='video/quicktime; codecs="hvc1"' />
+          <source src={media.webm} type="video/webm" />
+        </video>
+      </div>
     </div>
   );
 }

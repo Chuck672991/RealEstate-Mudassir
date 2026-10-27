@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     // Only these qualities may be requested (Next 16 requires an allow-list).
     qualities: [60, 75, 85],
+    // How long an optimized photograph may be cached by browsers and CDNs. The default is 4 hours, so a visitor came
+    // back to re-download pictures that had not changed. A local photograph that IS replaced keeps its name (swap the
+    // file and the site shows the old one for up to this long); pictures from Sanity are addressed by content, so
+    // a changed picture is a new URL and this never serves a stale one. 31 days.
+    minimumCacheTTL: 60 * 60 * 24 * 31,
     // Explicit, project-scoped remote host. Nothing from homes.com / MLS CDNs is
     // allowed: those photos are not cleared for reuse (see docs/ASSETS.md).
     remotePatterns: sanityProjectId
@@ -55,6 +60,18 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // The flower clips are content-hashed by `npm run flowers:build` (NN.<hash>.webm …): a changed clip is a new URL, so
+      // they may be cached for a year and never revalidated (the default for files in public/ is max-age=0: every visit
+      // and every range request of a multi-megabyte video asked the server again).
+      {
+        source: "/flowers/clips/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      // The cloud strips are not hashed: 30 days, then revalidate.
+      {
+        source: "/clouds/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }],
+      },
       {
         source: "/:path*",
         headers: [

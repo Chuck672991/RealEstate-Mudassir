@@ -21,13 +21,14 @@ const check = (ok, what, detail = "") => {
   if (!ok) failures++;
 };
 
-async function session({ reduced }) {
+async function session({ reduced, lite = false }) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: reduced ? "reduce" : "no-preference" });
   await context.addInitScript(() => {
     try {
       sessionStorage.setItem("ms-intro", "1"); // skip the arrival: it is not what is being tested
     } catch {}
   });
+  if (lite) await context.addInitScript(() => sessionStorage.setItem("ms-perf", "lite")); // the tier a Save-Data / slow-connection visitor starts in
   const page = await context.newPage();
   const requested = [];
   const errors = [];
@@ -41,7 +42,7 @@ async function session({ reduced }) {
   const clips = () =>
     page.evaluate(() =>
       [...document.querySelectorAll(".flower video")].map((v) => ({
-        placement: [...v.parentElement.classList].find((c) => c.startsWith("flower--"))?.slice(8),
+        placement: [...v.closest(".flower").classList].find((c) => c.startsWith("flower--"))?.slice(8), // the video sits in a .flower__frame inside .flower
         paused: v.paused,
         t: v.currentTime,
         src: v.currentSrc.split("/").pop() || "",
@@ -87,6 +88,20 @@ async function session({ reduced }) {
   check(at(c1, "areas-intro")?.paused === true, "…and the Areas flower, far above, has paused");
   check(!s.requested.some((u) => /\.mov$/.test(u)), "the Safari .mov was never requested by Chrome");
   check(s.errors.length === 0, "no console errors", s.errors.join(" | "));
+  await s.context.close();
+}
+
+// ── lite tier (engine/tier.ts): a session that STARTS lite fetches and plays no clip ─────────────────────────
+{
+  const s = await session({ reduced: false, lite: true });
+  check(await s.page.evaluate(() => document.documentElement.dataset.perf === "lite"), "lite tier: the page starts in the lite tier");
+  await s.scrollTo("[data-hscroll-area]");
+  await s.scrollTo("[data-pin-area=cta]");
+  const list = await s.clips();
+  check(list.length > 0 && list.every((c) => c.paused && c.t === 0), "lite tier: no clip plays, even in the Areas chapter and the closing scene", `${list.length} clips`);
+  check(!s.requested.some((u) => /\.(webm|mov)$/.test(u)), "lite tier: no video file is downloaded", s.requested.filter((u) => /\.(webm|mov)$/.test(u)).join(", "));
+  check(s.requested.some((u) => u.endsWith(".webp")), "lite tier: the transparent posters are shown instead");
+  check(s.errors.length === 0, "lite tier: no console errors", s.errors.join(" | "));
   await s.context.close();
 }
 

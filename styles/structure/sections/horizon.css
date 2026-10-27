@@ -133,6 +133,10 @@
   .motion-ok .clouds[data-live] .clouds__track {
     animation-play-state: running;
   }
+  /* the lite tier (engine/tier.ts): the clouds hold still — a static sky costs the compositor nothing */
+  .motion-ok[data-perf="lite"] .clouds .clouds__track {
+    animation: none;
+  }
 
   .horizon__fade {
     position: absolute;

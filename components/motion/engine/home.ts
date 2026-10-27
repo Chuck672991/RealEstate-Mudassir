@@ -3,7 +3,9 @@ import type { ScrollTrigger as ScrollTriggerType } from "gsap/ScrollTrigger";
 
 import { WINDOWS_ALIGNED, WINDOWS_MERGED, WINDOWS_START, windowsPolygon } from "./closing-geometry";
 import { MQ, MANUAL_REVEAL, noop, q, qa, readBezier } from "./config";
+import { promoteWhileNear } from "./promote";
 import { revealWhenVisible } from "./reveal";
+import { isLite, whenLite } from "./tier";
 import { getLenis, scrollToTarget } from "./scroll";
 
 /**
@@ -43,6 +45,66 @@ const WIDE = `${MQ.desktop} and ${MQ.tall} and ${OK}`; // sideways chapter
 const PINNED_CTA = `${MQ.desktop} and ${MQ.tall} and ${OK}`;
 const UNPINNED_CTA = `${MQ.mobile}, ${MQ.short}, ${MQ.reduced}`;
 
+/** The plugins are registered once per page load; later runs of the home choreography (a visitor coming back) must not touch it. */
+let pluginsRegistered = false;
+
+/**
+ * Register GSAP plugins WITHOUT ScrollTrigger's endless idle frame loop, in Chromium.
+ *
+ * `ScrollTrigger.register()` starts `_rafBugFix`: an EMPTY requestAnimationFrame loop that never ends
+ * ("in some browsers (like Firefox), screen repaints weren't consistent unless we had SOMETHING queued
+ * up in requestAnimationFrame()"). In Chrome that one empty loop makes every transform animation on the
+ * page cost a main-thread style recalculation per frame — here the header badge spins forever, so an idle,
+ * parked tab did 60 recalcs/s and ≈ 35 ms/s of main-thread time (0 and 0.4 ms/s without the loop; measured
+ * in headed and headless Chrome, docs/PERFORMANCE.md). So in Chromium the one rAF call made while the plugin
+ * registers is dropped. Firefox and Safari keep the library's behaviour untouched.
+ *
+ * Three things keep that safe. (1) It is done ONCE per page load: ScrollTrigger registers itself only the first time,
+ * so nothing starts the loop again, and a later call (the visitor navigated away and came back) must not intercept
+ * anything. (2) GSAP's own ticker is woken first: `registerPlugin` wakes a sleeping ticker, and that wake-up is ALSO a
+ * requestAnimationFrame call — dropped by mistake it leaves the ticker believing it is running with no frame scheduled,
+ * so every scrubbed animation on the page stands still until a reload (this happened in the first version of this
+ * function, whenever the home page was initialised again after GSAP had gone to sleep). With the ticker already
+ * awake, the only call registration can make is the one being dropped. (3) A watchdog: two frames later the ticker's
+ * frame counter must have moved, and if it has not the ticker is restarted. If a library update ever made the
+ * registration call rAF more than once, the dropped callback is re-queued, i.e. back to the stock behaviour.
+ */
+function registerPlugins(gsap: Gsap_, plugins: object[]): void {
+  if (pluginsRegistered) return void gsap.registerPlugin(...plugins);
+  pluginsRegistered = true;
+
+  // Chrome, Edge, Opera, Samsung Internet… (and HeadlessChrome). Not iOS "Chrome" (CriOS, which is WebKit), Firefox or Safari.
+  const brands = (navigator as Navigator & { userAgentData?: { brands?: Array<{ brand: string }> } }).userAgentData?.brands;
+  const chromium = !!brands?.some((b) => b.brand === "Chromium") || /Chrom(e|ium)\//.test(navigator.userAgent);
+  if (!chromium) return void gsap.registerPlugin(...plugins);
+
+  gsap.ticker.wake(); // awake BEFORE the window opens, so registration cannot make the ticker request a frame inside it
+  const nativeRaf = window.requestAnimationFrame;
+  let dropped: FrameRequestCallback | null = null;
+  let calls = 0;
+  window.requestAnimationFrame = (callback: FrameRequestCallback): number => {
+    calls += 1;
+    if (calls === 1) {
+      dropped = callback;
+      return 0;
+    }
+    return nativeRaf.call(window, callback);
+  };
+  try {
+    gsap.registerPlugin(...plugins);
+  } finally {
+    window.requestAnimationFrame = nativeRaf;
+  }
+  if (calls > 1 && dropped) nativeRaf.call(window, dropped);
+
+  const frame = gsap.ticker.frame;
+  nativeRaf.call(window, () =>
+    nativeRaf.call(window, () => {
+      if (gsap.ticker.frame === frame) gsap.ticker.wake();
+    }),
+  );
+}
+
 export async function initHomeChoreography(signal: AbortSignal): Promise<() => void> {
   const [{ gsap }, { ScrollTrigger }, { CustomEase }] = await Promise.all([
     import("gsap"),
@@ -53,7 +115,7 @@ export async function initHomeChoreography(signal: AbortSignal): Promise<() => v
   // the chunks were loading. A stale run must create nothing: its late teardown would
   // otherwise revert the inline styles a newer run had just set.
   if (signal.aborted) return noop;
-  gsap.registerPlugin(ScrollTrigger, CustomEase);
+  registerPlugins(gsap, [ScrollTrigger, CustomEase]);
   gsap.ticker.lagSmoothing(0);
 
   // Easings come from the active theme's tokens, so a theme change re-tunes motion.
@@ -65,15 +127,23 @@ export async function initHomeChoreography(signal: AbortSignal): Promise<() => v
   const kit: Kit = { gsap, ScrollTrigger };
   const mm = gsap.matchMedia();
 
+  // The scenes that tell the story (the hero dolly, the sold stage, the sideways chapter, the closing zoom).
   mm.add(PINNED, () => heroDolly(kit));
-  mm.add(OK, () => archSpread(kit));
-  mm.add(OK, () => parallaxPlates(kit));
   mm.add(PINNED, () => soldStage(kit));
   mm.add(WIDE, () => areasChapter(kit));
-  mm.add(`${MQ.desktop} and ${OK}`, () => horizonParallax(kit));
-  mm.add(`${MQ.desktop} and ${OK}`, () => drifts(kit));
   mm.add(PINNED_CTA, () => closingScene(kit));
   mm.add(UNPINNED_CTA, () => closingSceneFlat());
+
+  // The purely decorative scrubs: skipped in the lite tier, and reverted (back to their resting state) if the
+  // page is judged too slow for them while it is running (engine/tier.ts).
+  const decor = gsap.matchMedia();
+  if (!isLite()) {
+    decor.add(OK, () => archSpread(kit));
+    decor.add(OK, () => parallaxPlates(kit));
+    decor.add(`${MQ.desktop} and ${OK}`, () => horizonParallax(kit));
+    decor.add(`${MQ.desktop} and ${OK}`, () => drifts(kit));
+  }
+  const offLite = whenLite(() => decor.revert());
 
   // Keep ScrollTrigger in step with the smooth scroller and with late layout changes.
   const lenis = getLenis();
@@ -89,6 +159,9 @@ export async function initHomeChoreography(signal: AbortSignal): Promise<() => v
     cancelled = true;
     window.removeEventListener("load", refresh);
     lenis?.off("scroll", onLenis);
+    offLite();
+    decor.revert();
+    decor.kill();
     mm.revert();
     mm.kill();
   };
@@ -131,7 +204,11 @@ function heroDolly({ gsap }: Kit): () => void {
     desktop ? "-=0.2" : ">",
   );
 
-  return () => gsap.set([bg, stage], { clearProps: "transform" });
+  const demote = promoteWhileNear(area, [bg, stage]);
+  return () => {
+    demote();
+    gsap.set([bg, stage], { clearProps: "transform" });
+  };
 }
 
 /* ── Arch intro ───────────────────────────────────────────────────────────── */
@@ -155,39 +232,44 @@ function archSpread({ gsap }: Kit): void {
 
 /* ── Parallax ─────────────────────────────────────────────────────────────── */
 
-function parallaxPlates({ gsap }: Kit): void {
+function parallaxPlates({ gsap }: Kit): () => void {
+  const demotions: Array<() => void> = [];
   for (const plate of qa("[data-parallax='plate']")) {
     const section = plate.closest("section") ?? plate.parentElement;
     if (!section) continue;
+    demotions.push(promoteWhileNear(section, [plate]));
     gsap.fromTo(
       plate,
       { yPercent: -11 },
       { yPercent: 11, ease: "none", scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 0.5 } },
     );
   }
+  return () => demotions.forEach((demote) => demote());
 }
 
 /* ── Recently sold stage ──────────────────────────────────────────────────── */
 
-function soldStage({ gsap }: Kit): void {
+function soldStage({ gsap }: Kit): () => void {
   const area = q("[data-pin-area='sold']");
   const wrap = q(".sold-show");
   const plates = qa(".sold-stage__plate");
-  if (!area || !wrap || !plates.length) return;
+  if (!area || !wrap || !plates.length) return noop;
 
   gsap
     .timeline({ scrollTrigger: { trigger: area, start: "top top", end: "bottom bottom", scrub: true } })
     .fromTo(plates, { scale: 1 }, { scale: 2, ease: "msIn", transformOrigin: "50% 60%" })
     .fromTo(wrap, { opacity: 1 }, { opacity: 0, ease: "msIn" }, "<");
+
+  return promoteWhileNear(area, plates);
 }
 
 /* ── Horizon: photo parallax under the clouds ─────────────────────────────── */
 
-function horizonParallax({ gsap }: Kit): void {
+function horizonParallax({ gsap }: Kit): () => void {
   const section = q(".horizon");
   const bg = q("[data-horizon-bg]");
   const photo = q("[data-horizon-photo]");
-  if (!section || !bg || !photo) return;
+  if (!section || !bg || !photo) return noop;
 
   // The photo wrapper slides a little faster than the page, so the clouds (which scroll 1:1
   // and drift on their own) separate from the landscape behind them.
@@ -202,21 +284,26 @@ function horizonParallax({ gsap }: Kit): void {
     { scale: 1.15, transformOrigin: "50% 100%" },
     { scale: 1, ease: "msSoft", scrollTrigger: { trigger: section, start: "top bottom", end: "bottom bottom", scrub: 0.25 } },
   );
+
+  return promoteWhileNear(section, [bg, photo]);
 }
 
 /* ── Drift: paired columns and flower sprays move against each other ──────── */
 
-function drifts({ gsap }: Kit): void {
+function drifts({ gsap }: Kit): () => void {
+  const demotions: Array<() => void> = [];
   // `fwd` rises −10 % → +10 % of the element's own height across its pass through the viewport,
   // `rev` the reverse: neighbouring elements cross each other and separate.
   for (const el of qa("[data-drift], .flower[data-parallax]")) {
     const dir = (el.dataset.drift ?? el.dataset.parallax) === "rev" ? -1 : 1;
+    demotions.push(promoteWhileNear(el, [el], "50%"));
     gsap.fromTo(
       el,
       { yPercent: -10 * dir },
       { yPercent: 10 * dir, ease: "none", scrollTrigger: { trigger: el, start: "top 125%", end: "bottom -25%", scrub: 0.5 } },
     );
   }
+  return () => demotions.forEach((demote) => demote());
 }
 
 /* ── Areas: vertical scroll → horizontal travel ───────────────────────────── */
@@ -263,6 +350,7 @@ function areasChapter({ gsap, ScrollTrigger }: Kit): () => void {
     { x: 70 },
     { x: -70, ease: "none", scrollTrigger: { trigger: area, start: "top top", end: "bottom bottom", scrub: 0.25 } },
   );
+  const demote = promoteWhileNear(area, [rail, intro, mid, end, ...qa(".area-panel__count", rail)]);
 
   // Keyboard: focusing a control inside the rail must scroll the page to where that
   // panel is on screen (the rail only moves with vertical scroll).
@@ -279,6 +367,7 @@ function areasChapter({ gsap, ScrollTrigger }: Kit): () => void {
   rail.addEventListener("focusin", onFocus);
 
   return () => {
+    demote();
     rail.removeEventListener("focusin", onFocus);
     area.style.height = "";
     gsap.set(rail, { clearProps: "transform" });
@@ -393,6 +482,9 @@ function closingScene({ gsap }: Kit): () => void {
   };
   footer.addEventListener("focusin", onFooterFocus);
   content.addEventListener("focusin", onContentFocus);
+  // Deliberately NOT promoted (will-change): measured at 12× CPU slowdown it saved only ≈ 6 % of main-thread time per
+  // frame here and no slow frames, while a promoted layer keeps its raster scale — and this scene scales a full-bleed
+  // photograph to ×1.84 and the giant type from ×0.75 to ×1, which came out ≈ 4–7 % softer (docs/PERFORMANCE.md).
 
   return () => {
     footer.removeEventListener("focusin", onFooterFocus);

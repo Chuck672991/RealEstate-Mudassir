@@ -132,7 +132,6 @@
       align-items: center;
       width: max-content;
       height: 100%;
-      will-change: transform;
     }
     .motion-ok .areas__track {
       display: flex;

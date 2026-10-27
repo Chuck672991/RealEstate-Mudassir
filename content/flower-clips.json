@@ -4,80 +4,122 @@
   "clips": [
     {
       "n": 1,
-      "width": 720,
-      "height": 720,
-      "webm": "/flowers/clips/01.webm",
-      "mov": "/flowers/clips/01.mov",
-      "poster": "/flowers/clips/01.webp",
+      "frame": 720,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 576,
+        "h": 552
+      },
+      "width": 576,
+      "height": 552,
+      "webm": "/flowers/clips/01.9c419cf1b4.webm",
+      "mov": "/flowers/clips/01.4032db2967.mov",
+      "poster": "/flowers/clips/01.b2fbaf08bd.webp",
       "bytes": {
-        "webm": 2237230,
-        "mov": 1498396,
-        "poster": 92108
+        "webm": 2246493,
+        "mov": 1480884,
+        "poster": 93498
       }
     },
     {
       "n": 2,
-      "width": 720,
-      "height": 720,
-      "webm": "/flowers/clips/02.webm",
-      "mov": "/flowers/clips/02.mov",
-      "poster": "/flowers/clips/02.webp",
+      "frame": 720,
+      "box": {
+        "x": 288,
+        "y": 0,
+        "w": 432,
+        "h": 712
+      },
+      "width": 432,
+      "height": 712,
+      "webm": "/flowers/clips/02.0441c34609.webm",
+      "mov": "/flowers/clips/02.f2833e85b8.mov",
+      "poster": "/flowers/clips/02.94ba02946f.webp",
       "bytes": {
-        "webm": 2976031,
-        "mov": 1899082,
-        "poster": 99134
+        "webm": 2957344,
+        "mov": 1846569,
+        "poster": 99822
       }
     },
     {
       "n": 4,
-      "width": 720,
-      "height": 720,
-      "webm": "/flowers/clips/04.webm",
-      "mov": "/flowers/clips/04.mov",
-      "poster": "/flowers/clips/04.webp",
+      "frame": 720,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 592,
+        "h": 408
+      },
+      "width": 592,
+      "height": 408,
+      "webm": "/flowers/clips/04.d01cb47f48.webm",
+      "mov": "/flowers/clips/04.ad50aca61a.mov",
+      "poster": "/flowers/clips/04.120d47701d.webp",
       "bytes": {
-        "webm": 956348,
-        "mov": 1551639,
-        "poster": 75296
+        "webm": 1631675,
+        "mov": 740829,
+        "poster": 75450
       }
     },
     {
       "n": 5,
+      "frame": 720,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 720,
+        "h": 376
+      },
       "width": 720,
-      "height": 720,
-      "webm": "/flowers/clips/05.webm",
-      "mov": "/flowers/clips/05.mov",
-      "poster": "/flowers/clips/05.webp",
+      "height": 376,
+      "webm": "/flowers/clips/05.17cfdfb567.webm",
+      "mov": "/flowers/clips/05.dd696c8a5b.mov",
+      "poster": "/flowers/clips/05.2603193a1b.webp",
       "bytes": {
-        "webm": 1575859,
-        "mov": 1171568,
-        "poster": 75358
+        "webm": 1572348,
+        "mov": 1150262,
+        "poster": 78540
       }
     },
     {
       "n": 6,
-      "width": 720,
-      "height": 720,
-      "webm": "/flowers/clips/06.webm",
-      "mov": "/flowers/clips/06.mov",
-      "poster": "/flowers/clips/06.webp",
+      "frame": 720,
+      "box": {
+        "x": 80,
+        "y": 0,
+        "w": 640,
+        "h": 640
+      },
+      "width": 640,
+      "height": 640,
+      "webm": "/flowers/clips/06.c878eae5bf.webm",
+      "mov": "/flowers/clips/06.3a60b515c6.mov",
+      "poster": "/flowers/clips/06.8c4224bd25.webp",
       "bytes": {
-        "webm": 1895519,
-        "mov": 1099355,
-        "poster": 94318
+        "webm": 1893717,
+        "mov": 1090368,
+        "poster": 93796
       }
     },
     {
       "n": 7,
-      "width": 720,
-      "height": 720,
-      "webm": "/flowers/clips/07.webm",
-      "mov": "/flowers/clips/07.mov",
-      "poster": "/flowers/clips/07.webp",
+      "frame": 720,
+      "box": {
+        "x": 120,
+        "y": 0,
+        "w": 600,
+        "h": 560
+      },
+      "width": 600,
+      "height": 560,
+      "webm": "/flowers/clips/07.ecc786036b.webm",
+      "mov": "/flowers/clips/07.792beafdf9.mov",
+      "poster": "/flowers/clips/07.866b72a373.webp",
       "bytes": {
-        "webm": 2881202,
-        "mov": 2011403,
-        "poster": 105820
+        "webm": 2911776,
+        "mov": 2000482,
+        "poster": 106636
       }
     }
   ]

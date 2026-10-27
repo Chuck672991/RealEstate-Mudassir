@@ -10,6 +10,13 @@ import { getLenis, scrollToTarget } from "@/components/motion/engine/scroll";
  * technology, hidden below 992px, never replaces keyboard or wheel scrolling.
  * Dragging the thumb scrubs the page. Updates write straight to the DOM (no React
  * state per frame).
+ *
+ * Per-frame cost, kept near zero: the page height and track height are cached (a
+ * ResizeObserver refreshes them — reading `scrollHeight` every frame forces a layout
+ * flush whenever anything else dirtied the page); the thumb moves with a transform, not
+ * `top` (which re-laid-out the rail every frame); and the label and the cue are only
+ * written when their value changes (assigning `textContent` replaces the text node even
+ * when the string is identical).
  */
 export function ScrollRail() {
   const rail = useRef<HTMLDivElement>(null);
@@ -20,17 +27,40 @@ export function ScrollRail() {
     if (!root) return;
     const label = root.querySelector<HTMLElement>("[data-rail-label]");
     const track = root.querySelector<HTMLElement>(".scroll-rail__track");
+    const thumb = root.querySelector<HTMLElement>(".scroll-rail__thumb");
     let raf = 0;
 
-    const maxScroll = () => Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    // measured once, then only when the page or the track changes size
+    let maxScrollPx = 1;
+    let trackPx = 0;
+    const measure = () => {
+      maxScrollPx = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      trackPx = track?.clientHeight ?? 0;
+    };
+    const maxScroll = () => maxScrollPx;
+    measure();
+    const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(() => measure());
+    resizeObserver?.observe(document.documentElement);
+    resizeObserver?.observe(document.body);
+    if (track) resizeObserver?.observe(track);
 
+    let lastLabel = "";
+    let lastCue = "";
     const update = () => {
       raf = 0;
-      const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll()));
-      root.style.setProperty("--progress", `${(progress * 100).toFixed(2)}%`);
-      if (label) label.textContent = String(Math.round(progress * 100)).padStart(2, "0");
+      const progress = Math.min(1, Math.max(0, window.scrollY / maxScrollPx));
+      if (thumb) thumb.style.transform = `translate3d(0, ${(progress * trackPx).toFixed(1)}px, 0)`;
+      const text = String(Math.round(progress * 100)).padStart(2, "0");
+      if (label && text !== lastLabel) {
+        label.textContent = text;
+        lastLabel = text;
+      }
       // fade the cue out as the end of the page approaches
-      cue.current?.style.setProperty("--cue-opacity", String(Math.max(0, Math.min(1, (0.94 - progress) / 0.06))));
+      const cueOpacity = String(Math.max(0, Math.min(1, (0.94 - progress) / 0.06)));
+      if (cueOpacity !== lastCue) {
+        cue.current?.style.setProperty("--cue-opacity", cueOpacity);
+        lastCue = cueOpacity;
+      }
     };
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -59,8 +89,12 @@ export function ScrollRail() {
       document.body.style.cursor = "";
     };
 
+    const onResize = () => {
+      measure();
+      schedule();
+    };
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    window.addEventListener("resize", onResize);
     getLenis()?.on("scroll", schedule);
     track?.addEventListener("pointerdown", down);
     track?.addEventListener("pointermove", move);
@@ -71,8 +105,9 @@ export function ScrollRail() {
     return () => {
       if (raf) cancelAnimationFrame(raf);
       document.body.style.cursor = "";
+      resizeObserver?.disconnect();
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("resize", onResize);
       getLenis()?.off("scroll", schedule);
       track?.removeEventListener("pointerdown", down);
       track?.removeEventListener("pointermove", move);

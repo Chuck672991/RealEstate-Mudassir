@@ -125,6 +125,67 @@ Implemented from `ERA_RESIDENCE_ANIMATION_IMPLEMENTATION_BRIEF.md` (mapping and 
 * **A person's eyes on every scroll position.** Stills at the points listed above were looked at, plus one scripted pass through the whole zoom; a frame-by-frame review of the motion was not done.
 * **The flower clips' and the reference's imagery rights** — see [`ASSETS.md`](ASSETS.md).
 
+## Round 3: carousel autoplay, header menu, How section, high-resolution photographs
+
+Run against a fresh production build in a scratch clone (the dev server was left alone), **one script at a time on an idle machine** — see the note on load at the end of this section.
+
+| Check | Result |
+| --- | --- |
+| `lint` · `typecheck` · `schema:validate` · `assets:check` | clean · clean · 0 errors · up to date (62 slots) |
+| `npm test` | **166 / 166** (new: nav defaults and the "opens the contact form" flag, the How section's structure, the closing photograph's rights gate) |
+| `npm run build` | succeeds, 32 static pages |
+| `verify:states` | **316 / 316** |
+| `verify:interactions` | **56 / 56** — includes, new: no pause/play button; the carousel keeps auto-playing after a mouse click on an arrow with the pointer still over it; it advances by itself; keyboard focus pauses it and leaving resumes it; a real **click** on the header's "Book a call", on a button inside a property page, and on the phone menu's "Book a call" each opens the contact form without navigating |
+| `verify:a11y` | **62 / 63 pages × contexts clean; 1 violation, NOT reproduced** (below) |
+| `verify:perf` | 8 / 8, **CLS 0.000**; image payload on the home page rose from ≈ 1.7 MB to ≈ 2.5 MB (desktop) because larger, higher-quality variants are now served |
+| `overlay-contrast.mjs` (normal · `--stress white` · `--stress black`) | **91 / 91 · 64 / 64 · 64 / 64** — new scenes: the menu over the How photograph, and the How copy |
+| `verify:console` on `next dev` | **15 / 15**, no console error, warning or hydration message |
+| `verify:flowers` | **16 / 16** (when run alone) |
+| `verify:seo` | **29 / 29** (on a build made with `NEXT_PUBLIC_SITE_URL`, as the script requires; my first attempt used a build without it and the script crashed — a setup error, not a site defect) |
+
+**Defects found while doing this, and fixed**
+
+18. **Every "open the contact form" button silently navigated to `/contact`.** `ContactDialog` listened on `document` in the bubbling phase; next/link calls `preventDefault()` first, so the listener saw a cancelled click and gave up. The existing tests opened the dialog with a custom event, which hid it. Now a capture-phase listener on `window` (with `stopPropagation`, and it closes the phone menu first). Mutation-checked: restoring the old listener makes the new click tests fail.
+19. **The carousel stopped whenever the mouse pointer was resting where it appeared** (hover paused it, and a mouse click on an arrow left focus inside it, which paused it too). Reproduced first (a pointer resting mid-page: 0 slides advanced in 18 s), then fixed: only keyboard focus pauses it. Mutation-checked.
+20. **A literal `#fff` in the preloader mask** failed the "no literal colours" test (round 2) — and `how.css` was rewritten without any.
+
+**Photographs.** `npm run photos:hires` — see [`ASSETS.md`](ASSETS.md#high-resolution-versions-npm-run-photoshires). Measured at 2× pixel density, the worst stretch fell from ≈ 10.5× to ≈ 1.4× and tone is preserved (mean colour and luminance percentiles within 1–4 / 255 on the four photos measured). **These are ML reconstructions, not the camera's detail.** The ML model, the cropped before/after comparisons (portrait, closing photo) and the numbers were looked at; the other 25 photographs were converted by the same code but not each inspected.
+
+**What did not pass cleanly, and what is NOT known**
+
+* **a11y: `color-contrast` on the decorative "Scroll" cue (`.scroll-cue`, `aria-hidden`) on `/properties/townhouse-in-hanover-park-sold-009`, desktop with motion.** Each of the two full-suite runs reported exactly 1 violation; I identified the element and page only for the second (the first run's output was filtered away by my own command). It did **not** reproduce in 11 isolated replays of the audit's own procedure (page walk, back to the top, 1.2 s wait) on an idle machine. My hypothesis — axe measured the cue's colour mid-fade while the page was loaded by other work — is **unproven**. If it recurs, look at the cue's `color` transition and the tone hit-test (`engine/tone.ts`).
+* **`states` and `flowers` each failed once in a combined run** that I was loading with other work; both passed when rerun alone (316 / 316; 16 / 16). `interactions` also failed twice with a page-load timeout or a stale selector (the selector was my own: it pointed at a button I had removed from the How section — fixed). **Run these scripts one at a time.**
+* **Cold-cache latency.** The first request for each size of a photograph takes ≈ 0.3–2 s while the optimizer decodes the PNG; a visitor who is first to a page pays it (later ones get the cache). Not measured on a real host.
+* **Not changed:** the flower videos are 720 px, the cloud strips 1400 px. At 2× density on a wide window the windows' flowers are ≈ 1.6× stretched at rest (more during the zoom). A 1080 px rebuild is possible (`scripts/assets/flower-clips.mjs`) at roughly twice the file size; not done.
+
+## Round 4: performance and animation optimisation
+
+The full account — method, numbers, what changed and what is still open — is [`PERFORMANCE.md`](PERFORMANCE.md). What was verified, and against which code:
+
+**Against the FINAL code** (production build, `NEXT_PUBLIC_SITE_URL=https://www.example.com`, scratch copy on its own port, one script at a time):
+
+| Check | Result |
+| --- | --- |
+| `lint` · `typecheck` · `schema:validate` · `seed:sanity:dry` · `assets:check` · `verify:contrast` | all exit 0 (lint with no warnings) |
+| `npm test` | **196 / 196** (new: the frame-rate judge, 13 tests; the cache headers, 4) |
+| `verify:states` | **316 / 316** |
+| `verify:interactions` | **56 / 56** |
+| `verify:a11y` | **0 violations**, 63 runs |
+| `verify:seo` | **29 / 29** (against a build made with the test origin) |
+| `verify:perf` | **8 / 8** — CLS 0.000 on every page and viewport; LCP 0.04–0.23 s (localhost lab figures; this run was under a 30 fps frame cap, see below); 226 KB JS on the home page (222 KB in the previous round) |
+| `verify:flowers` | **20 / 20** — now includes a session that *starts* in the lite tier (no clip downloaded, none played, posters shown) |
+| `verify:lifecycle` (new) | **23 / 23**, twice — resize across the breakpoint, reduced motion switched on and off, and leaving the page and coming back, each straight away and after 5 s idle |
+| `overlay-contrast` | **91 / 91**; `--stress white` **64 / 64**; `--stress black` **64 / 64** |
+| Intro (`scripts/verify/intro.mjs`) | passes: visible and scroll-locked from 0.3 s, opens at ≈ 2.6 s, finished with scroll released and the overlay hidden by 4.6 s, scrolls normally, and is not replayed after a reload in the same tab |
+| Automatic downgrade, in a real browser | with no override, continuous wheel scrolling flipped the page `full → lite` within ≈ 1.6 s, stored `ms-perf=lite` for the session and the next load started lite; `?perf=full` stayed full. **Caveat:** this ran under Chrome's 30 fps battery cap (every frame slow), i.e. a simulated slow display, not a slow computer |
+| Parked-tab cost (`scroll-perf --idle`), twice | 24 page frame requests · 26–27 style recalcs · 26–28 ms per 6 s (the original: 744 · 360 · 301 ms) |
+
+**Against the build one step earlier** (before the last three code changes: removing the closing scene's `will-change`, the `registerPlugins` fix, the lite-tier clip-download fix — each described in PERFORMANCE.md): the whole-page scroll benchmarks (12×, 6×, phone, first visit, load, lite), the intro frame comparison against the original (rings pixel-identical, max difference 1/255), the settled-section screenshots against the original, and the dev-server console audit. **They were not repeated on the final code**: by then the laptop was at 18 % battery and Chrome caps frames at 30 fps, which makes every frame timing invalid (an idle page's median frame was exactly 33.3 ms). The three changes are small and are not in the steady-state scroll path, but that is an argument, not a measurement.
+
+**`verify:console`** (needs `next dev`): 13 of 15 pass; the two failures are one dev-only Next warning (the hero photograph reported as LCP without `loading="eager"`, because the same picture is also used lazily in the About section) and are **identical on the original code**, run the same way.
+
+**Checks that fail without the fix** (each was run first against the unfixed build): `verify:flowers`' lite-tier block (the lite tier downloaded every clip at the top of the page), `verify:lifecycle` (a frozen animation ticker after a resize or reduced-motion toggle followed by a quick navigation back). The `verify:flowers` selector was also updated (`closest(".flower")`: the video now sits one wrapper deeper); a copy that forces the lite tier fails it, so it still has teeth.
+
 ## Defects found by this verification, and fixed
 
 Real problems, not hypotheticals — each was reproduced first, then fixed with a test or a measurable check:
@@ -139,6 +200,9 @@ Real problems, not hypotheticals — each was reproduced first, then fixed with 
 8. **Light text vanished over a bright photograph** — the Recently-sold stage (heading, tabs, price, caption), the **fixed header**, and the hero's italic accent over a bright portrait, 1.0–3.3 : 1. Fixed with a token-based scrim (see [`ACCESSIBILITY.md`](ACCESSIBILITY.md#text-over-photographs--the-scrim)). The contrast script was also improved: it now accounts for opacity (it had flattered the dimmed inactive tabs) and reads colours before hiding text (header colours transition, which had produced phantom α values).
 9. **WCAG 2.5.8 target size**: the desktop nav links had a 20 px clickable height with ~12 px gaps; several small text links and the consent checkbox were under 24 px — fixed (`.hit-slop`, nav slop, 24 px checkbox).
 10. **Redundant fallback alt text** ("Condo in Streamwood, Streamwood, IL").
+11. **The lite performance tier downloaded every flower clip at the top of the page** (a session that starts lite called `video.load()` on each clip: 8 requests, in exactly the sessions the tier exists to protect). Reproduced, fixed, and pinned by four new `verify:flowers` checks.
+12. **A frame-loop workaround froze every scrubbed animation after a client-side navigation back to the home page** (it dropped GSAP's own ticker wake-up request; the ticker's frame counter stood still, the Areas rail never moved until a reload). 3 / 3 reproductions on the unfixed build, none on the original code; fixed, and pinned by `verify:lifecycle`.
+13. **`npm run flowers:build` ran out of disk** (it kept every clip's decoded frames until the end) and left the manifest pointing at deleted files; it now cleans up per clip and rewrites the manifest after each.
 
 ## Not verified
 
@@ -151,7 +215,7 @@ Stated plainly, so nobody assumes otherwise:
 * **Any human assistive-technology or keyboard walkthrough** — see [`ACCESSIBILITY.md`](ACCESSIBILITY.md).
 * **Slow networks** (carousel photo loads, intro on 3G), **very long text**, **forced colours**, **print**.
 * **Third-party content** — nothing was downloaded from Homes.com or any MLS; there is no image from them to test.
-* **The GSAP choreography on low-end hardware.** Lab CPU throttling (4×) showed one ≈ 60 ms long task on a phone profile; nothing was run on a real low-power device.
+* **The GSAP choreography on low-end hardware.** Nothing was run on a real low-power device. Lab CPU throttling (up to 12×) is a simulation that does not slow the GPU or the video decoders; see [`PERFORMANCE.md`](PERFORMANCE.md#not-verified-and-limits) for this round's full list (Safari/Firefox, INP, Lighthouse, the automatic downgrade on a genuinely slow machine, the final-code benchmarks).
 
 ## Known limitations
 

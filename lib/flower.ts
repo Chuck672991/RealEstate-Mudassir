@@ -3,20 +3,26 @@ import manifest from "@/content/flower-clips.json";
 /**
  * BOUGAINVILLEA CLIPS — the flower sprays are short looped videos with a transparent background,
  * exactly as the reference does it (brief §2): `bougainvillea-flowers_NN.mov` (Apple HEVC with
- * alpha), numbered 01–07, supplied by the site owner in public/flowers/.
+ * alpha), numbered 01–07, supplied by the site owner (kept in assets/flowers/, outside the deploy).
  *
  * They are not shipped as supplied (≈ 9 MB each). `npm run flowers:build`
  * (scripts/assets/flower-clips.mjs) turns each into three small files under public/flowers/clips/ —
- *   NN.webm  VP9 + alpha    Chrome, Firefox, Edge
- *   NN.mov   HEVC + alpha   Safari
- *   NN.webp  the first frame, transparent — the poster, and the only thing reduced motion shows —
+ *   NN.<hash>.webm  VP9 + alpha    Chrome, Firefox, Edge
+ *   NN.<hash>.mov   HEVC + alpha   Safari
+ *   NN.<hash>.webp  the first frame, transparent — the poster, and the only thing reduced motion shows —
+ * cropped to the part of the square that has flowers in it (`box`) and named by content hash, so they can be cached forever —
  * and records them in content/flower-clips.json, which this file reads. Adding a clip is: drop
- * `bougainvillea-flowers_NN.mov` into public/flowers/ (or assets/flowers/), run the script.
+ * `bougainvillea-flowers_NN.mov` into assets/flowers/ (or public/flowers/), run the script.
  *
  * A placement whose clip has not been supplied renders NOTHING (never a stand-in picture).
  */
 export interface FlowerClip {
   n: number;
+  /** The clip's original square, in px. The placements in styles/structure/flowers.css were tuned against it. */
+  frame: number;
+  /** Where the flowers are inside that square, in px: the file itself is cropped to this (the rest was transparent). */
+  box: { x: number; y: number; w: number; h: number };
+  /** The (cropped) file's size. */
   width: number;
   height: number;
   webm: string;

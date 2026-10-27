@@ -7,6 +7,7 @@ import { usePrefersReducedMotion } from "@/lib/utils/hooks";
 import { initBadge } from "./engine/badge";
 import { runIntro } from "./engine/intro";
 import { createSmoothScroll, initAnchors, initSnapAssist, lockScroll, unlockScroll } from "./engine/scroll";
+import { initFrameMonitor } from "./engine/tier";
 import { initTone } from "./engine/tone";
 
 /**
@@ -36,7 +37,7 @@ export function MotionProvider() {
       html.classList.remove("motion-ok", "intro-on");
     } else {
       html.classList.add("motion-ok");
-      cleanups.push(createSmoothScroll(), initAnchors(), initSnapAssist(), initBadge(), runIntro());
+      cleanups.push(createSmoothScroll(), initAnchors(), initSnapAssist(), initBadge(), runIntro(), initFrameMonitor());
     }
     html.classList.add("motion-ready"); // cancels the pre-paint watchdog
 

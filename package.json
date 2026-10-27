@@ -26,6 +26,8 @@
     "verify:states": "node scripts/verify/states.mjs",
     "verify:flowers": "node scripts/verify/flowers.mjs",
     "verify:console": "node scripts/verify/console.mjs",
+    "verify:lifecycle": "node scripts/verify/lifecycle.mjs",
+    "verify:scroll": "node scripts/verify/scroll-perf.mjs",
     "screenshots": "node scripts/verify/sections.mjs"
   },
   "dependencies": {

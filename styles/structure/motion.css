@@ -322,3 +322,8 @@
   inherits: true;
   initial-value: 100vh;
 }
+@property --arch-s {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.288;
+}

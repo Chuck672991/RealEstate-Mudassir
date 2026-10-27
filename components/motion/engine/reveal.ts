@@ -7,12 +7,22 @@ import { MANUAL_REVEAL } from "./config";
  * the first time an element's box enters the viewport (the reference's
  * `start: "top bottom"`, `once: true`). All timing, easing and stagger live in CSS.
  *
- * Why not IntersectionObserver: several hidden states are clip-paths (hairlines that
- * draw, curtain wipes), and a browser treats a fully clipped target as not
- * intersecting — it would never fire. Reading the layout box ignores clip-path, and
- * the same check also covers elements that slide in HORIZONTALLY inside the pinned
- * "areas" chapter (the reference needs `containerAnimation` for that). The work is a
- * few rect reads per animation frame while scrolling, and stops once nothing is left.
+ * TWO DETECTORS, chosen by measurement (docs/PERFORMANCE.md):
+ *
+ *   IntersectionObserver — for almost every node. It costs nothing per frame. Before, every
+ *     pending node's box was read with getBoundingClientRect on EVERY animation frame for 900 ms
+ *     after each scroll event (≈ 58 reads per frame, ≈ 11 % of main-thread time on a slow CPU).
+ *     Probed on the real page at 1440×900: for the 50 nodes in the `ctn`, `h`, `w`, `top` and
+ *     `line` modes it reports visibility at exactly the same scroll position as the rect check.
+ *
+ *   Rect check — only for `slide` and `line-x`. Their HIDDEN state is a clip-path (a curtain wipe,
+ *     a hairline that draws), and an observer measures the CLIPPED box: the same probe showed it
+ *     reporting those nodes up to 560 px of scroll late, i.e. well after they were on screen.
+ *     Reading the layout box ignores clip-path. A handful of rect reads per frame, batched (all
+ *     reads, then all writes), only while scrolling and only until each one has fired.
+ *
+ * Both detectors cover elements that slide in HORIZONTALLY inside the pinned "areas" chapter (the
+ * reference needs `containerAnimation` for that): they look at where the box really is.
  *
  * Not handled here (they have their own driver):
  *   .hero, .intro        reveal with CSS animations at first paint
@@ -28,8 +38,39 @@ export const isSelfDriven = (node: Element): boolean => !!node.closest(`${SELF_D
 const SETTLE_MS = 900;
 /** An element counts as visible when its top is above this fraction of the viewport. */
 const TRIGGER_AT = 0.94;
+/** Nodes whose hidden state is a clip-path: an IntersectionObserver would see them too late. */
+const CLIPPED = '[data-reveal="slide"], [data-reveal="line-x"]';
 
-const pending = new Set<Element>();
+const reveal = (node: Element): void => node.setAttribute("data-revealed", "");
+
+// ── detector 1: IntersectionObserver ─────────────────────────────────────────────────────────────
+let observer: IntersectionObserver | null = null;
+const observed = new Set<Element>();
+
+function observe(node: Element): void {
+  if (typeof IntersectionObserver === "undefined") return reveal(node); // no observer: show everything
+  observer ??= new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const box = entry.boundingClientRect;
+        if (!entry.isIntersecting || (!box.width && !box.height)) continue; // display:none counts as not visible
+        reveal(entry.target);
+        observed.delete(entry.target);
+        observer?.unobserve(entry.target);
+      }
+      if (!observed.size) {
+        observer?.disconnect();
+        observer = null;
+      }
+    },
+    { rootMargin: `0px 0px -${Math.round((1 - TRIGGER_AT) * 100)}% 0px`, threshold: 0 },
+  );
+  observed.add(node);
+  observer.observe(node);
+}
+
+// ── detector 2: rect check, for the clip-path nodes only ─────────────────────────────────────────
+const polled = new Set<Element>();
 let raf = 0;
 let listening = false;
 let lastActivity = 0;
@@ -42,12 +83,14 @@ function visible(node: Element): boolean {
 
 function check(): void {
   raf = 0;
-  for (const node of pending) {
-    if (!visible(node)) continue;
-    node.setAttribute("data-revealed", "");
-    pending.delete(node);
+  // all reads first, then all writes: one style invalidation, not one per node
+  const ready: Element[] = [];
+  for (const node of polled) if (visible(node)) ready.push(node);
+  for (const node of ready) {
+    reveal(node);
+    polled.delete(node);
   }
-  if (!pending.size) return stop();
+  if (!polled.size) return stop();
   if (performance.now() - lastActivity < SETTLE_MS) raf = requestAnimationFrame(check);
 }
 
@@ -74,12 +117,20 @@ function stop(): void {
 
 /** Reveal `nodes` as they scroll into view. Safe to call repeatedly. */
 export function revealWhenVisible(nodes: Iterable<Element>): void {
+  let anyPolled = false;
   for (const node of nodes) {
-    if (!node.hasAttribute("data-revealed")) pending.add(node);
+    if (node.hasAttribute("data-revealed")) continue;
+    if (node.matches(CLIPPED)) {
+      polled.add(node);
+      anyPolled = true;
+    } else {
+      observe(node);
+    }
   }
-  if (!pending.size) return;
-  start();
-  wake();
+  if (anyPolled) {
+    start();
+    wake();
+  }
 }
 
 /** Watch every generic reveal under `root`. Returns a cleanup that stops watching them. */
@@ -89,7 +140,14 @@ export function initReveals(root: ParentNode = document): () => void {
   return () => {
     // Stop watching but keep what was revealed: leaving and re-entering a page
     // (Activity keeps it mounted) must not replay every entrance.
-    for (const node of nodes) pending.delete(node);
-    if (!pending.size) stop();
+    for (const node of nodes) {
+      polled.delete(node);
+      if (observed.delete(node)) observer?.unobserve(node);
+    }
+    if (!observed.size) {
+      observer?.disconnect();
+      observer = null;
+    }
+    if (!polled.size) stop();
   };
 }

@@ -386,6 +386,7 @@ body {
   .intro {
     --arch-w: 36vw;
     --arch-y: 100vh;
+    --arch-s: 0.288; /* --arch-w ÷ 125vw as a plain number: what the outline rings are scaled by */
     --arch-h: calc(var(--arch-w) / (560 / 2592));
     position: fixed;
     inset: 0 0 -100vh 0; /* extends a viewport below the fold: the arch is a tall shape */
@@ -436,24 +437,38 @@ body {
       opacity: 0.05;
     }
   }
+  /*
+   * The two thin outlines that follow the hole. They are built ONCE at the hole's final size (125vw
+   * wide) and shrunk with `scale`, moved with `translate`: neither touches layout. They used to be
+   * sized every frame from --arch-w / --arch-y (width, height, top), and each frame's size change
+   * was a layout shift — ≈ 60 of them, a Cumulative Layout Shift of 0.81 for every first-time
+   * visitor (docs/PERFORMANCE.md). `border-box` + a border divided by the scale keeps the box
+   * constant and the line a 1px hairline whatever the scale.
+   */
   .intro__arch {
+    --ring-k: 1.02; /* ring width ÷ hole width */
+    --ring-m: -0.01; /* ring top, as a fraction of the hole width, above the hole's top */
     position: absolute;
     left: 50%;
-    top: var(--arch-y);
-    translate: -50% 0;
-    height: var(--arch-h);
-    border: 1px solid var(--line-inverse);
+    top: 0;
+    box-sizing: border-box;
+    width: calc(125vw * var(--ring-k));
+    height: calc(125vw / (560 / 2592));
+    border: calc(1px / var(--arch-s)) solid var(--line-inverse);
     border-bottom: 0;
-    border-radius: 50vw 50vw 0 0;
+    border-radius: calc(62.5vw * var(--ring-k)) calc(62.5vw * var(--ring-k)) 0 0; /* a semicircle at every scale */
+    transform-origin: 50% 0;
+    translate: -50% calc(var(--arch-y) + var(--arch-w) * var(--ring-m));
+    scale: var(--arch-s);
     pointer-events: none;
   }
   .intro__arch--inner {
-    width: calc(var(--arch-w) * 1.02);
-    margin-top: calc(var(--arch-w) * -0.01);
+    --ring-k: 1.02;
+    --ring-m: -0.01;
   }
   .intro__arch--outer {
-    width: calc(var(--arch-w) * 1.1);
-    margin-top: calc(var(--arch-w) * -0.05);
+    --ring-k: 1.1;
+    --ring-m: -0.05;
     opacity: 0.6;
   }
   /* the lockup sits in the first screen while the arch is still parked below it */
@@ -648,7 +663,7 @@ body {
     .scroll-rail__thumb {
       position: absolute;
       left: -0.2rem;
-      top: var(--progress, 0%);
+      top: 0; /* moved by a transform from the scroll handler (components/layout/ScrollRail.tsx) */
       width: 0.5rem;
       height: 0.5rem;
       margin-top: -0.25rem;

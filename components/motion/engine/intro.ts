@@ -1,4 +1,5 @@
 import { lockScroll, unlockScroll } from "./scroll";
+import { whenLite } from "./tier";
 
 /**
  * FIRST-VISIT ARRIVAL (≈ 4 s), home page only, once per tab session.
@@ -22,7 +23,9 @@ import { lockScroll, unlockScroll } from "./scroll";
  *   open      `.intro-open` (≈ 1.9 s in) releases the hero's CSS entrance animations
  *   finish    `.intro-on` removed, scroll unlocked, overlay gone
  * Skip (key / click / tap / wheel): jump to the moment the arch is up, open the hero text
- * and play the rest at 3× speed.
+ * and play the rest at 3× speed. The same skip happens by itself if the page is judged too slow for
+ * the full experience while the arrival plays (engine/tier.ts); in the lite tier from the start
+ * (Save-Data, a slow connection, `?perf=lite`) there is no arrival at all (prepaint.ts).
  */
 
 /** [seconds, arch width (vw), arch top edge (vh)] — measured on the reference. */
@@ -41,6 +44,8 @@ const KEYFRAMES: ReadonlyArray<readonly [number, number, number]> = [
   [3.72, 124, -100],
   [4.0, 125, -100], // end state: --arch-w 125vw, --arch-y -100vh
 ];
+/** The hole's width at the end of the arrival; the outline rings are built at this size (chrome.css). */
+const ARCH_FINAL_VW = 125;
 const DURATION_MS = 4000;
 /** When the hero title may start (the reference: just before the fast expansion). */
 const OPEN_AT_MS = 1900;
@@ -56,6 +61,7 @@ const keyframes = (): Keyframe[] =>
     offset: t / (DURATION_MS / 1000),
     "--arch-w": `${w}vw`,
     "--arch-y": `${y}vh`,
+    "--arch-s": String(w / ARCH_FINAL_VW), // the outline rings are scaled, not resized (no layout shift)
     // the first samples are half a second apart (smooth them); from 2.05 s they are dense (linear)
     easing: i < 4 ? EASE_IN_OUT : "linear",
   }));
@@ -83,6 +89,7 @@ export function runIntro(): () => void {
 
   /** Stop everything this run started, leaving the page exactly as it found it. */
   const teardown = () => {
+    offLite();
     timers.forEach(window.clearTimeout);
     skipEvents.forEach((name) => window.removeEventListener(name, skip));
     animation?.cancel();
@@ -134,6 +141,7 @@ export function runIntro(): () => void {
     }
   }
   skipEvents.forEach((name) => window.addEventListener(name, skip, { passive: true, once: true }));
+  const offLite = whenLite(skip);
 
   // Gate: fonts and the window load event (so the title's glyphs and the hero art are
   // ready), at least MIN_BEFORE_RUN_MS after navigation start, at most GATE_MAX_MS from now.

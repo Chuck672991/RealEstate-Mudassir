@@ -30,7 +30,8 @@ Requires Node **20.9+** (22 or 24 LTS recommended). With no `NEXT_PUBLIC_SANITY_
 | `npm run assets:manifest` · `assets:check` | Write / verify `docs/asset-manifest.json` |
 | `npm run images:import -- --map <file>` | Upload **agent-supplied** originals with recorded rights |
 | `npm run verify:contrast` | WCAG contrast audit of every theme (includes the photo-scrim guarantee) |
-| `npm run verify:states \| interactions \| a11y \| seo \| perf \| console -- <url>` | Browser/SEO/performance checks against a running server |
+| `npm run verify:states \| interactions \| a11y \| seo \| perf \| console \| flowers \| lifecycle -- <url>` | Browser/SEO/performance checks against a running server |
+| `npm run verify:scroll -- <url> --cpu 12` | Scroll-performance benchmark (real wheel input, per-section frames, long tasks, layout/script time, idle cost): [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md) |
 | `node scripts/verify/overlay-contrast.mjs <url> [--stress white]` | Contrast of text over gradients and photographs, measured from rendered pixels |
 | `npm run screenshots -- <url> <outDir>` | One screenshot per section |
 
@@ -116,9 +117,11 @@ npm run verify:a11y -- http://localhost:3000           # axe-core, every page in
 npm run verify:seo -- http://localhost:3000 https://your-origin   # metadata, JSON-LD, sitemap, robots, links
 npm run verify:perf -- http://localhost:3000           # LCP / CLS / payload
 npm run verify:console -- http://localhost:3000        # run against `npm run dev` to catch hydration mismatches
-npm run verify:flowers -- http://localhost:3000        # flower videos: play only near the viewport, WebM chosen, nothing plays under reduced motion
+npm run verify:flowers -- http://localhost:3000        # flower videos: play only near the viewport, WebM chosen, nothing downloads or plays in the lite tier or under reduced motion
+npm run verify:lifecycle -- http://localhost:3000      # the scroll scenes after a resize, a reduced-motion toggle, and leaving the page and coming back
+npm run verify:scroll -- http://localhost:3000 --cpu 12   # scroll benchmark; use a production build and a laptop on mains power (see docs/PERFORMANCE.md)
 npm run photos:hires                                   # (macOS 26+, Apple silicon) redo the photograph PNGs from assets/owner-supplied/photo-originals/
-npm run flowers:build                                  # (macOS) rebuild the flower video clips from public/flowers/bougainvillea-flowers_NN.mov — see docs/ASSETS.md
+npm run flowers:build                                  # (macOS) rebuild the flower video clips from assets/flowers/bougainvillea-flowers_NN.mov — see docs/ASSETS.md
 ```
 
 The browser scripts use `playwright-core` with an installed Chrome (`PW_CHANNEL` overrides the channel). **Only Chrome was used** and nothing was exercised against a live Sanity project — the full list of what was and was not verified is in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
@@ -136,7 +139,7 @@ lib/                    sanity/ (clients, GROQ, contract), seed/ (mapper, assets
 sanity/                 schemas, Studio structure, generated types
 scripts/                seed, asset manifest, image import, verify/ (browser + SEO + contrast checks)
 styles/                 tokens.css (contract) · themes/ (decoration) · structure/ (layout, sections, motion)
-docs/                   theming, content model, assets, reference mapping, accessibility, open items, verification
+docs/                   theming, content model, assets, reference mapping, accessibility, performance, open items, verification
 types/content.ts        the DTOs components are allowed to see
 ```
 

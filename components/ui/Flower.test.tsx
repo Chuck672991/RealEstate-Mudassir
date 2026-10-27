@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, it } from "node:test";
@@ -53,6 +54,20 @@ describe("flower clips", () => {
     it(`clip ${n}: the poster is the clip's size, so the box does not jump when the video loads`, () => {
       assert.deepEqual([clip.width, clip.height], webpSize(publicFile(clip.poster)));
     });
+    it(`clip ${n}: its file names carry a hash of their content (so a year-long immutable cache can never go stale)`, () => {
+      for (const file of [clip.webm, clip.mov, clip.poster]) {
+        const [, hash] = /\.([0-9a-f]{10})\.(webm|mov|webp)$/.exec(file) ?? [];
+        assert.ok(hash, `${file} has no content hash in its name`);
+        const actual = createHash("sha256").update(readFileSync(publicFile(file))).digest("hex").slice(0, 10);
+        assert.equal(actual, hash, `${file}: the name's hash is not the file's hash (was the file replaced without re-running flowers:build?)`);
+      }
+    });
+    it(`clip ${n}: the crop box lies inside its square frame and is what the file's size says`, () => {
+      assert.ok(clip.frame > 0 && clip.box.w > 0 && clip.box.h > 0);
+      assert.ok(clip.box.x >= 0 && clip.box.y >= 0 && clip.box.x + clip.box.w <= clip.frame && clip.box.y + clip.box.h <= clip.frame, "inside the frame");
+      assert.deepEqual([clip.width, clip.height], [clip.box.w, clip.box.h]);
+      assert.ok(clip.box.w % 8 === 0 && clip.box.h % 8 === 0, "encoders want tidy sizes");
+    });
     it(`clip ${n}: weighs what a decorative loop should (each file under 4 MB)`, () => {
       const entry = manifest.clips.find((c) => c.n === n)!;
       for (const [kind, bytes] of Object.entries(entry.bytes)) assert.ok(bytes < 4 * 1024 * 1024, `${kind} is ${(bytes / 1048576).toFixed(1)} MB`);
@@ -70,6 +85,15 @@ describe("flower component", () => {
     assert.match(markup, /<video\b/);
     for (const attr of ["muted", "loop", "playsinline", 'preload="none"', "disablepictureinpicture", 'tabindex="-1"']) assert.ok(markup.toLowerCase().includes(attr), `missing ${attr}`);
     assert.doesNotMatch(markup, /controls|autoplay|<a |<button/i);
+  });
+
+  it("the cropped video sits inside a full-size square frame, so every placement in the CSS is unchanged", () => {
+    const clip = flowerClip(n)!;
+    const markup = html(<Flower clip={n} placement="x" />);
+    assert.match(markup, /<div class="flower__frame">/);
+    const pct = (px: number) => `${((px / clip.frame) * 100).toFixed(3)}%`;
+    assert.ok(markup.includes(`left:${pct(clip.box.x)}`) && markup.includes(`top:${pct(clip.box.y)}`));
+    assert.ok(markup.includes(`width:${pct(clip.box.w)}`) && markup.includes(`height:${pct(clip.box.h)}`));
   });
 
   it("the poster is the picture shown before, and instead of, playback", () => {
